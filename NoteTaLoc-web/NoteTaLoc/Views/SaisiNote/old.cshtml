@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "SaisiNoteView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>SaisiNoteView</h2>
+<form id="SaisiNoteForm" method="post" >
+<table style="text-align:center; vertical-align:middle">
+    <tbody>
+        <tr>
+            <td style="text-align:right">Numéro :</td>
+            <td><input type="text" id="numero" size="50" required="required"/></td>
+        </tr>
+        <tr>
+            <td style="text-align:right">Rue : *</td>
+            <td><input type="text" id="rue" size="50"/></td>
+        </tr>
+        <tr>
+            <td style="text-align:right">Appartement : </td>
+            <td><input type="text" id="appartement" size="50"/></td>
+        </tr>
+        <tr>
+            <td style="text-align:right">Localité : </td>
+            <td><input type="text" id="localite" size="50"/></td>
+        </tr>
+        <tr>
+            <td style="text-align:right">Code Postal : *</td>
+            <td><input type="text" id="codepostal" size="50"/></td>
+        </tr>
+        <tr>
+            <td style="text-align:right">Région / Province / État : </td>
+            <td><input type="text" id="region" size="50"/></td>
+        </tr>
+        <tr>
+            <td style="text-align:right">Pays : </td>
+            <td><input type="text" id="pays" size="50"/></td>
+        </tr>
+        <tr>
+            <td colspan="2"><hr /></td>
+        </tr>
+        <tr>
+            <td style="text-align:right">Note : </td>
+            <td>
+
+                <input type="radio" name="MaNote" value="0"/>Null
+                <input type="radio" name="MaNote" value="1"/>À éviter
+                <input type="radio" name="MaNote" value="2"/>À négocier
+                <input type="radio" name="MaNote" value="3"/>Correct
+                <input type="radio" name="MaNote" value="4"/>À prendre
+                <input type="radio" name="MaNote" value="5"/>Excellent
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="button" value="Noter"/></td>
+        </tr>
+    </tbody>
+</table>
+</form>

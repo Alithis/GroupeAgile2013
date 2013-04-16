@@ -1,0 +1,72 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+@model NoteTaLoc.Models.SaisiNoteForm
+
+<h2>Index</h2>
+
+<h2>SaisiNoteView</h2>
+@for (int i=0; i < ViewBag.NumTimes; i++) { 
+      @ViewBag.Message 
+} 
+
+@using (Html.BeginForm()) {
+ @Html.ValidationSummary(true)    
+<table style="text-align:center; vertical-align:middle">
+    <tbody>
+        <tr>
+            <td style="text-align:right">Numéro :</td>
+            <td>
+                @Html.EditorFor(model => model.Numero)
+                @Html.ValidationMessageFor(model => model.Numero)
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right">Rue : *</td>
+            <td><input type="text" id="rue" size="50"/></td>
+        </tr>
+        <tr>
+            <td style="text-align:right">Appartement : </td>
+            <td><input type="text" id="appartement" size="50"/></td>
+        </tr>
+        <tr>
+            <td style="text-align:right">Localité : </td>
+            <td><input type="text" id="localite" size="50"/></td>
+        </tr>
+        <tr>
+            <td style="text-align:right">Code Postal : *</td>
+            <td><input type="text" id="codepostal" size="50"/></td>
+        </tr>
+        <tr>
+            <td style="text-align:right">Région / Province / État : </td>
+            <td><input type="text" id="region" size="50"/></td>
+        </tr>
+        <tr>
+            <td style="text-align:right">Pays : </td>
+            <td>
+                @Html.EditorFor(model => model.Pays)
+                @Html.ValidationMessageFor(model => model.Pays)
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"><hr /></td>
+        </tr>
+        <tr>
+            <td style="text-align:right">Note : </td>
+            <td>
+                 @Html.RadioButtonFor(model => model.Note, 0) 0 <br />
+                 @Html.RadioButtonFor(model => model.Note, 1) 1 <br />
+                 @Html.RadioButtonFor(model => model.Note, 2) 2 <br />
+                 @Html.RadioButtonFor(model => model.Note, 3) 3 <br />
+                 @Html.RadioButtonFor(model => model.Note, 4) 4 <br />
+                 @Html.RadioButtonFor(model => model.Note, 5) 5 <br />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="Noter" />
+            </td>
+        </tr>
+    </tbody>
+</table>
+}
