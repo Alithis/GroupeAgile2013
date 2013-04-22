@@ -1,0 +1,92 @@
+﻿@model NoteTaLoc.Models.AdresseTable
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>AdresseTable</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AdresseId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AdresseId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AptNo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AptNo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.RueNo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RueNo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Rue)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Rue)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Ville)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Ville)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Province)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Province)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CodePostal)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CodePostal)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Pays)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Pays)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.GeoCodeResponse)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.GeoCodeResponse)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Longitude)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Longitude)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Lattitude)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Lattitude)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
