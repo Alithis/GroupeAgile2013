@@ -15,6 +15,9 @@
                     <a href="~/">ASP.NET Web API</a></p>
             </div>
             <div class="float-right">
+                <section id="login">
+                    @Html.Partial("_LoginPartial")
+                </section>
                 <nav>
                     <ul id="menu">
                         <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>

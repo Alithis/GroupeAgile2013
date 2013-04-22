@@ -2,7 +2,7 @@
 ##### par :
  **Product Owner :** Arnaud et Christophe  
  **Scrum Master :** Laurence  
- **Développeur :** Erik, Sébastien, Stefan, Miguel, Sunny, Arnaud, Amine, Solenne, Duc, Denis  
+ **Développeur :** Erik, Sébastien, Stefan, Miguel, Sunny, Arnaud, Med Amine, Solenne, Duc, Denis  
 
 ## Objectif
 
