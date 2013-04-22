@@ -1,0 +1,115 @@
+﻿@model NoteTaLoc.Models.AdresseTable
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>AdresseTable</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AdresseId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AdresseId)
+            @Html.ValidationMessageFor(model => model.AdresseId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AptNo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AptNo)
+            @Html.ValidationMessageFor(model => model.AptNo)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RueNo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.RueNo)
+            @Html.ValidationMessageFor(model => model.RueNo)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Rue)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Rue)
+            @Html.ValidationMessageFor(model => model.Rue)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Ville)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Ville)
+            @Html.ValidationMessageFor(model => model.Ville)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Province)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Province)
+            @Html.ValidationMessageFor(model => model.Province)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CodePostal)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CodePostal)
+            @Html.ValidationMessageFor(model => model.CodePostal)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Pays)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Pays)
+            @Html.ValidationMessageFor(model => model.Pays)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.GeoCodeResponse)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.GeoCodeResponse)
+            @Html.ValidationMessageFor(model => model.GeoCodeResponse)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Longitude)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Longitude)
+            @Html.ValidationMessageFor(model => model.Longitude)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Lattitude)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Lattitude)
+            @Html.ValidationMessageFor(model => model.Lattitude)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

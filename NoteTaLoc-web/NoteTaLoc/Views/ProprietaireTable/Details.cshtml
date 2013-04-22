@@ -1,0 +1,50 @@
+﻿@model NoteTaLoc.Models.ProprietaireTable
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>ProprietaireTable</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ProprietaireId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProprietaireId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UserTable.Nom)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserTable.Nom)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AdresseTable.AptNo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AdresseTable.AptNo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PreuveDeProp)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PreuveDeProp)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PreuveType)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PreuveType)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
