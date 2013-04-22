@@ -44,6 +44,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -160,10 +162,48 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\AdresseTableController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LocataireTableController.cs" />
+    <Compile Include="Controllers\NoteTableController.cs" />
+    <Compile Include="Controllers\ProprietaireTableController.cs" />
+    <Compile Include="Controllers\UserTableController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AdresseTable.cs">
+      <DependentUpon>notetaloc.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LocataireTable.cs">
+      <DependentUpon>notetaloc.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NoteTable.cs">
+      <DependentUpon>notetaloc.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\notetaloc.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>notetaloc.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\notetaloc.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>notetaloc.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\notetaloc.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>notetaloc.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProprietaireTable.cs">
+      <DependentUpon>notetaloc.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SampleDroppableTable.cs">
+      <DependentUpon>notetaloc.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserTable.cs">
+      <DependentUpon>notetaloc.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -242,6 +282,23 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\HelpPageApiModel.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <EntityDeploy Include="Models\notetaloc.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>notetaloc.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\notetaloc.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>notetaloc.edmx</DependentUpon>
+      <LastGenOutput>notetaloc.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\notetaloc.edmx.diagram">
+      <DependentUpon>notetaloc.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\notetaloc.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>notetaloc.edmx</DependentUpon>
+      <LastGenOutput>notetaloc.cs</LastGenOutput>
+    </Content>
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -285,13 +342,42 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
+    <Content Include="Views\Search\ShowGeoLocation.cshtml" />
+    <Content Include="Views\AdresseTable\Index.cshtml" />
+    <Content Include="Views\AdresseTable\Details.cshtml" />
+    <Content Include="Views\AdresseTable\Create.cshtml" />
+    <Content Include="Views\AdresseTable\Edit.cshtml" />
+    <Content Include="Views\AdresseTable\Delete.cshtml" />
+    <Content Include="Views\LocataireTable\Index.cshtml" />
+    <Content Include="Views\LocataireTable\Details.cshtml" />
+    <Content Include="Views\LocataireTable\Create.cshtml" />
+    <Content Include="Views\LocataireTable\Edit.cshtml" />
+    <Content Include="Views\LocataireTable\Delete.cshtml" />
+    <Content Include="Views\NoteTable\Index.cshtml" />
+    <Content Include="Views\NoteTable\Details.cshtml" />
+    <Content Include="Views\NoteTable\Create.cshtml" />
+    <Content Include="Views\NoteTable\Edit.cshtml" />
+    <Content Include="Views\NoteTable\Delete.cshtml" />
+    <Content Include="Views\ProprietaireTable\Index.cshtml" />
+    <Content Include="Views\ProprietaireTable\Details.cshtml" />
+    <Content Include="Views\ProprietaireTable\Create.cshtml" />
+    <Content Include="Views\ProprietaireTable\Edit.cshtml" />
+    <Content Include="Views\ProprietaireTable\Delete.cshtml" />
+    <Content Include="Views\UserTable\Index.cshtml" />
+    <Content Include="Views\UserTable\Details.cshtml" />
+    <Content Include="Views\UserTable\Create.cshtml" />
+    <Content Include="Views\UserTable\Edit.cshtml" />
+    <Content Include="Views\UserTable\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

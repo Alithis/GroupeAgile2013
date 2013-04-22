@@ -1,0 +1,53 @@
+﻿@model NoteTaLoc.Models.LocataireTable
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>LocataireTable</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LocataireId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LocataireId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UserTable.Nom)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserTable.Nom)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AdresseTable.AptNo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AdresseTable.AptNo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PreuveDeDomicile)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PreuveDeDomicile)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PreuveType)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PreuveType)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
