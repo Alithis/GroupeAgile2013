@@ -1,0 +1,64 @@
+﻿@model NoteTaLoc.Models.NoteTable
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>NoteTable</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.NoteId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NoteId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UserTable.Nom)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserTable.Nom)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AdresseTable.AptNo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AdresseTable.AptNo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Note)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Note)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.StatutNote)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.StatutNote)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Commentaire)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Commentaire)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.StatutComment)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.StatutComment)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

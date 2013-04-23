@@ -1,0 +1,93 @@
+﻿@model IEnumerable<NoteTaLoc.Models.AdresseTable>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AdresseId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AptNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RueNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ville)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Province)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CodePostal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pays)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GeoCodeResponse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Longitude)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Lattitude)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdresseId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AptNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RueNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ville)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Province)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CodePostal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pays)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GeoCodeResponse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Longitude)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Lattitude)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

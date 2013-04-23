@@ -1,0 +1,113 @@
+﻿@model NoteTaLoc.Models.UserTable
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>UserTable</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UserId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Nom)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Nom)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Prenom)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Prenom)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Pseudo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Pseudo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.MotDePasse)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.MotDePasse)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Courriel)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Courriel)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DateCreer)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DateCreer)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DateMod)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DateMod)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Statut)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Statut)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Commentaire)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Commentaire)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UserType)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserType)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.InscriptionConfirm)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.InscriptionConfirm)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SiteCondAccept)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SiteCondAccept)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AllowPubContact)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AllowPubContact)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

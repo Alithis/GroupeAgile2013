@@ -1,0 +1,67 @@
+﻿@model NoteTaLoc.Models.ProprietaireTable
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>ProprietaireTable</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProprietaireId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ProprietaireId)
+            @Html.ValidationMessageFor(model => model.ProprietaireId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.UserId, "UserTable")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("UserId", String.Empty)
+            @Html.ValidationMessageFor(model => model.UserId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AdresseId, "AdresseTable")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("AdresseId", String.Empty)
+            @Html.ValidationMessageFor(model => model.AdresseId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PreuveDeProp)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PreuveDeProp)
+            @Html.ValidationMessageFor(model => model.PreuveDeProp)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PreuveType)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PreuveType)
+            @Html.ValidationMessageFor(model => model.PreuveType)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

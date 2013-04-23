@@ -1,0 +1,111 @@
+﻿@model IEnumerable<NoteTaLoc.Models.UserTable>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Prenom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pseudo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MotDePasse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Courriel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateCreer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateMod)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Statut)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Commentaire)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InscriptionConfirm)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SiteCondAccept)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AllowPubContact)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Prenom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pseudo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MotDePasse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Courriel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateCreer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateMod)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Statut)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Commentaire)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InscriptionConfirm)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SiteCondAccept)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AllowPubContact)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>
