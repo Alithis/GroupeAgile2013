@@ -116,5 +116,13 @@ namespace NoteTaLoc.Controllers
             db.Dispose();
             base.Dispose(disposing);
         }
+
+        //
+        // GET: /AdresseTable/SearchNoted
+
+        public ActionResult SearchNoted()
+        {
+            return View();
+        }
     }
 }
