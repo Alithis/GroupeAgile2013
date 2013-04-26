@@ -124,5 +124,28 @@ namespace NoteTaLoc.Controllers
         {
             return View();
         }
+
+        public List<AdresseTable> SearchAdresses(string SearchPhrase)
+        {
+            List<AdresseTable> searchResult = new List<AdresseTable>();
+
+            string[] parts = SearchPhrase.Split(new char[] { ' ' });
+            List<string> searchTerms = new List<string>();
+            foreach (string part in parts)
+            {
+                searchTerms.Add(part.Trim());
+            }
+
+            searchResult = (from a in db.AdresseTables
+             where searchTerms.All(term => a.Ville.ToUpper().Contains(term.ToUpper()) ||
+                                           a.CodePostal.ToUpper().Contains(term.ToUpper()) ||
+                                           a.Pays.ToUpper().Contains(term.ToUpper()) ||
+                                           a.Province.ToUpper().Contains(term.ToUpper()) ||
+                                           a.Rue.ToUpper().Contains(term.ToUpper())
+                                           )
+             select a).ToList();
+
+            return searchResult;
+        }
     }
 }
