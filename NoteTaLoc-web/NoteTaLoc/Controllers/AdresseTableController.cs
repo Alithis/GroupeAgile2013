@@ -125,6 +125,11 @@ namespace NoteTaLoc.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="SearchPhrase"></param>
+        /// <returns></returns>
         public List<AdresseTable> SearchAdresses(string SearchPhrase)
         {
             List<AdresseTable> searchResult = new List<AdresseTable>();
