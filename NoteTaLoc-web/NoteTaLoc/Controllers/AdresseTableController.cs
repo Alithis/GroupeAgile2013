@@ -18,7 +18,8 @@ namespace NoteTaLoc.Controllers
 
         public ActionResult Index()
         {
-            return View(db.AdresseTables.ToList());
+            //return View(db.AdresseTables.ToList());
+            return View(new List<AdresseTable>());
         }
 
         //
@@ -117,12 +118,9 @@ namespace NoteTaLoc.Controllers
             base.Dispose(disposing);
         }
 
-        //
-        // GET: /AdresseTable/SearchNoted
-
-        public ActionResult SearchNoted()
+        public ActionResult SearchNoted(string searchString)
         {
-            return View();
+            return View("SearchNoted", SearchAdresses(searchString));
         }
 
         /// <summary>
@@ -133,23 +131,24 @@ namespace NoteTaLoc.Controllers
         public List<AdresseTable> SearchAdresses(string SearchPhrase)
         {
             List<AdresseTable> searchResult = new List<AdresseTable>();
-
-            string[] parts = SearchPhrase.Split(new char[] { ' ' });
-            List<string> searchTerms = new List<string>();
-            foreach (string part in parts)
+            if (!String.IsNullOrEmpty(SearchPhrase))
             {
-                searchTerms.Add(part.Trim());
+                string[] parts = SearchPhrase.Split(new char[] { ' ' });
+                List<string> searchTerms = new List<string>();
+                foreach (string part in parts)
+                {
+                    searchTerms.Add(part.Trim());
+                }
+
+                searchResult = (from a in db.AdresseTables
+                                where searchTerms.All(term => a.Ville.ToUpper().Contains(term.ToUpper()) ||
+                                                              a.CodePostal.ToUpper().Contains(term.ToUpper()) ||
+                                                              a.Pays.ToUpper().Contains(term.ToUpper()) ||
+                                                              a.Province.ToUpper().Contains(term.ToUpper()) ||
+                                                              a.Rue.ToUpper().Contains(term.ToUpper())
+                                                              )
+                                select a).ToList();
             }
-
-            searchResult = (from a in db.AdresseTables
-             where searchTerms.All(term => a.Ville.ToUpper().Contains(term.ToUpper()) ||
-                                           a.CodePostal.ToUpper().Contains(term.ToUpper()) ||
-                                           a.Pays.ToUpper().Contains(term.ToUpper()) ||
-                                           a.Province.ToUpper().Contains(term.ToUpper()) ||
-                                           a.Rue.ToUpper().Contains(term.ToUpper())
-                                           )
-             select a).ToList();
-
             return searchResult;
         }
     }
