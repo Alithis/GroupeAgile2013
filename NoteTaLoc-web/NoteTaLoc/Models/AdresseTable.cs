@@ -30,8 +30,8 @@ namespace NoteTaLoc.Models
         public string CodePostal { get; set; }
         public string Pays { get; set; }
         public string GeoCodeResponse { get; set; }
-        public Nullable<int> Longitude { get; set; }
-        public Nullable<int> Lattitude { get; set; }
+        public Nullable<decimal> Longitude { get; set; }
+        public Nullable<decimal> Lattitude { get; set; }
     
         public virtual ICollection<LocataireTable> LocataireTables { get; set; }
         public virtual ICollection<NoteTable> NoteTables { get; set; }

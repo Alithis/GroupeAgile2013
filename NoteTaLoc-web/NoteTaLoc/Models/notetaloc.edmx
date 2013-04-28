@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="notetalocModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="notetalocModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="notetalocModelStoreContainer">
           <EntitySet Name="AdresseTable" EntityType="notetalocModel.Store.AdresseTable" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="LocataireTable" EntityType="notetalocModel.Store.LocataireTable" store:Type="Tables" Schema="dbo" />
@@ -50,8 +50,8 @@
           <Property Name="CodePostal" Type="varchar" MaxLength="10" />
           <Property Name="Pays" Type="varchar" MaxLength="100" />
           <Property Name="GeoCodeResponse" Type="varchar" MaxLength="255" />
-          <Property Name="Longitude" Type="int" />
-          <Property Name="Lattitude" Type="int" />
+          <Property Name="Longitude" Type="decimal" Precision="9" Scale="6" />
+          <Property Name="Lattitude" Type="decimal" Precision="9" Scale="6" />
         </EntityType>
         <EntityType Name="LocataireTable">
           <Key>
@@ -183,8 +183,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="notetalocModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -233,8 +232,8 @@
           <Property Name="CodePostal" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
           <Property Name="Pays" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
           <Property Name="GeoCodeResponse" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="Longitude" Type="Int32" />
-          <Property Name="Lattitude" Type="Int32" />
+          <Property Name="Longitude" Type="Decimal" Precision="9" Scale="6" />
+          <Property Name="Lattitude" Type="Decimal" Precision="9" Scale="6" />
           <NavigationProperty Name="LocataireTables" Relationship="notetalocModel.FK__Locataire__Adres__32E0915F" FromRole="AdresseTable" ToRole="LocataireTable" />
           <NavigationProperty Name="NoteTables" Relationship="notetalocModel.FK__NoteTable__Adres__36B12243" FromRole="AdresseTable" ToRole="NoteTable" />
           <NavigationProperty Name="ProprietaireTables" Relationship="notetalocModel.FK__Proprieta__Adres__2F10007B" FromRole="AdresseTable" ToRole="ProprietaireTable" />
