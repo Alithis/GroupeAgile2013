@@ -1,6 +1,8 @@
 @model NoteTaLoc.Models.RegisterModel
+@using Recaptcha;
+
 @{
-    ViewBag.Title = "Register";
+    ViewBag.Title = "Registration";
 }
 
 <div id="body">
@@ -8,37 +10,93 @@
         <div class="content-wrapper">
             <hgroup class="title">
                 <h1>@ViewBag.Title.</h1>
+                <h2>Create a new account.</h2>
             </hgroup>
         </div>
     </section>
     <section class="content-wrapper main-content clear-fix">
         <div class="content-wrapper">
             <hgroup class="title">
-                <h2>Create a new account.</h2>
             </hgroup>
 
             @using (Html.BeginForm()) {
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary()
 
-                <fieldset>
-                    <legend>Registration Form</legend>
-                    <ol>
-                        <li>
-                            @Html.LabelFor(m => m.UserName)
-                            @Html.TextBoxFor(m => m.UserName)
-                        </li>
-                        <li>
-                            @Html.LabelFor(m => m.Password)
-                            @Html.PasswordFor(m => m.Password)
-                        </li>
-                        <li>
-                            @Html.LabelFor(m => m.ConfirmPassword)
-                            @Html.PasswordFor(m => m.ConfirmPassword)
-                        </li>
-                    </ol>
+                <div>
+                    <h3>Registration Form</h3>
+                    <table>
+                        <tr>
+                            <td>
+                           @Html.LabelFor(m => m.UserLName)
+                            <td>
+                           @Html.TextBoxFor(m => m.UserLName)
+                            <td>
+                           @Html.LabelFor(m => m.UserFName)
+                            </td>
+                           <td>
+                           @Html.TextBoxFor(m => m.UserFName)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                           @Html.LabelFor(m => m.UserName)
+                            </td>
+                           <td>
+                           @Html.TextBoxFor(m => m.UserName)
+                            </td>
+                            <td>
+                           @Html.LabelFor(m => m.EmailAddress)
+                            </td>
+                           <td>
+                           @Html.TextBoxFor(m => m.EmailAddress)
+                            </td>
+                       </tr>
+                        <tr>
+                            <td>
+                           @Html.LabelFor(m => m.Password)
+                            </td>
+                           <td>
+                           @Html.PasswordFor(m => m.Password)
+                            </td>
+                            <td>
+                           @Html.LabelFor(m => m.ConfirmPassword)
+                            </td>
+                           <td>
+                           @Html.PasswordFor(m => m.ConfirmPassword)
+                            </td>
+                       </tr>
+                        <tr>
+                            <td>
+                                Web site terms and conditions
+                            </td>
+                            <td>
+                                Blah, blah, blah et blah.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Do you agree to the terms and conditions?
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Yes</td>
+                            <td>
+                            @Html.RadioButtonFor( model => model.TermAndConditions, true )
+                            </td>
+                            <td>No</td>
+                            <td>
+                            @Html.RadioButtonFor( model => model.TermAndConditions, false )
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>@Html.Raw(Html.GenerateCaptcha())</td>
+                            <td>@Html.ValidationMessage("recaptcha")</td>
+                        </tr>
+                    </table>
                     <input type="submit" value="Register" />
-                </fieldset>
+                </div>
             }
         </div>
     </section>
