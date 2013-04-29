@@ -60,6 +60,13 @@
             position: point,
             map: carte });
 
+        var infowindow = new google.maps.InfoWindow();
+
+        google.maps.event.addListener(marqueur, 'click', function() {
+            //infowindow.setContent('test');
+            //infowindow.open(carte, marqueur);
+            window.open('', '_blank');
+        });
     }
 
     var fctPoint = function (plngLat, plngLgt) {
