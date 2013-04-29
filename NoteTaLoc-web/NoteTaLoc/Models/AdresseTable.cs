@@ -36,5 +36,24 @@ namespace NoteTaLoc.Models
         public virtual ICollection<LocataireTable> LocataireTables { get; set; }
         public virtual ICollection<NoteTable> NoteTables { get; set; }
         public virtual ICollection<ProprietaireTable> ProprietaireTables { get; set; }
+
+        public string AdresseLine
+        {
+            get
+            { return (RueNo + " " + Rue + " " + (string.IsNullOrEmpty(AptNo) ? "" : "App." + AptNo) + " " + Ville + " " + Province + " " + Pays).Trim(); }
+        }
+
+        public Single AvgNote
+        {
+            get
+            {
+                Single avg = 0;
+                foreach (NoteTable n in NoteTables)
+                {
+                    avg = avg + (Single)n.Note;
+                }
+                return avg / NoteTables.Count;
+            }
+        }
     }
 }
