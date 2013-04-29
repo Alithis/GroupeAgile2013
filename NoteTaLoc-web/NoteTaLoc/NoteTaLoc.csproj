@@ -351,8 +351,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Search\Index.cshtml" />
-    <Content Include="Views\Search\ShowGeoLocation.cshtml" />
     <Content Include="Views\AdresseTable\Index.cshtml" />
     <Content Include="Views\AdresseTable\Details.cshtml" />
     <Content Include="Views\AdresseTable\Create.cshtml" />
@@ -382,6 +380,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Account\AfterRegister.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\AdresseTable\SearchNoted.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

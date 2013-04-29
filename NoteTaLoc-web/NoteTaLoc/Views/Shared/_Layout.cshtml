@@ -33,3 +33,58 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
+<script type="text/javascript">
+
+
+
+
+    $(document).ready(function () {
+
+        initialize();
+
+    });
+
+
+
+
+    function initialize() {
+
+        if (document.getElementById("map_canvas") == null)
+            return;
+
+        var mapOptions = {
+
+            center: new google.maps.LatLng(6.9167, 79.8473),
+
+            zoom: 10,
+
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+
+        };
+
+        var map = new google.maps.Map(document.getElementById("map_canvas"),
+
+            mapOptions);
+
+
+
+
+        // create a marker
+
+        var latlng = new google.maps.LatLng(6.9167, 79.8473);
+
+        var marker = new google.maps.Marker({
+
+            position: latlng,
+
+            map: map,
+
+            title: 'My Place'
+
+        });
+
+    }
+
+</script>
