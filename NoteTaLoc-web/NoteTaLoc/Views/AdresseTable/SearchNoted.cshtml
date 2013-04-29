@@ -122,15 +122,17 @@
     {
         
         <div class="note" id="note_@counter">
-        Adresse :
-        @Html.DisplayFor(model => item.RueNo)&nbsp;
+        Adresse : @Html.DisplayFor(model => item.AdresseLine)<br />
+        Note : @Html.DisplayFor(model => item.AvgNote)&nbsp;             
+
+@*        @Html.DisplayFor(model => item.RueNo)&nbsp;
         @Html.DisplayFor(model => item.Rue)
         
         @(string.IsNullOrEmpty(item.AptNo) ? "" : "App." + Html.DisplayFor(model => item.AptNo) + ",");        
         
         @Html.DisplayFor(model => item.Ville),
         @Html.DisplayFor(model => item.Province),
-        @Html.DisplayFor(model => item.Pays)<br />
+        @Html.DisplayFor(model => item.Pays)<br />*@
 
        @Html.HiddenFor(model => item.Longitude)<br />
        @Html.HiddenFor(model => item.Lattitude)<br />
