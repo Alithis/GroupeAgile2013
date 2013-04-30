@@ -32,9 +32,9 @@ namespace NoteTaLoc.Controllers
             mailMessage.Subject = obj;
             mailMessage.Body = msg;
 
-            //SmtpClient client = new SmtpClient();
-            //client.Host = "mai.cia.ca";
-            //client.Send(mailMessage);
+            SmtpClient client = new SmtpClient();
+            client.Host = "mail.cia.ca";
+            client.Send(mailMessage);
         }
     }
 
@@ -53,26 +53,23 @@ namespace NoteTaLoc.Controllers
             using (var ctx = new notetalocEntities())
             {
                 var add = ctx.AdresseTables.Where(a => a.Lattitude == address.Lattitude && a.Longitude == address.Longitude).FirstOrDefault();
-                if (add != null)
-                {
-
-
-                }
-                else
+                if (add == null)
                 {
                     ctx.AdresseTables.Add(address);
                 }
                 ctx.SaveChanges();
             }
         }
-
-
-
-
+        
         public virtual void UpdateNoteStatus(NoteTable note)
         {
+            using (var ctx = new notetalocEntities())
+            {
+                var noteToUpdate = ctx.NoteTables.SingleOrDefault(n=>n.NoteId == note.NoteId);
+                noteToUpdate.StatutNote = 1;
+                ctx.SaveChanges();
+            }
         }
-
     }
 
     public class SaisiNoteWriter
@@ -93,8 +90,8 @@ namespace NoteTaLoc.Controllers
         {
             var mailTo = "eric.foka@alithis.com";
             var mailFrom = "duc.pham@alithis.com";
-            var msg = "message";
-            var obj = "object";
+            var msg = "Un usager a donné la note 0 à un appartement. Proceder aux verifications!";
+            var obj = "NoteTaLoc";
             _SaisiNoteContext.SaveNote(note);
             if (note.Note == 0)
             {
@@ -105,7 +102,6 @@ namespace NoteTaLoc.Controllers
                 _SaisiNoteContext.UpdateNoteStatus(note);
             }
         }
-
 
         public virtual int GetAddressId(AdresseTable address)
         {
@@ -196,19 +192,8 @@ namespace NoteTaLoc.Controllers
             if (ModelState.IsValid)
             {
                 var address = ConcatenationAddress(form);
-                //var address = "4049 bannantyne,+Montréal,+Canada";
-                //address + “,” + city + “,” + state + “,” + postcode + ” “ + country
-                //// string url = string.Format("http://maps.google.com/maps/api/geocode/xml?address={0}&region=ca&sensor=false",
-                ////HttpUtility.UrlEncode(address)
-                //);
-
-                // var urlToValidate = string.Format(url, address);
-                // WebResponse response = null;
                 try
                 {
-                    //HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-                    //request.Method = "GET";
-                    //response = request.GetResponse();
                     var geocoder = new Geocoder();
                     var response = geocoder.Locate(address);
                     if (response != null)
@@ -220,16 +205,26 @@ namespace NoteTaLoc.Controllers
                         addressToSave.AptNo = form.Appartement;
                         addressToSave.CodePostal = form.CodePostal;
                         addressToSave.GeoCodeResponse = formatted_address;
+                        addressToSave.Pays = form.Pays;
+                        addressToSave.Province = form.Region;
+                        addressToSave.Ville = form.Localite;
                         //addressToSave.Lattitude = lat;
                         //addressToSave.Longitude = longititude;
 
                         var saisiNoteWriter = new SaisiNoteWriter(new MailSender(), new SaisiNoteContext());
                         saisiNoteWriter.SaveAddresNoteSaisi(addressToSave);
 
+                        var idAddress = saisiNoteWriter.GetAddressId(addressToSave);
+                         
                         var noteToSave = new NoteTable();
                         noteToSave.Note = form.Note;
+                        noteToSave.UserId = 1;
+                        noteToSave.AdresseId = idAddress;
+                        noteToSave.StatutNote = 0;
                         saisiNoteWriter.SaveNoteSaisi(noteToSave);
 
+                        ViewBag.Message = "Enregistrement reussie!";
+                        ViewBag.NumTimes = 1;
                     }
                     else
                     {
@@ -238,7 +233,6 @@ namespace NoteTaLoc.Controllers
                         ViewBag.Message = "vous devez inserez une adresse valide!";
                         ViewBag.NumTimes = 1;
                     }
-
                 }
                 catch (Exception ex)
                 {
@@ -274,7 +268,6 @@ namespace NoteTaLoc.Controllers
 
             return address;
         }
-
 
         private String addField(String src, String field)
         {
