@@ -17,6 +17,7 @@ using System.Xml.XPath;
 //              }
 namespace NoteTaLoc.Controllers
 {
+<<<<<<< HEAD
     public class MailSender
     {
         public MailSender()
@@ -166,6 +167,29 @@ namespace NoteTaLoc.Controllers
     }
 
 
+=======
+    public class EnvoyeurCourriel
+    {
+        private string _ServerHost;
+
+        public EnvoyeurCourriel()
+        {
+            _ServerHost = "mail.cia.ca";
+        }
+
+        public void SendMail(string from, string to, string objet, string body)
+        {
+            MailMessage mailMessage = new MailMessage();
+            mailMessage.Sender = new MailAddress(to);
+            mailMessage.From = new MailAddress(from);
+            SmtpClient client = new SmtpClient();
+            client.Host = _ServerHost;
+            client.Send(mailMessage);
+        }
+    
+    }
+
+>>>>>>> 96ad74dd8ecd6293cac75b321eabf350b22b168f
     public class SaisiNoteController : Controller
     {
         private SaisiNoteWriter _SaisiNoteWriter;
@@ -192,12 +216,20 @@ namespace NoteTaLoc.Controllers
             if (ModelState.IsValid)
             {
                 var address = ConcatenationAddress(form);
+<<<<<<< HEAD
+=======
+                var filtering = "country:CA";// route ¦ locality ¦ locality ¦ administrative_area ¦ postal_code ¦ country 
+                string url = "http://maps.googleapis.com/maps/api/geocode/xml?address={0}&components={1}&sensor=false";
+                var urlToValidate = string.Format(url, address, filtering);
+                WebResponse response = null;
+>>>>>>> 96ad74dd8ecd6293cac75b321eabf350b22b168f
                 try
                 {
                     var geocoder = new Geocoder();
                     var response = geocoder.Locate(address);
                     if (response != null)
                     {
+<<<<<<< HEAD
                         var longititude = response.Longitude;
                         var lat = response.Latitude;
                         var formatted_address = response.Formatted_address;
@@ -213,6 +245,92 @@ namespace NoteTaLoc.Controllers
 
                         var saisiNoteWriter = new SaisiNoteWriter(new MailSender(), new SaisiNoteContext());
                         saisiNoteWriter.SaveAddresNoteSaisi(addressToSave);
+=======
+                        XPathDocument document = new XPathDocument(response.GetResponseStream());
+                        XPathNavigator navigator = document.CreateNavigator();
+                        navigator.MoveToChild("GeocodeResponse", "");
+                        navigator.MoveToChild("status", "");
+                        XmlReader status = navigator.ReadSubtree();
+                        String st = "";
+                        while (status.Read())
+                        {
+                            st = status.ReadInnerXml();
+                        }
+                        if (st != "OK")
+                        {
+                            ViewBag.Message = "vous devez inserez une adresse valide!";
+                            ViewBag.NumTimes = 1;
+                        }
+                        else
+                        {
+                            /*
+                            XPathNodeIterator result = navigator.Select("/GeocodeResponse/result");
+                            XPathNodeIterator formattedAddressIterator = result.Current.Select("formatted_address");
+                            navigator.MoveToChild("formatted_address", "");
+                             XmlReader xmlReaderFormatAddress = navigator.ReadSubtree();
+                            XPathNodeIterator geometryIterator = result.Current.Select("geometry");
+                            XPathNodeIterator locationIterator = geometryIterator.Current.Select("location");
+                            XPathNodeIterator latIterator = locationIterator.Current.Select("lat");
+                            navigator.MoveToChild("lat", "");
+                            XmlReader xmlReaderLat = navigator.ReadSubtree();
+                            //latIterator.MoveNext();
+                            XPathNodeIterator lngIterator = locationIterator.Current.Select("lng");
+                            navigator.MoveToChild("lng", "");
+                            XmlReader xmlReaderLn = navigator.ReadSubtree();
+                            //lngIterator.MoveNext();
+                             * */
+                            ViewBag.Message = "La note a été enregistrée.";
+                            ViewBag.NumTimes = 1;
+
+                            using (var ctx = new notetalocEntities())
+                            {
+                                AdresseTable addressTable = new AdresseTable();
+                                addressTable.Rue = form.Rue;
+                                addressTable.Ville = form.Localite;
+                                addressTable.Pays = form.Pays;
+                                addressTable.Province = form.Region;
+                                addressTable.CodePostal = form.CodePostal;
+                                addressTable.AptNo = form.Appartement;
+                                addressTable.GeoCodeResponse = "1155 Rue Metcalfe #2121, Montréal, QC H3B 4J5, Canada";
+                                //addressTable.Longitude = int.Parse(xmlReaderLat.ReadInnerXml());
+                                //addressTable.Lattitude = int.Parse(xmlReaderLn.ReadInnerXml());
+                                addressTable.Longitude = 76;
+                                addressTable.Lattitude = 45;
+                                ctx.Set<AdresseTable>().Add(addressTable);
+                                ctx.SaveChanges();
+
+                                var addId = (from a in ctx.AdresseTables
+                                           //where a.GeoCodeResponse == xmlReaderFormatAddress.ReadInnerXml()
+                                             where a.GeoCodeResponse == "1155 Rue Metcalfe #2121, Montréal, QC H3B 4J5, Canada"
+                                           select a.AdresseId).First();
+                               
+                                var noteTable = new NoteTable();
+                                noteTable.AdresseId = addId;
+                                noteTable.Note = form.Note;
+                                ctx.Set<NoteTable>().Add(noteTable);
+                                ctx.SaveChanges();
+                            }
+
+                            if (form.Note == 0)
+                            {
+                                var from = "eric.foka@alithis.com";
+                                var to = "duc.pham@alithis.com";
+                                var obj = "Note d'une location";
+                                var body = "L'usager a insérer la valeur 0! Verifier cette note avec le propriétaire.";
+                                var senderMail = new EnvoyeurCourriel();
+                                senderMail.SendMail(from, to, obj, body);
+                            }
+                            
+
+
+                        }
+                    }
+                        else
+                        {
+                            ViewBag.Message = "Aucune réponse du serveur!";
+                            ViewBag.NumTimes = 1;
+                        }
+>>>>>>> 96ad74dd8ecd6293cac75b321eabf350b22b168f
 
                         var idAddress = saisiNoteWriter.GetAddressId(addressToSave);
                          
@@ -256,10 +374,14 @@ namespace NoteTaLoc.Controllers
         private string ConcatenationAddress(SaisiNoteForm form)
         {
             string address = "";
+<<<<<<< HEAD
             if (form.Numero != null)
                 address += form.Numero;
             address = addField(address, form.Rue);
             //addField(address, form.Rue);
+=======
+            address = addField(address, form.Rue);
+>>>>>>> 96ad74dd8ecd6293cac75b321eabf350b22b168f
             address = addField(address, form.Appartement);
             address = addField(address, form.Localite);
             address = addField(address, form.CodePostal);
@@ -269,6 +391,10 @@ namespace NoteTaLoc.Controllers
             return address;
         }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 96ad74dd8ecd6293cac75b321eabf350b22b168f
         private String addField(String src, String field)
         {
             if (!String.IsNullOrEmpty(field))
@@ -279,7 +405,10 @@ namespace NoteTaLoc.Controllers
                 }
                 src += field;
             }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 96ad74dd8ecd6293cac75b321eabf350b22b168f
             return src;
         }
     }
