@@ -40,6 +40,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Recaptcha">
+      <HintPath>..\..\..\..\..\Users\Eric Foka\Desktop\Recaptcha.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -162,6 +165,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdresseTableController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SaisiNoteController.cs" />
@@ -174,6 +178,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\SaisiNoteForm.cs" />
+    <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\AdresseTable.cs">
       <DependentUpon>notetaloc.tt</DependentUpon>
     </Compile>
@@ -204,6 +209,7 @@
     <Compile Include="Models\SampleDroppableTable.cs">
       <DependentUpon>notetaloc.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UserProfil.cs" />
     <Compile Include="Models\UserTable.cs">
       <DependentUpon>notetaloc.tt</DependentUpon>
     </Compile>
@@ -301,6 +307,8 @@
       <DependentUpon>notetaloc.edmx</DependentUpon>
       <LastGenOutput>notetaloc.cs</LastGenOutput>
     </Content>
+    <None Include="Properties\PublishProfiles\notetaloc - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\notetaloc - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -375,6 +383,11 @@
     <Content Include="Views\UserTable\Create.cshtml" />
     <Content Include="Views\UserTable\Edit.cshtml" />
     <Content Include="Views\UserTable\Delete.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Account\AfterRegister.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\AdresseTable\SearchNoted.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -384,6 +397,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

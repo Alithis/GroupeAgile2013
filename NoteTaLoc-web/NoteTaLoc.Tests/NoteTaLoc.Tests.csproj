@@ -119,6 +119,7 @@
     <Compile Include="Controllers\SaisiNoteControllerTest.cs" />
     <Compile Include="Controllers\GeocoderTest.cs" />
     <Compile Include="Controllers\SaisiNoteWriterTest.cs" />
+    <Compile Include="Controllers\AdresseTableControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\ValuesControllerTest.cs" />
   </ItemGroup>

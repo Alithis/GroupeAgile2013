@@ -1,6 +1,13 @@
 @model NoteTaLoc.Models.RegisterModel
+
 @{
     ViewBag.Title = "Register";
+    }
+@using Recaptcha;
+
+@{
+    ViewBag.Title = "Registration";
+
 }
 
 <div id="body">
@@ -8,18 +15,25 @@
         <div class="content-wrapper">
             <hgroup class="title">
                 <h1>@ViewBag.Title.</h1>
+
+                <h2>Create a new account.</h2>
+
             </hgroup>
         </div>
     </section>
     <section class="content-wrapper main-content clear-fix">
         <div class="content-wrapper">
             <hgroup class="title">
+
                 <h2>Create a new account.</h2>
+
+
             </hgroup>
 
             @using (Html.BeginForm()) {
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary()
+
 
                 <fieldset>
                     <legend>Registration Form</legend>
@@ -39,6 +53,82 @@
                     </ol>
                     <input type="submit" value="Register" />
                 </fieldset>
+
+                <div>
+                    <h3>Registration Form</h3>
+                    <table>
+                        <tr>
+                            <td>
+                           @Html.LabelFor(m => m.UserLName)
+                            <td>
+                           @Html.TextBoxFor(m => m.UserLName)
+                            <td>
+                           @Html.LabelFor(m => m.UserFName)
+                            </td>
+                           <td>
+                           @Html.TextBoxFor(m => m.UserFName)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                           @Html.LabelFor(m => m.UserName)
+                            </td>
+                           <td>
+                           @Html.TextBoxFor(m => m.UserName)
+                            </td>
+                            <td>
+                           @Html.LabelFor(m => m.EmailAddress)
+                            </td>
+                           <td>
+                           @Html.TextBoxFor(m => m.EmailAddress)
+                            </td>
+                       </tr>
+                        <tr>
+                            <td>
+                           @Html.LabelFor(m => m.Password)
+                            </td>
+                           <td>
+                           @Html.PasswordFor(m => m.Password)
+                            </td>
+                            <td>
+                           @Html.LabelFor(m => m.ConfirmPassword)
+                            </td>
+                           <td>
+                           @Html.PasswordFor(m => m.ConfirmPassword)
+                            </td>
+                       </tr>
+                        <tr>
+                            <td>
+                                Web site terms and conditions
+                            </td>
+                            <td>
+                                Blah, blah, blah et blah.
+                            </td>
+                        </tr>
+                    </table>
+                        <span>
+                                Do you agree to the terms and conditions?
+                        </span>
+                    <table>
+                        <tr>
+                            <td>Yes</td>
+                            <td>
+                            @Html.RadioButtonFor( model => model.TermAndConditions, true, new {@class="customradiobutton"} )
+                            </td>
+                            <td>No</td>
+                            <td>
+                            @Html.RadioButtonFor( model => model.TermAndConditions, false, new {@class="customradiobutton"} )
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>@Html.Raw(Html.GenerateCaptcha())</td>
+                            <td>@Html.ValidationMessage("recaptcha")</td>
+                        </tr>
+                    </table>
+                    <input type="submit" value="Register" />
+                </div>
+
             }
         </div>
     </section>

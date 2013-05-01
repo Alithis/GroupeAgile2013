@@ -30,11 +30,30 @@ namespace NoteTaLoc.Models
         public string CodePostal { get; set; }
         public string Pays { get; set; }
         public string GeoCodeResponse { get; set; }
-        public Nullable<int> Longitude { get; set; }
-        public Nullable<int> Lattitude { get; set; }
+        public Nullable<decimal> Longitude { get; set; }
+        public Nullable<decimal> Lattitude { get; set; }
     
         public virtual ICollection<LocataireTable> LocataireTables { get; set; }
         public virtual ICollection<NoteTable> NoteTables { get; set; }
         public virtual ICollection<ProprietaireTable> ProprietaireTables { get; set; }
+
+        public string AdresseLine
+        {
+            get
+            { return (RueNo + " " + Rue + " " + (string.IsNullOrEmpty(AptNo) ? "" : "App." + AptNo) + " " + Ville + " " + Province + " " + Pays).Trim(); }
+        }
+
+        public Single AvgNote
+        {
+            get
+            {
+                Single avg = 0;
+                foreach (NoteTable n in NoteTables)
+                {
+                    avg = avg + (Single)n.Note;
+                }
+                return avg / NoteTables.Count;
+            }
+        }
     }
 }

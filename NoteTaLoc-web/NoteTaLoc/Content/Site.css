@@ -252,6 +252,13 @@ section.feature {
     padding: 10px;
 }
 
+.customradiobutton
+{
+    border: none;
+    background-color: #efeeef;
+    width: 20px;
+}
+
 /* ordered list */
 ol.round {
     list-style-type: none;
