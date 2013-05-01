@@ -4,11 +4,12 @@
 @model NoteTaLoc.Models.SaisiNoteForm
 
 <h2>Index</h2>
-
 <h2>SaisiNoteView</h2>
-@for (int i=0; i < ViewBag.NumTimes; i++) { 
+
+<h3 style="color:<%: @ViewData["color"] %>">@for (int i=0; i < ViewBag.NumTimes; i++) { 
       @ViewBag.Message 
-} 
+} </h3>
+
 
 @using (Html.BeginForm()) {
  @Html.ValidationSummary(true)    
