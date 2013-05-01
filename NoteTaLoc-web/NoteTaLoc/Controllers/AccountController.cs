@@ -202,7 +202,7 @@ namespace NoteTaLoc.Controllers
             try
             {
                 System.Net.Mail.MailMessage message = new System.Net.Mail.MailMessage();
-                String prefix = "http://localhost:57756/Account/Activation?activationKey=";
+                String prefix = "http://notetaloc.azurewebsites.net/Account/Activation?activationKey=";
                 String validationLink = prefix + tokenBody;
                 message.To.Add(model.EmailAddress); //recipient 
                 message.Subject = "RateYourRent - confirmation email";
