@@ -306,7 +306,9 @@
       <DependentUpon>notetaloc.edmx</DependentUpon>
       <LastGenOutput>notetaloc.cs</LastGenOutput>
     </Content>
+    <None Include="Properties\PublishProfiles\notetaloc - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\notetaloc - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\notetaloc - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\notetaloc - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
@@ -412,7 +414,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>55881</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:51895/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
