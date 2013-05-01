@@ -225,8 +225,8 @@ namespace NoteTaLoc.Controllers
                         addressToSave.Pays = form.Pays;
                         addressToSave.Province = form.Region;
                         addressToSave.GeoCodeResponse = formatted_address;
-                        //addressToSave.Lattitude = lat;
-                        //addressToSave.Longitude = longititude;
+                        addressToSave.Lattitude = (decimal)lat;
+                        addressToSave.Longitude = (decimal)longititude;
 
                         var saisiNoteWriter = new SaisiNoteWriter(new MailSender(), new SaisiNoteContext());
                         saisiNoteWriter.SaveAddresNoteSaisi(addressToSave);
@@ -240,7 +240,6 @@ namespace NoteTaLoc.Controllers
                         ViewBag.Message = "Enregistrement reussie!";
                         ViewBag.NumTimes = 1;
                         ViewData["color"] = "green";
-
                     }
                     else
                     {
