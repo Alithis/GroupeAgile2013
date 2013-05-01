@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+
 using NoteTaLoc.Models;
 using Recaptcha;
 using System.Security.Cryptography;
 using System.Text;
 
+
 namespace NoteTaLoc.Controllers
 {
     public class AccountController : Controller
     {
+
         private notetalocEntities db = new notetalocEntities();
 
         //
@@ -22,6 +25,7 @@ namespace NoteTaLoc.Controllers
         {
             return View();
         }
+
         //
         // POST: /Account/Register
 
@@ -289,5 +293,6 @@ namespace NoteTaLoc.Controllers
             }
         }
         #endregion
+
     }
 }

@@ -1,8 +1,13 @@
 @model NoteTaLoc.Models.RegisterModel
+
+@{
+    ViewBag.Title = "Register";
+    }
 @using Recaptcha;
 
 @{
     ViewBag.Title = "Registration";
+
 }
 
 <div id="body">
@@ -10,18 +15,44 @@
         <div class="content-wrapper">
             <hgroup class="title">
                 <h1>@ViewBag.Title.</h1>
+
                 <h2>Create a new account.</h2>
+
             </hgroup>
         </div>
     </section>
     <section class="content-wrapper main-content clear-fix">
         <div class="content-wrapper">
             <hgroup class="title">
+
+                <h2>Create a new account.</h2>
+
+
             </hgroup>
 
             @using (Html.BeginForm()) {
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary()
+
+
+                <fieldset>
+                    <legend>Registration Form</legend>
+                    <ol>
+                        <li>
+                            @Html.LabelFor(m => m.UserName)
+                            @Html.TextBoxFor(m => m.UserName)
+                        </li>
+                        <li>
+                            @Html.LabelFor(m => m.Password)
+                            @Html.PasswordFor(m => m.Password)
+                        </li>
+                        <li>
+                            @Html.LabelFor(m => m.ConfirmPassword)
+                            @Html.PasswordFor(m => m.ConfirmPassword)
+                        </li>
+                    </ol>
+                    <input type="submit" value="Register" />
+                </fieldset>
 
                 <div>
                     <h3>Registration Form</h3>
@@ -97,6 +128,7 @@
                     </table>
                     <input type="submit" value="Register" />
                 </div>
+
             }
         </div>
     </section>
