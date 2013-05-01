@@ -40,9 +40,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Recaptcha, Version=1.0.5.0, Culture=neutral, PublicKeyToken=9afc4d65b28c38c2, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Recaptcha.dll</HintPath>
+    <Reference Include="Recaptcha">
+      <HintPath>..\..\Recaptcha.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -167,6 +166,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ActivationController.cs" />
     <Compile Include="Controllers\AdresseTableController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocataireTableController.cs" />
@@ -383,6 +383,10 @@
     <Content Include="Views\Account\AfterRegister.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\AdresseTable\SearchNoted.cshtml" />
+    <Content Include="Views\Activation\index.cshtml" />
+    <Content Include="Views\Account\Activation.cshtml" />
+    <Content Include="Views\Account\ActivationAlreadyDone.cshtml" />
+    <Content Include="Views\Account\ActivationSuccessful.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

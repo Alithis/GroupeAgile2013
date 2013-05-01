@@ -4,13 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="823834c17bfd4172ba700f6296a0b5b7" Name="Diagram1">
+      <Diagram DiagramId="823834c17bfd4172ba700f6296a0b5b7" Name="Diagram1" ZoomLevel="111">
         <EntityTypeShape EntityType="notetalocModel.AdresseTable" Width="1.5" PointX="0.75" PointY="9.375" IsExpanded="true" />
         <EntityTypeShape EntityType="notetalocModel.LocataireTable" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="notetalocModel.NoteTable" Width="1.5" PointX="6" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="notetalocModel.ProprietaireTable" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="notetalocModel.SampleDroppableTable" Width="1.5" PointX="5.75" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="notetalocModel.UserTable" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="notetalocModel.UserTable" Width="1.875" PointX="0.5" PointY="3.875" IsExpanded="true" />
         <AssociationConnector Association="notetalocModel.FK__Locataire__Adres__32E0915F" ManuallyRouted="false" />
         <AssociationConnector Association="notetalocModel.FK__NoteTable__Adres__36B12243" ManuallyRouted="false" />
         <AssociationConnector Association="notetalocModel.FK__Proprieta__Adres__2F10007B" ManuallyRouted="false" />

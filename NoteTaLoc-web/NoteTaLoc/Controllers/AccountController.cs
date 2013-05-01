@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using NoteTaLoc.Models;
 using Recaptcha;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace NoteTaLoc.Controllers
 {
@@ -23,6 +25,27 @@ namespace NoteTaLoc.Controllers
         //
         // POST: /Account/Register
 
+        public ActionResult Activation(string activationKey)
+        {
+            string getActivationKey = activationKey;
+
+            //Look for the account activation key in the database with value of activated != null
+            if (isValidationDone(getActivationKey))
+            {
+                // Update the value of the InscriptionConfirm
+                UserTable usertable = db.UserTables.SingleOrDefault(p => p.ValidationToken == activationKey);
+                usertable.InscriptionConfirm = true;
+                db.SaveChanges();
+                return View("ActivationSuccessful");
+            }
+
+            else
+            {
+                return View("ActivationAlreadyDone");
+            }
+            
+        }
+
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -34,6 +57,7 @@ namespace NoteTaLoc.Controllers
                 // Attempt to register the user
                 try
                 {
+                    MD5 md5Hash = MD5.Create();
                     UserTable usertable = new UserTable();
                     usertable.UserId = GetNextUserId();
                     usertable.Nom = model.UserLName;
@@ -55,11 +79,17 @@ namespace NoteTaLoc.Controllers
                     {
                         if (!DoesUserNameExist(model.UserName))
                         {
+                            //Generate key to validate registration
+                            String keyRegistration = usertable.Prenom + "-" + usertable.Nom + "-"+usertable.UserId;
+
+                            usertable.ValidationToken = GetMd5Hash(md5Hash, keyRegistration);
+
                             // Send email to user to confirm account registration.
-                            if (SendAccountConfimration(model))
+                            if (SendAccountConfimration(model, usertable.ValidationToken))
                             {
                                 db.UserTables.Add(usertable);
                                 db.SaveChanges();
+
                                 return RedirectToAction("AfterRegister", "Account");
                             }
                             else
@@ -81,6 +111,27 @@ namespace NoteTaLoc.Controllers
             return View(model);
         }
 
+        static string GetMd5Hash(MD5 md5Hash, string input)
+        {
+
+            // Convert the input string to a byte array and compute the hash. 
+            byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
+
+            // Create a new Stringbuilder to collect the bytes 
+            // and create a string.
+            StringBuilder sBuilder = new StringBuilder();
+
+            // Loop through each byte of the hashed data  
+            // and format each one as a hexadecimal string. 
+            for (int i = 0; i < data.Length; i++)
+            {
+                sBuilder.Append(data[i].ToString("x2"));
+            }
+
+            // Return the hexadecimal string. 
+            return sBuilder.ToString();
+        }
+
         public Boolean DoesUserNameExist(string username)
         {
             string sqlcmd = "SELECT * FROM dbo.usertable WHERE pseudo = '" + username + "'";
@@ -96,6 +147,17 @@ namespace NoteTaLoc.Controllers
         public Boolean ValidateUser_Password(string username, string pw)
         {
             string sqlcmd = "SELECT * FROM dbo.usertable WHERE pseudo = '" + username + "' and motdepasse = '" + pw + "'";
+
+            var result = db.UserTables.SqlQuery(sqlcmd);
+            if (result.Count() > 0)
+                return true;
+            else
+                return false;
+        }
+
+        public Boolean isValidationDone(string tokenValue)
+        {
+            string sqlcmd = "SELECT * FROM dbo.usertable WHERE ValidationToken = '" + tokenValue + "' and InscriptionConfirm is null";
 
             var result = db.UserTables.SqlQuery(sqlcmd);
             if (result.Count() > 0)
@@ -129,17 +191,19 @@ namespace NoteTaLoc.Controllers
             return nValue;
         }
 
-       public Boolean SendAccountConfimration(RegisterModel model)
+       public Boolean SendAccountConfimration(RegisterModel model, String tokenBody)
         {
             Boolean bRetCode = true;
             //Send confirmation email.
             try
             {
                 System.Net.Mail.MailMessage message = new System.Net.Mail.MailMessage();
+                String prefix = "http://localhost:57756/Account/Activation?activationKey=";
+                String validationLink = prefix + tokenBody;
                 message.To.Add(model.EmailAddress); //recipient 
                 message.Subject = "RateYourRent - confirmation email";
                 message.From = new System.Net.Mail.MailAddress("sunny.hum@alithis.com"); //from email 
-                message.Body = "Please click on the link to confirm your registration.";
+                message.Body = "Please click on the link to confirm your registration: "+validationLink;
                 
                 // ToDo - Generate token to include in email that user can click on to confirm registration.
 
