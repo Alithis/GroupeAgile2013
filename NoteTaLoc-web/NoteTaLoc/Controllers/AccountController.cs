@@ -179,17 +179,25 @@ namespace NoteTaLoc.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginModel model, string returnUrl)
         {
+            bool bValid = true;
             if (ModelState.IsValid )
             {
-                if (ValidateUser_Password(model.UserName, model.Password))
+                if (!DoesUserNameExist(model.UserName))
                 {
-                    return RedirectToLocal(returnUrl);
+                    ModelState.AddModelError("", "The user name provided does not exist.");
+                    bValid = false;
+                }
+                if (!ValidateUser_Password(model.UserName, model.Password))
+                {
+                    ModelState.AddModelError("", "The password provided is incorrect.");
+                    bValid = false;
                 }
             }
-            // If we got this far, something failed, redisplay form
-            ModelState.AddModelError("", "The user name or password provided is incorrect.");
 
-            return View(model);
+            if (bValid)
+                return RedirectToLocal(returnUrl);
+            else
+                return View(model);
         }
 
         //

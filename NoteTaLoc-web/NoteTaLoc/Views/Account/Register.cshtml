@@ -74,19 +74,19 @@
                                 Blah, blah, blah et blah.
                             </td>
                         </tr>
-                        <tr>
-                            <td>
+                    </table>
+                        <span>
                                 Do you agree to the terms and conditions?
-                            </td>
-                        </tr>
+                        </span>
+                    <table>
                         <tr>
                             <td>Yes</td>
                             <td>
-                            @Html.RadioButtonFor( model => model.TermAndConditions, true )
+                            @Html.RadioButtonFor( model => model.TermAndConditions, true, new {@class="customradiobutton"} )
                             </td>
                             <td>No</td>
                             <td>
-                            @Html.RadioButtonFor( model => model.TermAndConditions, false )
+                            @Html.RadioButtonFor( model => model.TermAndConditions, false, new {@class="customradiobutton"} )
                             </td>
                         </tr>
                         <tr>
