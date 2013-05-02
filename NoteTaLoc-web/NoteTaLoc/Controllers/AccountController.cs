@@ -42,7 +42,6 @@ namespace NoteTaLoc.Controllers
                 db.SaveChanges();
                 return View("ActivationSuccessful");
             }
-
             else
             {
                 return View("ActivationAlreadyDone");
@@ -61,7 +60,6 @@ namespace NoteTaLoc.Controllers
                 // Attempt to register the user
                 try
                 {
-                    MD5 md5Hash = MD5.Create();
                     UserTable usertable = new UserTable();
                     usertable.UserId = GetNextUserId();
                     usertable.Nom = model.UserLName;
@@ -86,6 +84,7 @@ namespace NoteTaLoc.Controllers
                             //Generate key to validate registration
                             String keyRegistration = usertable.Prenom + "-" + usertable.Nom + "-"+usertable.UserId;
 
+                            MD5 md5Hash = MD5.Create();
                             usertable.ValidationToken = GetMd5Hash(md5Hash, keyRegistration);
 
                             // Send email to user to confirm account registration.
@@ -204,13 +203,12 @@ namespace NoteTaLoc.Controllers
                 System.Net.Mail.MailMessage message = new System.Net.Mail.MailMessage();
                 String prefix = "http://notetaloc.azurewebsites.net/Account/Activation?activationKey=";
                 String validationLink = prefix + tokenBody;
+
                 message.To.Add(model.EmailAddress); //recipient 
                 message.Subject = "RateYourRent - confirmation email";
-                message.From = new System.Net.Mail.MailAddress("sunny.hum@alithis.com"); //from email 
+                message.From = new System.Net.Mail.MailAddress("no.reply@alithis.com"); //from email 
                 message.Body = "Please click on the link to confirm your registration: "+validationLink;
                 
-                // ToDo - Generate token to include in email that user can click on to confirm registration.
-
                 System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient("mail.cia.ca");
                 smtp.Send(message); 
             }
