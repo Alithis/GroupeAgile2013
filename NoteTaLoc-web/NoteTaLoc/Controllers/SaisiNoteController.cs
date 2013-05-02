@@ -44,10 +44,18 @@ namespace NoteTaLoc.Controllers
         {
             using (var ctx = new notetalocEntities())
             {
+                note.NoteId = GetNoteId(DateTime.Now);
                 ctx.NoteTables.Add(note);
                 ctx.SaveChanges();
             }
         }
+
+        private int GetNoteId(DateTime dt)
+        {
+
+            return (dt.Year * 10000 + dt.Month * 100 + dt.Day + dt.Hour * 24 + dt.Minute * 60 + dt.Second * 60);
+        }
+
         public virtual void SaveAddress(AdresseTable address)
         {
             using (var ctx = new notetalocEntities())
@@ -55,10 +63,17 @@ namespace NoteTaLoc.Controllers
                 var add = ctx.AdresseTables.Where(a => a.GeoCodeResponse == address.GeoCodeResponse).FirstOrDefault();
                 if (add == null)
                 {
+                    address.AdresseId = GetAddresseId(DateTime.Now);
                     ctx.AdresseTables.Add(address);
                     ctx.SaveChanges();
                 }
             }
+        }
+
+        private int GetAddresseId(DateTime dt)
+        {
+
+            return (dt.Year * 10000 + dt.Month * 100 + dt.Day + dt.Hour * 24 + dt.Minute * 60 + dt.Second * 60);
         }
 
         public virtual void UpdateNoteStatus(NoteTable note)
@@ -210,8 +225,8 @@ namespace NoteTaLoc.Controllers
                         addressToSave.Pays = form.Pays;
                         addressToSave.Province = form.Region;
                         addressToSave.GeoCodeResponse = formatted_address;
-                        //addressToSave.Lattitude = lat;
-                        //addressToSave.Longitude = longititude;
+                        addressToSave.Lattitude = (decimal)lat;
+                        addressToSave.Longitude = (decimal)longititude;
 
                         var saisiNoteWriter = new SaisiNoteWriter(new MailSender(), new SaisiNoteContext());
                         saisiNoteWriter.SaveAddresNoteSaisi(addressToSave);
@@ -222,12 +237,15 @@ namespace NoteTaLoc.Controllers
                         noteToSave.UserId = 1;
                         noteToSave.StatutNote = 0;
                         saisiNoteWriter.SaveNoteSaisi(noteToSave);
-
+                        ViewBag.Message = "Enregistrement reussie!";
+                        ViewBag.NumTimes = 1;
+                        ViewData["color"] = "green";
                     }
                     else
                     {
                         ViewBag.Message = "vous devez inserez une adresse valide!";
                         ViewBag.NumTimes = 1;
+                        ViewData["color"] = "red";
                     }
 
                 }
@@ -235,6 +253,7 @@ namespace NoteTaLoc.Controllers
                 {
                     ViewBag.Message = "La note n'a pas été enregistrée. Réessayer plus tard!";
                     ViewBag.NumTimes = 1;
+                    ViewData["color"] = "red";
                 }
             }
             return View(form);
