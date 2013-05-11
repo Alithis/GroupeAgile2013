@@ -4,7 +4,9 @@
 @model NoteTaLoc.Models.SaisiNoteForm
 
 <h2>Saisi de la note</h2>
-<h3>Remplir les champs suivants pour saisir votre note.</h3>
+<fieldset>
+    <legend>Remplir les champs suivants pour saisir votre note</legend>
+</fieldset>
 
 <h3 style="color:<%: @ViewData["color"] %>">@for (int i=0; i < ViewBag.NumTimes; i++) { 
       @ViewBag.Message 
@@ -55,18 +57,22 @@
         <tr>
             <td style="text-align:right">Note : </td>
             <td>
-                 @Html.RadioButtonFor(model => model.Note, 0) 0 <br />
-                 @Html.RadioButtonFor(model => model.Note, 1) 1 <br />
-                 @Html.RadioButtonFor(model => model.Note, 2) 2 <br />
-                 @Html.RadioButtonFor(model => model.Note, 3) 3 <br />
-                 @Html.RadioButtonFor(model => model.Note, 4) 4 <br />
-                 @Html.RadioButtonFor(model => model.Note, 5) 5 <br />
+                <table>
+                    <tr>
+                        <td>@Html.RadioButtonFor(model => model.Note, 0) 0</td>
+                        <td>@Html.RadioButtonFor(model => model.Note, 1) 1</td>
+                        <td>@Html.RadioButtonFor(model => model.Note, 2) 2</td>
+                        <td>@Html.RadioButtonFor(model => model.Note, 3) 3</td>
+                        <td>@Html.RadioButtonFor(model => model.Note, 4) 4</td>
+                        <td>@Html.RadioButtonFor(model => model.Note, 5) 5 </td>
+                    </tr>
+                </table>
                 @Html.ValidationMessageFor(model => model.Note)
             </td>
         </tr>
         <tr>
             <td colspan="2">
-                <input type="submit" value="Noter" />
+                <input type="submit" class="btn btn-primary" value="Noter" />
             </td>
         </tr>
     </tbody>
