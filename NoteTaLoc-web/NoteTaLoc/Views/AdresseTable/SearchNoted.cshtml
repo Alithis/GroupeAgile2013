@@ -1,17 +1,11 @@
 ﻿@model IEnumerable<NoteTaLoc.Models.AdresseTable>
 
-@*
-@{
-    Layout = null;
- }
-*@
-
 <script type="text/javascript">
 
     var carte;
     var arrlong  = [];
     var arrlatt  = [];
-    var bounds = new google.maps.LatLngBounds(null);
+    var bounds;
 
     $(document).ready(function () {
         initialiser();
@@ -29,6 +23,8 @@
             //zoom: 2,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
+
+        bounds = new google.maps.LatLngBounds(null);
 
         carte = new google.maps.Map(document.getElementById("map_canvas"), options);
 
@@ -101,12 +97,11 @@
     <div id="map_canvas"  class="map_canvas"></div>
     <div id="seach_result"  class="seach_result">
         <fieldset class="seach_result">
-        <legend>&nbsp;&nbsp;Résultats&nbsp;&nbsp;</legend>
         @{
             int counter = 0;
         }
         <table>
-            <tr><th>Address</th><th>Rate</th></tr>
+            <tr><th>Adresse</th><th>Note</th></tr>
             @foreach (var item in Model)
             {
                 <tr class="note" id="note_@counter">
