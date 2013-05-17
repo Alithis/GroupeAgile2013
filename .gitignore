@@ -33,7 +33,7 @@ local.properties
 ## Visual Studio
 #################
 
-#On ne track pas les fichiers avec des données sensibles
+#On ne track pas les fichiers avec des donnï¿½es sensibles
 *.config 
 
 ## Ignore Visual Studio temporary files, build results, and
@@ -43,6 +43,7 @@ local.properties
 *.suo
 *.user
 *.sln.docstates
+*.PublishSettings
 
 # Build results
 [Dd]ebug/
