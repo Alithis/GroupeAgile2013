@@ -13,28 +13,22 @@
     var carte;
     var arrlong  = [];
     var arrlatt  = [];
-    //var arrPoint = [];
-    // var arrPoint = new Array();
-    // arrPoint[0]=new Array(2);
+    var bounds = new google.maps.LatLngBounds(null);
 
     $(document).ready(function () {
         initialiser();
-        //var carte = new google.maps.Map(document.getElementById("map_canvas"));
 
         $(".note").click(function () {
             var point = fctPoint($(this).find("#item_Lattitude").val(), $(this).find("#item_Longitude").val());
-
             carte.panTo(point); //'=== deplacement smooth
-
         });
 
     });
 
     var initialiser = function () {
-
         var options = {
-            center:  new google.maps.LatLng(18.23, -66.39),
-            zoom: 2,
+            //center:  new google.maps.LatLng(18.23, -66.39),
+            //zoom: 2,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
 
@@ -42,32 +36,21 @@
 
         for (i = 0; i < arrlong.length; i++) {
             fctSetMarqueur(arrlatt[i], arrlong[i]);
-
-            if (i == 0) {
-
-                carte.panTo(fctPoint(arrlatt[i], arrlong[i]));
-                carte.zoom = 12;
-            }
         }
+       carte.fitBounds(bounds);       
+       carte.panToBounds(bounds);
     }
 
     var fctSetMarqueur = function (plngLat, plngLgt) {
-        //var lngLgt = parseFloat(plngLgt.replace(',', '.').replace(' ', ''));
-        //var lngLat = parseFloat(plngLat.replace(',', '.').replace(' ', ''));
-        //var point = new google.maps.LatLng(lngLat, lngLgt);
         var point = fctPoint(plngLat, plngLgt)
-
-        //alert(plngLat);
-
+        bounds.extend(point);
         var marqueur = new google.maps.Marker({
             position: point,
             map: carte });
 
-        var infowindow = new google.maps.InfoWindow();
+        var infowindow = new google.maps.InfoWindow();      
 
         google.maps.event.addListener(marqueur, 'click', function() {
-            //infowindow.setContent('test');
-            //infowindow.open(carte, marqueur);
             window.open('', '_blank');
         });
     }
@@ -76,6 +59,7 @@
         var lngLgt = parseFloat(plngLgt.replace(',', '.').replace(' ', ''));
         var lngLat = parseFloat(plngLat.replace(',', '.').replace(' ', ''));
         var point = new google.maps.LatLng(lngLat, lngLgt);
+
         return point;
     }
 
@@ -87,7 +71,7 @@
 
 .map_canvas
 {
-    width: 60%; 
+    width: 60%;
     height: 400px;
     float: left;
     margin-right: 10px;
@@ -95,7 +79,7 @@
 
 .search_result
 {
-    width: 20%; 
+    width: 20%;
     height: 400px;
     float: right;
     margin-left: 2px;
@@ -107,58 +91,51 @@
 
 </style>
 
-<h2>SearchNoted</h2>
-<br />
-
 @using (Html.BeginForm("SearchNoted", "AdresseTable"))
 {
-    <div style="text-align : center">
+    <div style="text-align : center;" class="form-horizontal">
     @Html.TextBox("searchString")
-@*    <input type="button" id="btnSearch" value="Rechercher" onclick="location.href = '@Url.Action("SearchNoted", "AdresseTable")'"/>*@ 
-    <input type="submit" id="btnSearch" />
-   </div>
+            @* <input type="button" id="btnSearch" value="Rechercher" onclick="location.href = '@Url.Action("SearchNoted", "AdresseTable")'"/>*@
+        <input type="submit" id="btnSearch" class="btn btn-primary"  value="Rechercher" />
+    </div>
     <br />
+
     <div id="map_canvas"  class="map_canvas"></div>
-    
-    
     <div id="seach_result"  class="seach_result">
+        <fieldset class="seach_result">
+        <legend>&nbsp;&nbsp;Résultats&nbsp;&nbsp;</legend>
+        @{
+            int counter = 0;
+        }
+        <table>
+            <tr><th>Address</th><th>Rate</th></tr>
+            @foreach (var item in Model)
+            {
+                <tr class="note" id="note_@counter">
+                    <td>@Html.DisplayFor(model => item.AdresseLine)</td>
+                    <td>@Html.DisplayFor(model => item.AvgNote)
+                        <script>
+                            arrlong[@(counter)] = '@item.Longitude';
+                            arrlatt[@(counter)] = '@item.Lattitude';
+                        </script>
+                        @Html.HiddenFor(model => item.Longitude)
+                        @Html.HiddenFor(model => item.Lattitude)
+                        </td>
+                </tr>
 
-    <fieldset class="seach_result">
-    <legend>&nbsp;&nbsp;Résultats&nbsp;&nbsp;</legend>    
-    @{
-    int counter = 0;
-}
-    @foreach (var item in Model)
-    {
-        
-        <div class="note" id="note_@counter">
-        Adresse : @Html.DisplayFor(model => item.AdresseLine)<br />
-        Note : @Html.DisplayFor(model => item.AvgNote)&nbsp;             
+                @*        @Html.DisplayFor(model => item.RueNo)&nbsp;
+                @Html.DisplayFor(model => item.Rue)
 
-@*        @Html.DisplayFor(model => item.RueNo)&nbsp;
-        @Html.DisplayFor(model => item.Rue)
-        
-        @(string.IsNullOrEmpty(item.AptNo) ? "" : "App." + Html.DisplayFor(model => item.AptNo) + ",");        
-        
-        @Html.DisplayFor(model => item.Ville),
-        @Html.DisplayFor(model => item.Province),
-        @Html.DisplayFor(model => item.Pays)<br />*@
+                @(string.IsNullOrEmpty(item.AptNo) ? "" : "App." + Html.DisplayFor(model => item.AptNo) + ",");
 
-       @Html.HiddenFor(model => item.Longitude)<br />
-       @Html.HiddenFor(model => item.Lattitude)<br />
+                @Html.DisplayFor(model => item.Ville),
+                @Html.DisplayFor(model => item.Province),
+                @Html.DisplayFor(model => item.Pays)<br />*@
 
-       <script>
 
-           arrlong[@(counter)] = '@item.Longitude';
-           arrlatt[@(counter)] = '@item.Lattitude';
-                   
-       </script>
-       
-       </div>
-        <br />
-        
-        counter++;
-    }
- </fieldset>
-    </div>  
+                counter++;
+            }
+        </table>
+        </fieldset>
+    </div>
 }
