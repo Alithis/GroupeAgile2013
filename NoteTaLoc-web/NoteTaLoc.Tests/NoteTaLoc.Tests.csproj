@@ -40,7 +40,7 @@
       <HintPath>..\NoteTaLoc\bin\Recaptcha.dll</HintPath>
     </Reference>
     <Reference Include="Rhino.Mocks">
-      <HintPath>..\NoteTaLoc\bin\Rhino.Mocks.dll</HintPath>
+      <HintPath>..\CommonReferences\Rhino.Mocks.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />

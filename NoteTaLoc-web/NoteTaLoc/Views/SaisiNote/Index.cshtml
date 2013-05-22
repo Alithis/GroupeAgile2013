@@ -3,78 +3,257 @@
 }
 @model NoteTaLoc.Models.SaisiNoteForm
 
-<h2>Saisi de la note</h2>
-<fieldset>
-    <legend>Remplir les champs suivants pour saisir votre note</legend>
-</fieldset>
-
-<h3 style="color:<%: @ViewData["color"] %>">@for (int i=0; i < ViewBag.NumTimes; i++) { 
-      @ViewBag.Message 
-} </h3>
 
 
-@using (Html.BeginForm()) {
- @Html.ValidationSummary(true)    
-<table style="text-align:center; vertical-align:middle">
-    <tbody>
-        <tr>
-            <td style="text-align:right">Rue : *</td>
-            <td> @Html.EditorFor(model => model.Rue)
-                @Html.ValidationMessageFor(model => model.Rue)</td>
-        </tr>
-        <tr>
-            <td style="text-align:right">Appartement :</td>
-            <td>@Html.EditorFor(model => model.Appartement)
-                @Html.ValidationMessageFor(model => model.Appartement)</td>
-        </tr>
-        <tr>
-            <td style="text-align:right">Localité : *</td>
-            <td>@Html.EditorFor(model => model.Localite)
-                @Html.ValidationMessageFor(model => model.Localite)</td>
-        </tr>
-        <tr>
-            <td style="text-align:right">Code Postal : *</td>
-            <td> @Html.EditorFor(model => model.CodePostal)
-                @Html.ValidationMessageFor(model => model.CodePostal)
+<link rel="stylesheet" href="~/Content/themes/base/jquery.ui.all.css">
+<link rel="stylesheet" href="~/src/demo2.css">
+<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
 
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align:right">Région / Province / État : *</td>
-            <td>@Html.EditorFor(model => model.Region)
-                @Html.ValidationMessageFor(model => model.Region)</td>
-        </tr>
-        <tr>
-            <td style="text-align:right">Pays : *</td>
-            <td>
-                @Html.EditorFor(model => model.Pays)
-                @Html.ValidationMessageFor(model => model.Pays)
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2"><hr /></td>
-        </tr>
-        <tr>
-            <td style="text-align:right">Note : </td>
-            <td>
-                <table>
-                    <tr>
-                        <td>@Html.RadioButtonFor(model => model.Note, 0) 0</td>
-                        <td>@Html.RadioButtonFor(model => model.Note, 1) 1</td>
-                        <td>@Html.RadioButtonFor(model => model.Note, 2) 2</td>
-                        <td>@Html.RadioButtonFor(model => model.Note, 3) 3</td>
-                        <td>@Html.RadioButtonFor(model => model.Note, 4) 4</td>
-                        <td>@Html.RadioButtonFor(model => model.Note, 5) 5 </td>
-                    </tr>
-                </table>
-                @Html.ValidationMessageFor(model => model.Note)
-            </td>
-        </tr>
-        <tr>
+<script src="~/lib/jquery-1.4.4.min.js"></script>
+<script src="~/lib/jquery-ui-1.8.7.min.js"></script>
+<script src="~/src/jquery.ui.addresspicker.js"></script>
+
+<style type="text/css">
+        .label
+        {
+            text-align: right;
+        }
+       
+        .resultInvalid
+        {
+            color: red;
+            width: 500px;
+            padding: 10px;
+        }
+        
+        .resultValid
+        {
+            color: Lime;
+            width: 500px;
+            padding: 10px;
+        }
+    </style> 
+
+<script>
+    $(function () {
+        var addresspicker = $("#addresspicker").addresspicker();
+        var addresspickerMap = $("#addresspicker_map").addresspicker({
+            regionBias: "ca",
+            elements: {
+                map: "#map",
+                lat: "#lat",
+                lng: "#lng",
+                locality: '#locality',
+                administrative_area_level_2: '#administrative_area_level_2',
+                administrative_area_level_1: '#administrative_area_level_1',
+                country: '#country',
+                postal_code: '#postal_code',
+                type: '#type'
+            }
+        });
+        var gmarker = addresspickerMap.addresspicker("marker");
+        gmarker.setVisible(true);
+        addresspickerMap.addresspicker("updatePosition");
+
+        $('#reverseGeocode').change(function () {
+            $("#addresspicker_map").addresspicker("option", "reverseGeocode", ($(this).val() === 'true'));
+        });
+
+    });
+</script>
+
+<script>
+
+    function AddResult(txt, css) {
+        var div = $('<div></div>').addClass(css).html(txt)
+        $("#Results").append(div);
+    }
+
+    function Validateaddress() {
+        debugger;
+        var add = $('#addresspicker_map').val();;
+        var pays = $('#country').val();
+        var code = $('#postal_code').val();
+        var province = $('#administrative_area_level_1').val();
+        var Ville = $('#locality').val();
+        var appartement = $('#NoAppartement').val();
+        var longitude = $('#lng').val();
+        var latitude = $('#lat').val();
+        var type = $('#type').val();
+        var note = $("input[name=group1]:radio:checked").val();
+
+        if (add == '' || add == null) {
+            AddResult("Choisir l'adresse de l'appartement à noter!", "resultInvalid");
+            return;
+        }
+        if (type != 'street_address') {
+            AddResult("Vous devez choisir l'adresse d'un appartement valide!", "resultInvalid");
+            return;
+        }
+        if (note == null) {
+            AddResult("Sélectionner une note!", "resultInvalid");
+            return;
+        }
+
+        var jsonText = JSON.stringify({ address: add, country: pays, zip: code, provincia: province, citta: Ville, appart: appartement, lng: longitude, lat: latitude, nota: note });
+
+        $.ajax({
+            type: "POST",
+            url: "SaisiNote/NoterAppartement", // the method we are calling
+            contentType: "application/json; charset=utf-8",
+            data: jsonText,
+            dataType: "json",
+            success: function (result) {
+                alert('Yay! It worked!');
+                alert('I returned... ' + result.returnValue);
+                if (result.returnValue == 'true') {
+                    AddResult("Enregistrement reussie!", "resultValid");
+                }
+                else {
+                    AddResult("La note n'a pas été enregistrée. Réessayer plus tard!", "resultInvalid");
+                }
+            },
+            error: function (result) {
+                alert('Oh no :(');
+                AddResult("La note n'a pas été enregistrée. Réessayer plus tard!", "resultInvalid");
+            }
+        });
+    }
+
+</script>
+
+<div>
+<div id="Results">
+    </div>
+    <div>
+        <div style="width: 250px; margin-top: 20px; float: left;">
+            <label>Trouver l'adresse : </label>
+        </div>
+        <div style="width: 600px; margin-top: 20px; float: left;">
+            <input id="addresspicker_map" style="width: 800px;" />
+        </div>
+    </div>
+    <div>
+        <div class='input' style="width: 500px; height: 500px; margin-top: 20px; float: left;">
+            <table style="padding-left: 20px;">
+                <tr>
+                    <td class="label">No appartement :
+                    </td>
+                    <td>
+                        <input id="NoAppartement" type="text" style="width: 50px" maxlength="6" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label">Ville :
+                    </td>
+                    <td>
+                        <input id="locality" disabled="disabled" style="width: 200px">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label">Pays :
+                    </td>
+                    <td>
+                        <input id="country" disabled="disabled" style="width: 200px">
+                    </td>
+
+                </tr>
+                <tr>
+                    <td class="label">Province :
+                    </td>
+                    <td>
+                        <input id="administrative_area_level_1" disabled="disabled" style="width: 200px">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label">Code postal :
+                    </td>
+                    <td>
+                        <input id="postal_code" disabled="disabled" style="width: 200px">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4">
+                        <br />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label">Note :
+                    </td>
+                    <td>
+                        <div id="Score">
+                            <table style="width: 200px">
+                                <tr>
+                                    <td>
+                                        <div style="padding-left: 5px">0</div>
+                                    </td>
+                                    <td>
+                                        <div style="padding-left: 5px">1</div>
+                                    </td>
+                                    <td>
+                                        <div style="padding-left: 5px">2</div>
+                                    </td>
+                                    <td>
+                                        <div style="padding-left: 5px">3</div>
+                                    </td>
+                                    <td>
+                                        <div style="padding-left: 5px">4</div>
+                                    </td>
+                                    <td>
+                                        <div style="padding-left: 5px">5</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="radio" name="group1" value="0">
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="group1" value="1">
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="group1" value="2">
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="group1" value="3">
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="group1" value="4">
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="group1" value="5">
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+                 <tr>
             <td colspan="2">
-                <input type="submit" class="btn btn-primary" value="Noter" />
+                <br />
+                <br />
             </td>
         </tr>
-    </tbody>
-</table>
-}
+                <tr>
+                    <td colspan="2" style="text-align: center">
+                        <button onclick="javascript:Validateaddress()">Noter</button>
+
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div style="width: 300px; height: 300px; margin-top: 20px; float: left;">
+           @*<label id="geo_label" for="reverseGeocode">Reverse Geocode after Marker Drag?</label>
+      <select id="reverseGeocode">
+        <option value="false" selected="selected">No</option>
+        <option value="true">Yes</option>
+      </select><br/>*@
+
+            <div id="map" style="width: 100%; height: 100%"></div>
+            <div id="location" class=""></div>
+        </div>
+    </div>
+    <input id="lat" disabled="disabled" style="visibility: hidden;">
+    <input id="lng" disabled="disabled" style="visibility: hidden;">
+    <input id="type" disabled="disabled" style="visibility: hidden;" />
+    <input id="indirizzo" disabled="disabled" style="visibility: hidden;" />
+</div>
