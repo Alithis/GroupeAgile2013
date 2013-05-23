@@ -133,137 +133,129 @@
     }
 </script>
 
-<div>
-    <div id="Results">
-    </div>
-    <div>
-        <div style="width: 250px; margin-top: 20px; float: left;">
+<div style="background-color: #fff; opacity: 0.8; border-radius: 8px 8px 8px 8px; padding: 20px 20px; width: 70%; height:350px; margin:auto;">
+
+    <div id="Results"></div>
+
+    <div style="width: auto; height: 50px">
+        <div style="float: left;width: 20%;">
             <label>Trouver l'adresse : </label>
         </div>
-        <div style="width: 600px; margin-top: 20px; float: left;">
-            <input id="addresspicker_map" style="width: 800px; border-radius: 20px; background: url(../images/search-icon.png) no-repeat;" />
+        <div style="float: right;width: 80%;">
+            <input id="addresspicker_map" style="width: 100%; border-radius: 20px; background: url(../images/search-icon.png) no-repeat;" />
         </div>
     </div>
-    <div>
-        <div class='input' style="width: 500px; height: 500px; margin-top: 20px; float: left;">
-            <table style="padding-left: 20px;">
-                <tr>
-                    <td class="label">No appartement :
-                    </td>
-                    <td>
-                        <input id="NoAppartement" type="text" style="width: 50px" maxlength="6" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="label">Ville :
-                    </td>
-                    <td>
-                        <input id="locality" disabled="disabled" style="width: 200px">
-                    </td>
-                </tr>
-                <tr>
-                    <td class="label">Pays :
-                    </td>
-                    <td>
-                        <input id="country" disabled="disabled" style="width: 200px">
-                    </td>
+        
+    <div style="width: auto; display: inline">
 
-                </tr>
-                <tr>
-                    <td class="label">Province :
-                    </td>
-                    <td>
-                        <input id="administrative_area_level_1" disabled="disabled" style="width: 200px">
-                    </td>
-                </tr>
-                <tr>
-                    <td class="label">Code postal :
-                    </td>
-                    <td>
-                        <input id="postal_code" disabled="disabled" style="width: 200px">
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="4">
-                        <br />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="label">Note :
-                    </td>
-                    <td>
-                        <div id="Score">
-                            <table style="width: 200px">
-                                <tr>
-                                    <td>
-                                        <div style="padding-left: 5px">0</div>
-                                    </td>
-                                    <td>
-                                        <div style="padding-left: 5px">1</div>
-                                    </td>
-                                    <td>
-                                        <div style="padding-left: 5px">2</div>
-                                    </td>
-                                    <td>
-                                        <div style="padding-left: 5px">3</div>
-                                    </td>
-                                    <td>
-                                        <div style="padding-left: 5px">4</div>
-                                    </td>
-                                    <td>
-                                        <div style="padding-left: 5px">5</div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="radio" name="group1" value="0">
-                                    </td>
-                                    <td>
-                                        <input type="radio" name="group1" value="1">
-                                    </td>
-                                    <td>
-                                        <input type="radio" name="group1" value="2">
-                                    </td>
-                                    <td>
-                                        <input type="radio" name="group1" value="3">
-                                    </td>
-                                    <td>
-                                        <input type="radio" name="group1" value="4">
-                                    </td>
-                                    <td>
-                                        <input type="radio" name="group1" value="5">
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <br />
-                        <br />
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2" style="text-align: center">
-                        <button onclick="javascript:Validateaddress()">Noter</button>
+        <div class='input' style="float: left;width: 50%; ">
 
-                    </td>
-                </tr>
-            </table>
+            <div style="height: 40px;">
+                <div style="float: left;width: 35%;">
+                    <label>No appartement :</label>
+                </div>
+                <div style="float: right;width: 65%;">
+                    <input id="NoAppartement" type="text" style="width: 96%" maxlength="6" />
+                </div>
+            </div>
+
+            <div style="height: 40px;">
+                <div style="float: left;width: 35%;">
+                    <label>Ville :</label>
+                </div>
+                <div style="float: right;width: 65%;">
+                    <input id="locality" disabled="disabled" style="width: 100%">
+                </div>
+            </div>
+
+            <div style="height: 40px;">
+                <div style="float: left;width: 35%;">
+                    <label>Pays :</label>
+                </div>
+                <div style="float: right;width: 65%;">
+                    <input id="country" disabled="disabled" style="width: 100%">
+                </div>
+            </div>
+
+            <div style="height: 40px;">
+                <div style="float: left;width: 35%;">
+                    <label>Province :</label>
+                </div>
+                <div style="float: right;width: 65%;">
+                    <input id="administrative_area_level_1" disabled="disabled" style="width: 100%">
+                </div>
+            </div>
+                                                        
+            <div style="height: 40px;">
+                <div style="float: left;width: 35%;">
+                    <label>Code postal :</label>
+                </div>
+                <div style="float: right;width: 65%;">
+                    <input id="postal_code" disabled="disabled" style="width: 100%">
+                </div>
+            </div>
+                                                                       
+            <div style="height: 60px;">
+                <div style="float: left;width: 35%;">
+                    <label>Note :</label>
+                </div>
+                <div style="float: left;width: 65%;">
+                    <table style="width: 100%">
+                        <tr>
+                            <td>
+                                <div style="padding-left: 5px">0</div>
+                            </td>
+                            <td>
+                                <div style="padding-left: 5px">1</div>
+                            </td>
+                            <td>
+                                <div style="padding-left: 5px">2</div>
+                            </td>
+                            <td>
+                                <div style="padding-left: 5px">3</div>
+                            </td>
+                            <td>
+                                <div style="padding-left: 5px">4</div>
+                            </td>
+                            <td>
+                                <div style="padding-left: 5px">5</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="radio" name="group1" value="0">
+                            </td>
+                            <td>
+                                <input type="radio" name="group1" value="1">
+                            </td>
+                            <td>
+                                <input type="radio" name="group1" value="2">
+                            </td>
+                            <td>
+                                <input type="radio" name="group1" value="3">
+                            </td>
+                            <td>
+                                <input type="radio" name="group1" value="4">
+                            </td>
+                            <td>
+                                <input type="radio" name="group1" value="5">
+                            </td>
+                        </tr>
+                    </table>
+                </div>    
+             </div>
+            <div class='input' style="margin: auto;width: 100%;">
+                <button onclick="javascript:Validateaddress()">Noter</button>
+            </div>
         </div>
-        <div style="width: 300px; height: 300px; margin-top: 20px; float: left;">
-            @*<label id="geo_label" for="reverseGeocode">Reverse Geocode after Marker Drag?</label>
-      <select id="reverseGeocode">
-        <option value="false" selected="selected">No</option>
-        <option value="true">Yes</option>
-      </select><br/>*@
-
+        <div style="float: right;width: 50%">
             <div id="map" style="width: 100%; height: 100%"></div>
             <div id="location" class=""></div>
         </div>
+
+
     </div>
-    <input id="lat" disabled="disabled" style="visibility: hidden;">
+        <input id="lat" disabled="disabled" style="visibility: hidden;">
     <input id="lng" disabled="disabled" style="visibility: hidden;">
     <input id="type" disabled="disabled" style="visibility: hidden;" />
     <input id="indirizzo" disabled="disabled" style="visibility: hidden;" />
