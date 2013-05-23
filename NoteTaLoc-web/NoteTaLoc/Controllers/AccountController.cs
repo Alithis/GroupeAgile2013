@@ -149,7 +149,7 @@ namespace NoteTaLoc.Controllers
 
         public Boolean ValidateUser_Password(string username, string pw)
         {
-            string sqlcmd = "SELECT * FROM dbo.usertable WHERE pseudo = '" + username + "' and motdepasse = '" + pw + "'";
+            string sqlcmd = "SELECT * FROM dbo.usertable WHERE pseudo = '" + username + "' and motdepasse = '" + pw + "' and InscriptionConfirm is not null";
 
             var result = db.UserTables.SqlQuery(sqlcmd);
             if (result.Count() > 0)

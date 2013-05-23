@@ -41,6 +41,7 @@
     </Reference>
     <Reference Include="Rhino.Mocks">
       <HintPath>..\CommonReferences\Rhino.Mocks.dll</HintPath>
+      <HintPath>..\NoteTaLoc\bin\Rhino.Mocks.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -120,6 +121,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\AccountControllerTest.cs" />
     <Compile Include="Controllers\SaisiNoteControllerTest.cs" />
     <Compile Include="Controllers\GeocoderTest.cs" />
     <Compile Include="Controllers\SaisiNoteWriterTest.cs" />

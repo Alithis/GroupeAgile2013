@@ -1,8 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Rhino.Mocks;
-using NoteTaLoc.Controllers;
-using System.Web.Mvc;
 
 namespace NoteTaLoc.Tests.Controllers
 {
@@ -10,21 +8,39 @@ namespace NoteTaLoc.Tests.Controllers
     public class SaisiNoteControllerTest
     {
         [TestMethod]
-        public void NoterAppartementWhenGood()
+        public void TestSaveNoteSaisi()
         {
-            SaisiNoteController controller = new SaisiNoteController();
+            var form = new NoteTaLoc.Models.SaisiNoteForm()
+            {
+                Rue = "4049 bannantyne",
+                Region = "Montréal",
+                CodePostal = "H4G 1C2",
+                Pays = "Canada"
+            };
+            //var address = "4049 bannantyne,+Montréal,+Canada";
+            var address = new NoteTaLoc.Models.AdresseTable()
+            {
+                Rue = "4049 bannantyne",
+                Ville = "Montréal",
+                Pays = "Canada"
+                //Longitude = 45.4633017,
+                //Lattitude = -73.5756787,
+                //GeoCodeResponse = "4049 Avenue Bannantyne, Verdun, QC H4G 2N4, Canada"
+            };
+            var note = new NoteTaLoc.Models.NoteTable()
+            {
+                Note = 1,
+                AdresseId = 2
+            };
+            var Writer = MockRepository.GenerateMock<NoteTaLoc.Controllers.SaisiNoteWriter>();
+            Writer.Expect(m => m.SaveAddresNoteSaisi(address));
+            Writer.Expect(m => m.GetAddressId(address)).Return(2);
+            Writer.Expect(m => m.SaveNoteSaisi(note));
 
-            string address = "4049 Avenue Bannantyne, Verdun, QC H4G 2N4, Canada";
-            string country = "Canada";
-            string zip = "Montréal";
-            string provincia = "Quebec";
-            string citta = "Montréal";
-            string appart = "Montréal";
-            string lng = "45.4633017";
-            string lat = "-73.5756787";
-            string nota = "3";
-            var result = controller.NoterAppartement(address, country, zip, provincia, citta, appart, lng, lat, nota) as ActionResult;
-            Assert.IsNotNull(result);
+            var controller = new NoteTaLoc.Controllers.SaisiNoteController();
+            controller.Index(form);
+
+            Writer.VerifyAllExpectations();
         }
     }
 }

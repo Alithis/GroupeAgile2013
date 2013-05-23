@@ -1,3 +1,4 @@
+@using MyResources = NoteTaLoc.Views.Account.RegisterAccountResource;
 @model NoteTaLoc.Models.RegisterModel
 
 @{
@@ -6,17 +7,31 @@
 @using Recaptcha;
 
 @{
-    ViewBag.Title = "Registration";
-
+    ViewBag.Title = MyResources.titre;
+    ViewBag.subtitle = MyResources.creation;
+    ViewBag.requiredFields = MyResources.requiredFields;
+    
+    ViewBag.lastName = MyResources.lastName;
+    ViewBag.firstName = MyResources.firstName;
+    ViewBag.userName = MyResources.username;
+    ViewBag.email = MyResources.email;
+    ViewBag.password = MyResources.password;
+    ViewBag.confirmPassword = MyResources.confirmPassword;
+    ViewBag.termsOfService = MyResources.termsOfService;
+    ViewBag.termsOfServiceDetails = MyResources.termsOfServiceDetails;
+    ViewBag.agreeTermsAndConditions = MyResources.agreeTermsAndConditions;
+    ViewBag.Yes = MyResources.Yes;
+    ViewBag.No = MyResources.No;
+    ViewBag.Register = MyResources.Register;
 }
 
 <div id="body">
     <section class="featured">
         <div class="content-wrapper">
             <hgroup class="title">
-                <h1>@ViewBag.Title.</h1>
+                <h1>@ViewBag.Title</h1>
 
-                <h2>Create a new account.</h2>
+                <h2>@ViewBag.subtitle</h2>
 
             </hgroup>
         </div>
@@ -29,17 +44,16 @@
             @using (Html.BeginForm()) {
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary()
-
                 <div>
-                    <h3>Registration Form</h3>
+                    <p style="color:red"><b>@ViewBag.requiredFields</b></p>
                     <table>
                         <tr>
                             <td>
-                           @Html.LabelFor(m => m.UserLName)
+                           @ViewBag.lastName
                             <td>
                            @Html.TextBoxFor(m => m.UserLName)
                             <td>
-                           @Html.LabelFor(m => m.UserFName)
+                           @ViewBag.firstName
                             </td>
                            <td>
                            @Html.TextBoxFor(m => m.UserFName)
@@ -47,13 +61,13 @@
                         </tr>
                         <tr>
                             <td>
-                           @Html.LabelFor(m => m.UserName)
+                           @ViewBag.userName
                             </td>
                            <td>
                            @Html.TextBoxFor(m => m.UserName)
                             </td>
                             <td>
-                           @Html.LabelFor(m => m.EmailAddress)
+                           @ViewBag.email
                             </td>
                            <td>
                            @Html.TextBoxFor(m => m.EmailAddress)
@@ -61,40 +75,45 @@
                        </tr>
                         <tr>
                             <td>
-                           @Html.LabelFor(m => m.Password)
+                           @ViewBag.password
                             </td>
                            <td>
                            @Html.PasswordFor(m => m.Password)
                             </td>
                             <td>
-                           @Html.LabelFor(m => m.ConfirmPassword)
+                           @ViewBag.confirmPassword
                             </td>
                            <td>
                            @Html.PasswordFor(m => m.ConfirmPassword)
                             </td>
                        </tr>
                         <tr>
-                            <td>
-                                Web site terms and conditions
+                            <td colspan="4">
+                                <b>@ViewBag.termsOfService</b>
                             </td>
-                            <td>
-                                Blah, blah, blah et blah.
+                        </tr>
+                        <tr>
+                            <td colspan="4">
+                                <p style="text-align:justify">
+                                @ViewBag.termsOfServiceDetails
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <p style="text-align:justify">
+                                <b>@ViewBag.agreeTermsAndConditions</b>
+                                </p>
+                            </td>
+                            <td>@ViewBag.Yes&nbsp;&nbsp;&nbsp;@Html.RadioButtonFor( model => model.TermAndConditions, true, new {@class="customradiobutton"} )
+                            </td>
+                            <td>@ViewBag.No&nbsp;&nbsp;&nbsp;@Html.RadioButtonFor( model => model.TermAndConditions, false, new {@class="customradiobutton"} )
                             </td>
                         </tr>
                     </table>
-                        <span>
-                                Do you agree to the terms and conditions?
-                        </span>
                     <table>
                         <tr>
-                            <td>Yes</td>
-                            <td>
-                            @Html.RadioButtonFor( model => model.TermAndConditions, true, new {@class="customradiobutton"} )
-                            </td>
-                            <td>No</td>
-                            <td>
-                            @Html.RadioButtonFor( model => model.TermAndConditions, false, new {@class="customradiobutton"} )
-                            </td>
+                            
                         </tr>
                         <tr>
                             <td></td>
@@ -102,9 +121,8 @@
                             <td>@Html.ValidationMessage("recaptcha")</td>
                         </tr>
                     </table>
-                    <input type="submit" value="Register" />
+                    <input type="submit" value='@ViewBag.Register' />
                 </div>
-
             }
         </div>
     </section>
