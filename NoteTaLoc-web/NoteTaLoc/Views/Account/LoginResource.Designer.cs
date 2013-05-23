@@ -61,7 +61,7 @@ namespace NoteTaLoc.Views.Account {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Utiliser un compte local pour vous connecter.
+        ///   Recherche une chaîne localisée semblable à connectez vous pour noter des appartements.
         /// </summary>
         public static string creation {
             get {
@@ -115,7 +115,7 @@ namespace NoteTaLoc.Views.Account {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Se connecter.
+        ///   Recherche une chaîne localisée semblable à LOGIN.
         /// </summary>
         public static string titre {
             get {

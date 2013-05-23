@@ -121,13 +121,13 @@
     <value>Formulaire de connexion</value>
   </data>
   <data name="creation" xml:space="preserve">
-    <value>Utiliser un compte local pour vous connecter</value>
+    <value>connectez vous pour noter des appartements</value>
   </data>
   <data name="password" xml:space="preserve">
     <value>Mot de passe</value>
   </data>
   <data name="titre" xml:space="preserve">
-    <value>Se connecter</value>
+    <value>LOGIN</value>
   </data>
   <data name="username" xml:space="preserve">
     <value>Utilisateur</value>

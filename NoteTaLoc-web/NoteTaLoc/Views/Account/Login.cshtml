@@ -17,19 +17,16 @@
         
 }
 
-<div id="body">
+<div id="body" style="background: rgba(255, 255, 255, 0.73); border-radius: 8px 8px 8px 8px; padding: 10px 10px; width: 70%; height: auto; min-height: auto; margin:auto;>
     <section class="featured">
         <div class="content-wrapper">
             <hgroup class="title">
-                <h1>@ViewBag.Title</h1>
+                <h2>@ViewBag.Title: @ViewBag.subtitle</h2>
             </hgroup>
         </div>
     </section>
     <section class="content-wrapper main-content clear-fix">
         <div class="content-wrapper">
-            <hgroup class="title">
-                <h2>@ViewBag.subtitle</h2>
-            </hgroup>
 
             @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl })) {
                 @Html.AntiForgeryToken()
