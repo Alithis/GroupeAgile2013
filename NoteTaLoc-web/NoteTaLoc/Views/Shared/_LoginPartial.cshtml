@@ -1,6 +1,4 @@
-
-@if (Request.IsAuthenticated)
-{
+                            @if (Request.IsAuthenticated){
     <text>
         Hello, [add username here]!
         @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
@@ -12,11 +10,7 @@
     </text>
 }
 else
-{
-    <div class="pull-right">
-        <ul class="nav">
-            <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-            <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-        </ul>
-    </div>
+{     
+    <li style="background-color: #00ace8; height:inherit">@Html.ActionLink("S'INSCRIRE", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+    <li style="background-color: #5c5f5c; height:inherit">@Html.ActionLink("LOGIN", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
 }
