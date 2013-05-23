@@ -204,10 +204,10 @@ namespace NoteTaLoc.Controllers
         public ActionResult Index()
         {
             //SaisiNoteForm form = new SaisiNoteForm();
-            //if (!HttpContext.User.Identity.IsAuthenticated)
-            //{
-            //    return RedirectToAction("LogIn", "Account");
-            //}
+            if (!HttpContext.User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("LogIn", "Account");
+            }
             return View();
         }
 
