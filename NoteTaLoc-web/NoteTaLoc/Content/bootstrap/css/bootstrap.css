@@ -221,13 +221,15 @@ textarea {
   }
 }
 
+
+
 body {
-  margin: 0;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  line-height: 20px;
-  color: #333333;
-  background-color: #ffffff;
+    margin: 0;
+    background-image: url('/Images/background/background_8.jpg');
+    background-size: 1440px 800px;
+    background-repeat: no-repeat;
+    display: compact;
+    font: 13px/18px "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 a {

@@ -28,26 +28,32 @@
 </head>
 <body>
     <header>
-        <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar navbar-inverse">
+                                    <div>
+                <span class="">
+                    <a class="brand" href="/"><img src="/Images/LOGO_loQUALsmall.png"/></a>
+                </span>
+            </div>
             <div class="navbar-inner">
+                                    
                 <div class="container">
+
                     <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="brand" href="~/">NoteTaLoc</a>
-                    <div class="nav-collapse collapse">
-                        <ul class="nav">
-                            <li class="active">@Html.ActionLink("Acceuil", "Index", "Home", new { area = "" }, null)</li>
-                            <li>@Html.ActionLink("Saisi ta note", "Index", "SaisiNote", new { area = "" }, null)</li>
-                            <li>@Html.ActionLink("Recherche", "SearchNoted", "AdresseTable", new { area = "" }, null)</li>
-                            <li>@Html.ActionLink("UserTable", "Index", "UserTable", new { area = "" }, null)</li>
+          
+                  <div class="navbar-form pull-right">
+                        <ul class="nav" style="height: 67px">
+                            <li style="background-color: #cf0e0e; height:inherit">@Html.ActionLink("NOTER", "Index", "SaisiNote", new { area = "" }, null)</li>
+                            <li style="background-color: #9ecf35; height:inherit">@Html.ActionLink("RECHERCHER", "SearchNoted", "AdresseTable", new { area = "" }, null)</li>
+                                                      @Html.Partial("_LoginPartial")
                         </ul>
-                        <div class="navbar-form pull-right">
-                          @Html.Partial("_LoginPartial")
+                
+
                         </div>
-                    </div>
+          
                     <!--/.nav-collapse -->
                 </div>
             </div>
@@ -72,10 +78,10 @@
         @*   @Scripts.Render("~/bundles/jquery")  *@
         @RenderSection("scripts", required: false)
 
-        <footer>
-            <hr />
-            <p>&copy; Alithis 2013</p>
-        </footer>
+
     </div>
 </body>
+        <footer>
+            <div class="text-center" style="color: #fff; font-weight: bolder;"> &copy; Alithis 2013</div>
+        </footer>
 </html>

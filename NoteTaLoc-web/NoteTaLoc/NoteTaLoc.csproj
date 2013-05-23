@@ -308,6 +308,17 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>notetaloc.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <Content Include="Images\background\background_1.jpg" />
+    <Content Include="Images\background\background_10.jpg" />
+    <Content Include="Images\background\background_2.jpg" />
+    <Content Include="Images\background\background_3.jpg" />
+    <Content Include="Images\background\background_4.jpg" />
+    <Content Include="Images\background\background_5.jpg" />
+    <Content Include="Images\background\background_6.jpg" />
+    <Content Include="Images\background\background_7.JPG" />
+    <Content Include="Images\background\background_8.JPG" />
+    <Content Include="Images\background\background_9.jpg" />
+    <Content Include="Images\LOGO_loQUALsmall.png" />
     <Content Include="Models\notetaloc.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>notetaloc.edmx</DependentUpon>
