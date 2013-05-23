@@ -107,9 +107,6 @@
 
 </style>
 
-<h2>SearchNoted</h2>
-<br />
-
 @using (Html.BeginForm("SearchNoted", "AdresseTable"))
 {
     <div style="text-align : center">
@@ -118,6 +115,9 @@
     <input type="submit" id="btnSearch" />
    </div>
     <br />
+    
+    <div style="background: rgba(255, 255, 255, 0.73); border-radius: 8px 8px 8px 8px; padding: 10px 10px; width: auto; height: auto; min-height: 400px; margin:auto;">
+
     <div id="map_canvas"  class="map_canvas"></div>
     
     
@@ -160,5 +160,5 @@
         counter++;
     }
  </fieldset>
-    </div>  
+    </div>   </div>  
 }
