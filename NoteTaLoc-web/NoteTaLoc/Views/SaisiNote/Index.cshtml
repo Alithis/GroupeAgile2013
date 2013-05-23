@@ -14,25 +14,30 @@
 <script src="~/src/jquery.ui.addresspicker.js"></script>
 
 <style type="text/css">
-        .label
-        {
-            text-align: right;
-        }
-       
-        .resultInvalid
-        {
-            color: red;
-            width: 500px;
-            padding: 10px;
-        }
-        
-        .resultValid
-        {
-            color: Lime;
-            width: 500px;
-            padding: 10px;
-        }
-    </style> 
+    .focus {
+        background: #e8edf1;
+    }
+
+    .SearchImage {
+        background: url(../images/search-icon.png) no-repeat;
+    }
+
+    .label {
+        text-align: right;
+    }
+
+    .resultInvalid {
+        color: red;
+        width: 500px;
+        padding: 10px;
+    }
+
+    .resultValid {
+        color: Lime;
+        width: 500px;
+        padding: 10px;
+    }
+</style>
 
 <script>
     $(function () {
@@ -59,11 +64,22 @@
             $("#addresspicker_map").addresspicker("option", "reverseGeocode", ($(this).val() === 'true'));
         });
 
+        $("#addresspicker_map").focus(function () {
+            $(this).css({ 'background': '#e8edf1' });
+        });
+
+        $("#addresspicker_map").blur(function () {
+            if ($('#addresspicker_map').val() == '' || $('#addresspicker_map').val() == null) {
+                $(this).css({ 'background': 'url(../images/search-icon.png) no-repeat' });
+            }
+            else {
+                $(this).css({ 'background': '#e8edf1' });
+            }
+        });
     });
 </script>
 
 <script>
-
     function AddResult(txt, css) {
         var div = $('<div></div>').addClass(css).html(txt)
         $("#Results").append(div);
@@ -71,7 +87,7 @@
 
     function Validateaddress() {
         debugger;
-        var add = $('#addresspicker_map').val();;
+        var add = $('#addresspicker_map').val();
         var pays = $('#country').val();
         var code = $('#postal_code').val();
         var province = $('#administrative_area_level_1').val();
@@ -104,8 +120,6 @@
             data: jsonText,
             dataType: "json",
             success: function (result) {
-                alert('Yay! It worked!');
-                alert('I returned... ' + result.returnValue);
                 if (result.returnValue == 'true') {
                     AddResult("Enregistrement reussie!", "resultValid");
                 }
@@ -114,23 +128,21 @@
                 }
             },
             error: function (result) {
-                alert('Oh no :(');
                 AddResult("La note n'a pas été enregistrée. Réessayer plus tard!", "resultInvalid");
             }
         });
     }
-
 </script>
 
 <div>
-<div id="Results">
+    <div id="Results">
     </div>
     <div>
         <div style="width: 250px; margin-top: 20px; float: left;">
             <label>Trouver l'adresse : </label>
         </div>
         <div style="width: 600px; margin-top: 20px; float: left;">
-            <input id="addresspicker_map" style="width: 800px;" />
+            <input id="addresspicker_map" style="width: 800px; border-radius: 20px; background: url(../images/search-icon.png) no-repeat;" />
         </div>
     </div>
     <div>
@@ -227,12 +239,12 @@
                         </div>
                     </td>
                 </tr>
-                 <tr>
-            <td colspan="2">
-                <br />
-                <br />
-            </td>
-        </tr>
+                <tr>
+                    <td colspan="2">
+                        <br />
+                        <br />
+                    </td>
+                </tr>
                 <tr>
                     <td colspan="2" style="text-align: center">
                         <button onclick="javascript:Validateaddress()">Noter</button>
@@ -242,7 +254,7 @@
             </table>
         </div>
         <div style="width: 300px; height: 300px; margin-top: 20px; float: left;">
-           @*<label id="geo_label" for="reverseGeocode">Reverse Geocode after Marker Drag?</label>
+            @*<label id="geo_label" for="reverseGeocode">Reverse Geocode after Marker Drag?</label>
       <select id="reverseGeocode">
         <option value="false" selected="selected">No</option>
         <option value="true">Yes</option>
