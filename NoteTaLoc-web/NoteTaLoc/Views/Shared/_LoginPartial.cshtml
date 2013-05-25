@@ -1,13 +1,15 @@
-                            @if (Request.IsAuthenticated){
-    <text>
-        Hello, [add username here]!
+@if (HttpContext.Current.Session["UserSessionObject"]!= null)
+                            {
+                                NoteTaLoc.Models.UserTable usertable = (NoteTaLoc.Models.UserTable) HttpContext.Current.Session["UserSessionObject"];
+    <li style="background-color: #EEEEEE; height:inherit">
+        Hello, @usertable.Nom @usertable.Prenom!
         @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
         {
 
             @Html.AntiForgeryToken()
-            <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+            <a href="javascript:document.getElementById('logoutForm').submit()">LOG OFF</a>
         }
-    </text>
+    </li>
 }
 else
 {     

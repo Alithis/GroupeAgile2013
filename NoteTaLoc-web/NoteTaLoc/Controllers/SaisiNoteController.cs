@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
 using System.Xml;
@@ -24,6 +25,9 @@ namespace NoteTaLoc.Controllers
         }
         public virtual void SendMail(string mailTo, string mailFrom, string obj, string msg)
         {
+            var config = WebConfigurationManager.OpenWebConfiguration("~");
+            string serverMail = config.AppSettings.Settings["ServerMail"].Value;
+
             MailAddress to = new MailAddress(mailTo);
             MailAddress fromMail = new MailAddress(mailFrom);
             MailMessage mailMessage = new MailMessage();
@@ -33,7 +37,8 @@ namespace NoteTaLoc.Controllers
             mailMessage.Body = msg;
 
             SmtpClient client = new SmtpClient();
-            client.Host = "mail.cia.ca";
+            //client.Host = "mail.cia.ca";
+            client.Host = serverMail;
             client.Send(mailMessage);
         }
     }
@@ -104,8 +109,11 @@ namespace NoteTaLoc.Controllers
 
         public void SaveNoteSaisi(NoteTable note)
         {
-            var mailTo = "eric.foka@alithis.com";
-            var mailFrom = "eric.foka@alithis.com";
+            var config = WebConfigurationManager.OpenWebConfiguration("~");
+            string receiverMail = config.AppSettings.Settings["ReceiverMail"].Value;
+            string senderMail = config.AppSettings.Settings["SenderMail"].Value;
+            var mailTo = receiverMail;
+            var mailFrom = senderMail;
             var msg = "Verifier la note de cet appartement!";
             var obj = "NoteTaLoc";
             _SaisiNoteContext.SaveNote(note);
@@ -196,8 +204,87 @@ namespace NoteTaLoc.Controllers
         public ActionResult Index()
         {
             //SaisiNoteForm form = new SaisiNoteForm();
+            var userVariable = HttpContext.Session["UserSessionObject"];
 
+            if (userVariable == null)
+            {
+                return RedirectToAction("LogIn", "Account", String.Format("{0}/{1}", "Index", "SaisiNote"));
+                //RedirectToAction( "Index",  "SaisiNote", null);    
+
+            }
             return View();
+        }
+
+        public ActionResult NoterAppartement(string address, string country, string zip, string provincia, string citta, string appart, string lng, string lat, string nota)
+        {
+            //SaisiNoteForm form = new SaisiNoteForm();
+
+            var data = new
+            {
+                indirizzo = address,
+                Pays = country,
+                zip = zip,
+                province = provincia,
+                ville = citta,
+                appartement = appart,
+                longitude = lng,
+                latitude = lat,
+                note = nota
+            };
+            var result = new { returnValue = false };
+            try
+            {
+                var valLng = Double.Parse(lng, CultureInfo.InvariantCulture);
+                var valLat = Double.Parse(lat, CultureInfo.InvariantCulture);
+
+
+
+                var addressToSave = new AdresseTable();
+                addressToSave.RueNo = int.Parse(GetRueAndNumero(address)[0]);
+                addressToSave.Rue = GetRueAndNumero(address)[1];
+                addressToSave.AptNo = appart;
+                addressToSave.CodePostal = zip;
+                addressToSave.Ville = citta;
+                addressToSave.Pays = country;
+                addressToSave.Province = provincia;
+                addressToSave.GeoCodeResponse = address;
+                addressToSave.Lattitude = (decimal)valLat;
+                addressToSave.Longitude = (decimal)valLng;
+
+                var saisiNoteWriter = new SaisiNoteWriter(new MailSender(), new SaisiNoteContext());
+                saisiNoteWriter.SaveAddresNoteSaisi(addressToSave);
+                var id = saisiNoteWriter.GetAddressId(addressToSave);
+                var noteToSave = new NoteTable();
+                noteToSave.Note = int.Parse(nota);
+                noteToSave.AdresseId = id;
+                noteToSave.UserId = 1;
+                noteToSave.StatutNote = 0;
+                saisiNoteWriter.SaveNoteSaisi(noteToSave);
+                result = new { returnValue = true };
+            }
+            catch (Exception ex)
+            {
+                result = new { returnValue = false };
+            }
+
+            return Json(result); ;
+        }
+
+        private List<string> GetRueAndNumero(string address)
+        {
+            List<string> result = new List<string>();
+            var firstSplit = address.Split(',');
+            var rueNumero = firstSplit[0];
+            var secondSplit = rueNumero.Split(' ');
+            var number = secondSplit[0];
+            result.Add(number);
+            string rue = secondSplit[1];
+            for (int i = 2; i < secondSplit.Length; i++)
+            {
+                rue += " " + secondSplit[i];
+            }
+            result.Add(rue);
+            return result;
         }
 
         //

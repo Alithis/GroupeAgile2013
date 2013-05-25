@@ -231,7 +231,7 @@ namespace NoteTaLoc.Controllers
         // GET: /Account/Login
 
         [AllowAnonymous]
-        public ActionResult Login(string returnUrl)
+        public ActionResult Login(String returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
             return View();
@@ -261,7 +261,13 @@ namespace NoteTaLoc.Controllers
             }
 
             if (bValid)
+            {
+                //Get all user attribute from databse
+
+                var userObject = db.UserTables.Single(t => t.Pseudo == model.UserName);
+                HttpContext.Session.Add("UserSessionObject", userObject);
                 return RedirectToLocal(returnUrl);
+            }
             else
                 return View(model);
         }
@@ -274,6 +280,8 @@ namespace NoteTaLoc.Controllers
         public ActionResult LogOff()
         {
             // ToDo WebSecurity.Logout();
+
+            HttpContext.Session.Remove("UserSessionObject");
 
             return RedirectToAction("Index", "Home");
         }

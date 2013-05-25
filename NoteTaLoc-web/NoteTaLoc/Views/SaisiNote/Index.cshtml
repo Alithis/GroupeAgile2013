@@ -81,6 +81,7 @@
 
 <script>
     function AddResult(txt, css) {
+        $("#Results").empty();
         var div = $('<div></div>').addClass(css).html(txt)
         $("#Results").append(div);
     }
