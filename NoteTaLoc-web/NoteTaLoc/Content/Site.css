@@ -21,7 +21,7 @@
 }
 
 input, textarea, .uneditable-input {
-    width: 100%;
+    width: 90%;
 }
 
 .centered_div {
@@ -99,24 +99,38 @@ input, textarea, .uneditable-input {
     background-color:transparent;
 }
 
-#Page de recherche
-
-.map_canvas
-{
-    width: 60%; 
-    height: 400px;
-    float: left;
-    margin-right: 10px;
+.text_justified {
+    text-align:justify;
 }
 
-.search_result
-{
-    width: auto; 
-    height: auto;
-    float: right;
-    margin-left: 2px;
+.vertical-align {
+    vertical-align: middle;
+    position:relative;
 }
-.note
-{
- border: 1px solid gray;
+
+.red {
+    color: #cf0e0e;
+}
+
+# page notation
+
+.focus {
+    background: #e8edf1;
+}
+
+
+.label {
+    text-align: right;
+}
+
+.resultInvalid {
+    color: red;
+    width: 500px;
+    padding: 10px;
+}
+
+.resultValid {
+    color: Lime;
+    width: 500px;
+    padding: 10px;
 }

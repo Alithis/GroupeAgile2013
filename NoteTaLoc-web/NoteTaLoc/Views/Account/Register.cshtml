@@ -21,107 +21,101 @@
     ViewBag.No = MyResources.No;
     ViewBag.Register = MyResources.Register;
 }
-
-<div id="body" style="background: rgba(255, 255, 255, 0.73); border-radius: 8px 8px 8px 8px; padding: 10px 10px; width: 70%; height: auto; min-height: 420px; margin:auto;">
-    <section class="featured">
-        <div class="content-wrapper">
-            <hgroup class="title">
-                <h2>@ViewBag.Title - @ViewBag.subtitle</h2>
-            </hgroup>
-        </div>
-    </section>
-    <section class="content-wrapper main-content clear-fix">
-        <div class="content-wrapper">
-            <hgroup class="title">
-            </hgroup>
-
-            @using (Html.BeginForm()) {
-                @Html.AntiForgeryToken()
-                @Html.ValidationSummary()
-                <div>
-                    <p style="color:red"><b>@ViewBag.requiredFields</b></p>
-                    <table>
-                        <tr>
-                            <td>
-                           @ViewBag.lastName
-                            <td>
-                           @Html.TextBoxFor(m => m.UserLName)
-                            <td>
-                           @ViewBag.firstName
-                            </td>
-                           <td>
-                           @Html.TextBoxFor(m => m.UserFName)
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                           @ViewBag.userName
-                            </td>
-                           <td>
-                           @Html.TextBoxFor(m => m.UserName)
-                            </td>
-                            <td>
-                           @ViewBag.email
-                            </td>
-                           <td>
-                           @Html.TextBoxFor(m => m.EmailAddress)
-                            </td>
-                       </tr>
-                        <tr>
-                            <td>
-                           @ViewBag.password
-                            </td>
-                           <td>
-                           @Html.PasswordFor(m => m.Password)
-                            </td>
-                            <td>
-                           @ViewBag.confirmPassword
-                            </td>
-                           <td>
-                           @Html.PasswordFor(m => m.ConfirmPassword)
-                            </td>
-                       </tr>
-                        <tr>
-                            <td colspan="4">
-                                <b>@ViewBag.termsOfService</b>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="4">
-                                <p style="text-align:justify">
-                                @ViewBag.termsOfServiceDetails
-                                </p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                <p style="text-align:justify">
-                                <b>@ViewBag.agreeTermsAndConditions</b>
-                                </p>
-                            </td>
-                            <td>@ViewBag.Yes&nbsp;&nbsp;&nbsp;@Html.RadioButtonFor( model => model.TermAndConditions, true, new {@class="customradiobutton"} )
-                            </td>
-                            <td>@ViewBag.No&nbsp;&nbsp;&nbsp;@Html.RadioButtonFor( model => model.TermAndConditions, false, new {@class="customradiobutton"} )
-                            </td>
-                        </tr>
-                    </table>
-                    <table>
-                        <tr>
-                            
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>@Html.Raw(Html.GenerateCaptcha())</td>
-                            <td>@Html.ValidationMessage("recaptcha")</td>
-                        </tr>
-                    </table>
-                    <input type="submit" value='@ViewBag.Register' />
+<div class="row-fluid">
+    <div class="span8 offset2 background_div">
+        <div class="row-fluid">
+            <div class="span8">
+                <div class="content-wrapper">
+                    <hgroup class="title">
+                        <h3>@ViewBag.Title - @ViewBag.subtitle</h3>
+                    </hgroup>
                 </div>
-            }
+            </div>
         </div>
-    </section>
-</div>
+        <div class="row-fluid">
+            <div class="span8">
+                <p class="red"><b>@ViewBag.requiredFields</b></p>
+            </div>
+        </div>
+       
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary()
+            <div class="row-fluid">
+                    <div class="span2">
+                        @ViewBag.lastName
+                    </div>
+                    <div class="span4">
+                        @Html.TextBoxFor(m => m.UserLName)
+                    </div>
+                    <div class="span2">
+                        @ViewBag.firstName
+                    </div>
+                    <div class="span4">
+                        @Html.TextBoxFor(m => m.UserFName)
+                    </div>
+            </div>
+            <div class="row-fluid">
+                <div class="span2">
+                    @ViewBag.userName
+                </div>
+                <div class="span4">
+                    @Html.TextBoxFor(m => m.UserName)
+                </div>
+                <div class="span2">
+                    @ViewBag.email
+                </div>
+                <div class="span4">
+                    @Html.TextBoxFor(m => m.EmailAddress)
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div class="span2">
+                    @ViewBag.password
+                </div>
+                <div class="span4">
+                    @Html.PasswordFor(m => m.Password)
+                </div>
+                <div class="span2">
+                    @ViewBag.confirmPassword
+                </div>
+                <div class="span4">
+                    @Html.PasswordFor(m => m.ConfirmPassword)
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div class="span12">
+                    <b>@ViewBag.termsOfService</b>
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div class="span12 text_justified">
+                    @ViewBag.termsOfServiceDetails <br /><br />
+                </div>
+            </div>            
+            <div class="row-fluid">
+                <div class="span6">
+                    <b>@ViewBag.agreeTermsAndConditions</b>
+                </div>
+                <div class="span3">
+                    @ViewBag.Yes&nbsp;&nbsp;&nbsp;@Html.RadioButtonFor( model => model.TermAndConditions, true, new {@class="customradiobutton"} )
+                </div>
+                <div class="span3">
+                    @ViewBag.No&nbsp;&nbsp;&nbsp;@Html.RadioButtonFor( model => model.TermAndConditions, false, new {@class="customradiobutton"} )
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div class="span5">
+                    @Html.Raw(Html.GenerateCaptcha())
+                </div>
+                <div class="span1">
+                    @Html.ValidationMessage("recaptcha")
+                </div>
+                <div class="span6">
+                    <input type="submit" value='@ViewBag.Register' class="btn btn-large btn-block btn-primary vertical-align"/>
+                </div>
+            </div>                                         
+        }
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    </div>
+</div> 

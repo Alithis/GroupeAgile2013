@@ -1,16 +1,17 @@
-                            @if (Request.IsAuthenticated){
-    <text>
-        Hello, [add username here]!
-        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
-        {
+@if (HttpContext.Current.Session["UserSessionObject"] != null)
+{
+    NoteTaLoc.Models.UserTable usertable = (NoteTaLoc.Models.UserTable)HttpContext.Current.Session["UserSessionObject"];
+    <li style="background-color: #EEEEEE; height: inherit">Hello, @usertable.Nom @usertable.Prenom!
+    @using (Html.BeginForm("LOGOFF", "Account", FormMethod.Post, new { id = "logoutForm" }))
+    {
 
-            @Html.AntiForgeryToken()
-            <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
-        }
-    </text>
+        @Html.AntiForgeryToken()
+        <a href="javascript:document.getElementById('logoutForm').submit()">LOG OFF</a>
+    }
+    </li>
 }
 else
 {     
-    <li style="background-color: #00ace8; height:inherit">@Html.ActionLink("S'INSCRIRE", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-    <li style="background-color: #5c5f5c; height:inherit">@Html.ActionLink("LOGIN", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    <li class="btn-inscrire">@Html.ActionLink("S'INSCRIRE", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+    <li class="btn-login">@Html.ActionLink("LOGIN", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
 }

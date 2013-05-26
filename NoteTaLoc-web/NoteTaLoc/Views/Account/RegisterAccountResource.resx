@@ -121,7 +121,7 @@
     <value>Vous acceptez les termes et conditions?</value>
   </data>
   <data name="confirmPassword" xml:space="preserve">
-    <value>Confirmé mot de passe</value>
+    <value>Confirmation</value>
   </data>
   <data name="creation" xml:space="preserve">
     <value>Créer un nouveau compte</value>

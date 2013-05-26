@@ -16,43 +16,59 @@
     ViewBag.IfDontHave = MyResources.doNotHaveAccount;
         
 }
-
-<div id="body" style="background: rgba(255, 255, 255, 0.73); border-radius: 8px 8px 8px 8px; padding: 10px 10px; width: 70%; height: auto; min-height: auto; margin:auto;>
-    <section class="featured">
-        <div class="content-wrapper">
-            <hgroup class="title">
-                <h2>@ViewBag.Title: @ViewBag.subtitle</h2>
-            </hgroup>
-        </div>
-    </section>
-    <section class="content-wrapper main-content clear-fix">
-        <div class="content-wrapper">
-
+<section class="content-wrapper main-content clear-fix">
+    <div class="row-fluid">
+        <div class="span6 offset3 background_div">
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="content-wrapper">
+                        <hgroup class="title">
+                            <h3>@ViewBag.Title - @ViewBag.subtitle</h3>
+                        </hgroup>
+                    </div>
+                </div>
+            </div>
             @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl })) {
+                
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary()
-
-                <fieldset>
-                    <legend>@ViewBag.LogInform</legend>
-                    <ol>
-                        <li>
-                            @ViewBag.userName
-                            @Html.TextBoxFor(m => m.UserName)
-                        </li>
-                        <li>
-                            @ViewBag.password
-                            @Html.PasswordFor(m => m.Password)
-                        </li>
-                    </ol>
-                    <input type="submit" value='@ViewBag.LogIn' />
-                </fieldset>
-	    <p>
-        @Html.ActionLink(MyResources.register, "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" }) @ViewBag.IfDontHave
-		</p>
-            } 
+               <div class="row-fluid">
+                    <div class="span12">
+                        @ViewBag.LogInform
+                    </div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span4">
+                        @ViewBag.userName
+                    </div>
+                    <div class="span8">
+                        @Html.TextBoxFor(m => m.UserName)
+                    </div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span4">
+                        @ViewBag.password
+                    </div>
+                    <div class="span8">
+                        @Html.PasswordFor(m => m.Password)
+                    </div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span12">
+                        <input type="submit" value='@ViewBag.LogIn' class="btn btn-large btn-block btn-primary vertical-align"/>
+                    </div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span12"><br />
+                        <p>
+                            @Html.ActionLink(MyResources.register, "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" }) @ViewBag.IfDontHave
+		                </p>
+                    </div>
+                </div>                            
+            }
         </div>
-    </section>
-</div>
+    </div>
+</section>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
