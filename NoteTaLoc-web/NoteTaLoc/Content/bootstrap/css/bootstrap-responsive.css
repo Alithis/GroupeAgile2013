@@ -1,5 +1,5 @@
 /*!
- * Bootstrap Responsive v2.3.1
+ * Bootstrap Responsive v2.3.2
  *
  * Copyright 2012 Twitter, Inc
  * Licensed under the Apache License v2.0
@@ -803,12 +803,6 @@
   body {
     padding-right: 20px;
     padding-left: 20px;
-        margin: 0;
-    background-image: url('/Images/background/background_8.jpg');
-    background-size: 1440px 800px;
-    background-repeat: no-repeat;
-    display: compact;
-    font: 13px/18px "Helvetica Neue", Helvetica, Arial, sans-serif;
   }
   .navbar-fixed-top,
   .navbar-fixed-bottom,
@@ -958,12 +952,6 @@
 @media (max-width: 979px) {
   body {
     padding-top: 0;
-        margin: 0;
-    background-image: url('/Images/background/background_8.jpg');
-    background-size: 1440px 800px;
-    background-repeat: no-repeat;
-    display: compact;
-    font: 13px/18px "Helvetica Neue", Helvetica, Arial, sans-serif;
   }
   .navbar-fixed-top,
   .navbar-fixed-bottom {
@@ -1035,7 +1023,7 @@
   }
   .navbar-inverse .nav-collapse .nav > li > a,
   .navbar-inverse .nav-collapse .dropdown-menu a {
-    color: #fff;
+    color: #999999;
   }
   .navbar-inverse .nav-collapse .nav > li > a:hover,
   .navbar-inverse .nav-collapse .nav > li > a:focus,

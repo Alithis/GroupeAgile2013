@@ -1,5 +1,5 @@
 /*!
- * Bootstrap v2.3.1
+ * Bootstrap v2.3.2
  *
  * Copyright 2012 Twitter, Inc
  * Licensed under the Apache License v2.0
@@ -221,15 +221,13 @@ textarea {
   }
 }
 
-
-
 body {
-    margin: 0;
-    background-image: url('/Images/background/background_8.jpg');
-    background-size: 1440px 800px;
-    background-repeat: no-repeat;
-    display: compact;
-    font: 13px/18px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  color: #333333;
+  background-color: #ffffff;
 }
 
 a {
@@ -3011,6 +3009,15 @@ table th[class*="span"],
   display: block;
 }
 
+.dropdown-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 990;
+}
+
 .pull-right > .dropdown-menu {
   right: 0;
   left: auto;
@@ -4797,7 +4804,7 @@ input[type="submit"].btn.btn-mini {
 
 .navbar-inverse .brand,
 .navbar-inverse .nav > li > a {
-  color: #fff;
+  color: #999999;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
 
@@ -6157,8 +6164,4 @@ a.badge:focus {
 
 .affix {
   position: fixed;
-}
-
-white-div {
-background-color: #fff; opacity: 0.8; border-radius: 8px 8px 8px 8px;
 }
