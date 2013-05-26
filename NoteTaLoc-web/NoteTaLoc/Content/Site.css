@@ -1,10 +1,11 @@
 ﻿body {
-    padding-top: 50px;
+    padding-top: 40px;
     margin: 0;
+    margin-top:5%;
     background-image: url('/Images/background/background_8.jpg');
-    background-size: 1440px 800px;
+    background-size: cover;
     background-repeat: no-repeat;
-    display: compact;
+    display: initial;
     font: 13px/18px "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
@@ -17,4 +18,105 @@
     min-height: 400px;
     margin: auto;
     overflow: auto;
+}
+
+input, textarea, .uneditable-input {
+    width: 100%;
+}
+
+.centered_div {
+    margin: auto;
+    float: none;
+    display: inline-block;
+}
+
+.navbar {
+    width: 100%;
+    background: #000;
+
+        padding: 0 0 0 0;
+}
+
+.navbar-inner{
+    width: auto;
+    background: #000;
+    border: none;
+    margin-left: 8%;
+    margin-right: 8%;
+    padding: 0 0 0 0;
+}
+
+.container-fluid {
+    width:100%;
+    margin: auto;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.row-fluid {
+    margin: auto;
+    min-height:inherit;
+}
+
+.btn-note {
+    background-color: #cf0e0e;
+    height: inherit;
+    display: inline-block;
+}
+
+.btn-recherche {
+    background-color: #9ecf35;
+    height: inherit;
+    display: inline-block;
+}
+
+.btn-inscrire {
+    background-color: #00ace8;
+    height: inherit;
+    display: inline-block;
+}
+
+.btn-login {
+    background-color: #5c5f5c;
+    height: inherit;
+    display: inline-block;
+}
+
+.ul_menu_bar {
+    height: inherit;
+    height: 67px;
+}
+
+.navbar .nav > li > a {
+    text-shadow: none;
+    display: inline-block;
+}
+.navbar .nav {
+    display: inline-block;
+}
+
+.nav-collapse .nav > li > a:hover {
+    background-color:transparent;
+}
+
+#Page de recherche
+
+.map_canvas
+{
+    width: 60%; 
+    height: 400px;
+    float: left;
+    margin-right: 10px;
+}
+
+.search_result
+{
+    width: auto; 
+    height: auto;
+    float: right;
+    margin-left: 2px;
+}
+.note
+{
+ border: 1px solid gray;
 }
