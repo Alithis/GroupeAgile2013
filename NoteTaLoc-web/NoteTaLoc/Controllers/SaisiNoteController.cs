@@ -215,6 +215,9 @@ namespace NoteTaLoc.Controllers
             return View();
         }
 
+        //
+        // POST: /SaisiNote/NoterAppartement
+
         public ActionResult NoterAppartement(string address, string country, string zip, string provincia, string citta, string appart, string lng, string lat, string nota)
         {
             //SaisiNoteForm form = new SaisiNoteForm();
@@ -236,8 +239,6 @@ namespace NoteTaLoc.Controllers
             {
                 var valLng = Double.Parse(lng, CultureInfo.InvariantCulture);
                 var valLat = Double.Parse(lat, CultureInfo.InvariantCulture);
-
-
 
                 var addressToSave = new AdresseTable();
                 addressToSave.RueNo = int.Parse(GetRueAndNumero(address)[0]);
