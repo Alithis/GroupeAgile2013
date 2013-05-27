@@ -207,13 +207,13 @@ namespace NoteTaLoc.Controllers
 
             var userVariable = HttpContext.Session["UserSessionObject"];
 
-            //if (userVariable == null)
-            //{
-            //    return RedirectToAction("LogIn", "Account", String.Format("{0}/{1}", "Index", "SaisiNote"));
-            //    //RedirectToAction( "Index",  "SaisiNote", null);    
+            if (userVariable == null)
+            {
+                return RedirectToAction("LogIn", "Account", String.Format("{0}/{1}", "Index", "SaisiNote"));
+                //RedirectToAction( "Index",  "SaisiNote", null);    
 
 
-            //}
+            }
 
             return View();
         }

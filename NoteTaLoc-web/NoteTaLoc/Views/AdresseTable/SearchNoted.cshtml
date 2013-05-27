@@ -106,9 +106,6 @@
 
 </script>
 
-<<<<<<< HEAD
-=======
-
 <style>
 
 .map_canvas
@@ -144,7 +141,6 @@
 
 </style>
 
->>>>>>> 7c726db140ac9b40066324ec0e4b6e52b906c536
 @using (Html.BeginForm("SearchNoted", "AdresseTable"))
 {    
     <div class="row-fluid">
@@ -157,7 +153,6 @@
             </div>
         </div>
     </div>
-<<<<<<< HEAD
     <div class="row-fluid">
         <div class="span10 offset1 background_div">
             <div id="map_canvas" class="map_canvas span7"></div>
@@ -174,25 +169,6 @@
                         Note : @Html.DisplayFor(model => item.AvgNote)&nbsp;             
                         @Html.HiddenFor(model => item.Longitude)<br />
                         @Html.HiddenFor(model => item.Lattitude)<br />
-=======
-    <br />
-
-    <div style="background: rgba(255, 255, 255, 0.73); border-radius: 8px 8px 8px 8px; padding: 10px 10px; width: auto; height: auto; min-height: 400px; margin:auto;">
-
-    <div id="map_canvas"  class="map_canvas"></div>
-    <div id="seach_result"  class="seach_result">
-        <fieldset class="seach_result">
-        @{
-            int counter = 0;
-        }
-        <table>
-            <tr><th>Adresse</th><th>Note</th></tr>
-            @foreach (var item in Model)
-            {
-                <tr class="note" id="note_@counter">
-                    <td>@Html.DisplayFor(model => item.AdresseLine)</td>
-                    <td>@Html.DisplayFor(model => item.AvgNote)
->>>>>>> 7c726db140ac9b40066324ec0e4b6e52b906c536
                         <script>
                             arrlong[@(counter)] = '@item.Longitude';
                             arrlatt[@(counter)] = '@item.Lattitude';                 
