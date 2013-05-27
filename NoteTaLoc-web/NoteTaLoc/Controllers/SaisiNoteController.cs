@@ -112,8 +112,8 @@ namespace NoteTaLoc.Controllers
             string senderMail = config.AppSettings.Settings["SenderMail"].Value;
             var mailTo = receiverMail;
             var mailFrom = senderMail;
-            var msg = "Verifier la note de cet appartement!";
-            var obj = "NoteTaLoc";
+            var msg = "Cher Administrateur, \nUn appartement [avec une note] dont la note est égale à zéro vient d'être ajouté.\nLes informations de l’appartement sont disponibles ici : [lien vers une page d’administration de l’appartement].\n\nBonne journée.\n";
+            var obj = "NoteTaLoc - Notification : note à 0";
             _SaisiNoteContext.SaveNote(note);
             if (note.Note == 0)
             {
