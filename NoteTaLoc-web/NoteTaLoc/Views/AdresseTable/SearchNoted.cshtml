@@ -8,16 +8,15 @@
 <style>.map_canvas
 {
     width: 60%; 
-    height: 400px;
+    height: 450px;
     float: left;
-    margin-right: 10px;
+    margin-right: 5px;
 }
 .search_result
 {
     width: auto; 
-    height: auto;
+    height: 450px;
     float: right;
-    margin-left: 2px;
 }
 .note
 {
@@ -26,57 +25,45 @@
 </style>
 <script type="text/javascript" src="../../Scripts/jquery-1.8.2.min.js"></script>
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
 <script type="text/javascript">
 
     var carte;
     var arrlong  = [];
     var arrlatt  = [];
-    //var arrPoint = [];
-    // var arrPoint = new Array();
-    // arrPoint[0]=new Array(2);
+    var bounds;
 
     $(document).ready(function () {
         initialiser();
-        //var carte = new google.maps.Map(document.getElementById("map_canvas"));
 
         $(".note").click(function () {
             var point = fctPoint($(this).find("#item_Lattitude").val(), $(this).find("#item_Longitude").val());
-
             carte.panTo(point); //'=== deplacement smooth
-
         });
 
     });
 
     var initialiser = function () {
-
         var options = {
-            center:  new google.maps.LatLng(18.23, -66.39),
-            zoom: 2,
+            //center:  new google.maps.LatLng(18.23, -66.39),
+            //zoom: 2,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
+
+        bounds = new google.maps.LatLngBounds(null);
 
         carte = new google.maps.Map(document.getElementById("map_canvas"), options);
 
         for (i = 0; i < arrlong.length; i++) {
             fctSetMarqueur(arrlatt[i], arrlong[i]);
-
-            if (i == 0) {
-
-                carte.panTo(fctPoint(arrlatt[i], arrlong[i]));
-                carte.zoom = 12;
-            }
         }
+       carte.fitBounds(bounds);
+       carte.panToBounds(bounds);
     }
 
     var fctSetMarqueur = function (plngLat, plngLgt) {
-        //var lngLgt = parseFloat(plngLgt.replace(',', '.').replace(' ', ''));
-        //var lngLat = parseFloat(plngLat.replace(',', '.').replace(' ', ''));
-        //var point = new google.maps.LatLng(lngLat, lngLgt);
         var point = fctPoint(plngLat, plngLgt)
-
-        //alert(plngLat);
-
+        bounds.extend(point);
         var marqueur = new google.maps.Marker({
             position: point,
             map: carte });
@@ -84,8 +71,6 @@
         var infowindow = new google.maps.InfoWindow();
 
         google.maps.event.addListener(marqueur, 'click', function() {
-            //infowindow.setContent('test');
-            //infowindow.open(carte, marqueur);
             window.open('', '_blank');
         });
     }
@@ -94,11 +79,13 @@
         var lngLgt = parseFloat(plngLgt.replace(',', '.').replace(' ', ''));
         var lngLat = parseFloat(plngLat.replace(',', '.').replace(' ', ''));
         var point = new google.maps.LatLng(lngLat, lngLgt);
+
         return point;
     }
 
 
 </script>
+
 @using (Html.BeginForm("SearchNoted", "AdresseTable"))
 {    
     <div class="row-fluid">
@@ -114,7 +101,7 @@
     <div class="row-fluid">
         <div class="span10 offset1 background_div">
             <div id="map_canvas" class="map_canvas span7"></div>
-            <div id="seach_result"  class="seach_result span4">
+            <div id="seach_result"  class="seach_result span5 pre-scrollable" style="margin-left: 0%;">
                 <fieldset class="seach_result">
                 <legend>&nbsp;&nbsp;Résultats&nbsp;&nbsp;</legend>    
                 @{
@@ -139,3 +126,4 @@
         </div>
     </div>
 }
+

@@ -91,6 +91,14 @@ input, textarea, .uneditable-input {
     text-shadow: none;
     display: inline-block;
 }
+
+.navbar .nav > li > form > a {
+    text-shadow: none;
+    display: inline-block;
+    color: #fff;
+    padding: 10px 15px;
+}
+
 .navbar .nav {
     display: inline-block;
 }
@@ -106,6 +114,11 @@ input, textarea, .uneditable-input {
 .vertical-align {
     vertical-align: middle;
     position:relative;
+}
+
+.pre-scrollable {
+    max-height: 450px;
+    overflow-y: scroll;
 }
 
 .red {
@@ -133,4 +146,12 @@ input, textarea, .uneditable-input {
     color: Lime;
     width: 500px;
     padding: 10px;
+}
+
+.btn-white {
+    color: #fff;
+    height: inherit;
+    display: inline-block;
+    vertical-align: middle;
+    padding: 10px 15px;
 }

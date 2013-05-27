@@ -41,9 +41,14 @@
                                 <a class="brand" href="/"><img src="/Images/LOGO_loQUALsmall.png"/></a>
 
                                 <!-- Everything you want hidden at 940px or less, place within here -->
-                                <div class="nav-collapse collapse">
+                                <div class="nav-collapse collapse">                                    
                                     <!-- .nav, .navbar-search, .navbar-form, etc -->
                                     <ul class="nav pull-right ul_menu_bar">
+                                        @if (HttpContext.Current.Session["UserSessionObject"] != null)
+                                        {
+                                            NoteTaLoc.Models.UserTable usertable = (NoteTaLoc.Models.UserTable)HttpContext.Current.Session["UserSessionObject"];
+                                            <li class="btn-white">HELLO, @usertable.Nom @usertable.Prenom !</li>
+                                        }
                                         <li class="btn-note">@Html.ActionLink("NOTER", "Index", "SaisiNote", new { area = "" }, null)</li>
                                         <li class="btn-recherche">@Html.ActionLink("RECHERCHER", "SearchNoted", "AdresseTable", new { area = "" }, null)</li>
                                         @Html.Partial("_LoginPartial")

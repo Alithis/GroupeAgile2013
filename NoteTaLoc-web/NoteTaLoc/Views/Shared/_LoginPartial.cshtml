@@ -1,7 +1,7 @@
 @if (HttpContext.Current.Session["UserSessionObject"] != null)
 {
     NoteTaLoc.Models.UserTable usertable = (NoteTaLoc.Models.UserTable)HttpContext.Current.Session["UserSessionObject"];
-    <li style="background-color: #EEEEEE; height: inherit">Hello, @usertable.Nom @usertable.Prenom!
+    <li class="btn-inscrire">
     @using (Html.BeginForm("LOGOFF", "Account", FormMethod.Post, new { id = "logoutForm" }))
     {
 
