@@ -14,8 +14,6 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Xml.XPath;
 
-//{
-//              }
 namespace NoteTaLoc.Controllers
 {
     public class MailSender
@@ -204,14 +202,15 @@ namespace NoteTaLoc.Controllers
         public ActionResult Index()
         {
             //SaisiNoteForm form = new SaisiNoteForm();
+
             var userVariable = HttpContext.Session["UserSessionObject"];
 
             if (userVariable == null)
             {
                 return RedirectToAction("LogIn", "Account", String.Format("{0}/{1}", "Index", "SaisiNote"));
                 //RedirectToAction( "Index",  "SaisiNote", null);    
-
             }
+
             return View();
         }
 
