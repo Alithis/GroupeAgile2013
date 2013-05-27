@@ -41,18 +41,38 @@
             carte.panTo(point); //'=== deplacement smooth
         });
 
+//Pour la gestion d'interface du tableau et du comportement du cursor
+             $('.note')
+            .click(function () {
+                //$(this).parent().find('note_selected').each(function (index, element) {
+                //    $(element).removeClass('note_selected'); //Retire la selection précédente
+                $(".note_selected").removeClass('note_selected');
+                //});
+                $(this).addClass('note_selected'); //Ajoute la nouvel sélection
+            })
+            .hover(
+            //=== Lors du passage de la souris sur la ligne on applique la classe RowSelection
+            //=== Lorsque la souris est a l'exterieur de la ligne la classe RowSelection est retiré
+                function () { $(this).addClass("note_hover").css('cursor', 'pointer'); },
+                function () { $(this).removeClass("note_hover"); }
+            );
+
     });
 
     var initialiser = function () {
         var options = {
-            //center:  new google.maps.LatLng(18.23, -66.39),
+            //center:  new google.maps.LatLng(45.30, -73.35),
             //zoom: 2,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
-
         bounds = new google.maps.LatLngBounds(null);
-
         carte = new google.maps.Map(document.getElementById("map_canvas"), options);
+
+        //Positionne montreal par defaut
+        //var point = fctPoint('45.30', '-73.35');
+        //carte.panTo(point); //'=== deplacement smooth
+        //bounds.extend(point);
+
 
         for (i = 0; i < arrlong.length; i++) {
             fctSetMarqueur(arrlatt[i], arrlong[i]);
@@ -86,6 +106,45 @@
 
 </script>
 
+<<<<<<< HEAD
+=======
+
+<style>
+
+.map_canvas
+{
+    width: 60%;
+    height: 400px;
+    float: left;
+    margin-right: 10px;
+}
+
+.search_result
+{
+    width: 20%;
+    height: 400px;
+    float: right;
+    margin-left: 2px;
+}
+.note, .note_hover, .note_seleted
+{
+ border: 1px solid gray;
+}
+
+.note_hover
+{
+    background-color: #00ace8;
+}
+
+.note_selected
+{
+    background-color: #9ecf35;
+}
+
+
+</style>
+
+>>>>>>> 7c726db140ac9b40066324ec0e4b6e52b906c536
 @using (Html.BeginForm("SearchNoted", "AdresseTable"))
 {    
     <div class="row-fluid">
@@ -98,6 +157,7 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
     <div class="row-fluid">
         <div class="span10 offset1 background_div">
             <div id="map_canvas" class="map_canvas span7"></div>
@@ -114,6 +174,25 @@
                         Note : @Html.DisplayFor(model => item.AvgNote)&nbsp;             
                         @Html.HiddenFor(model => item.Longitude)<br />
                         @Html.HiddenFor(model => item.Lattitude)<br />
+=======
+    <br />
+
+    <div style="background: rgba(255, 255, 255, 0.73); border-radius: 8px 8px 8px 8px; padding: 10px 10px; width: auto; height: auto; min-height: 400px; margin:auto;">
+
+    <div id="map_canvas"  class="map_canvas"></div>
+    <div id="seach_result"  class="seach_result">
+        <fieldset class="seach_result">
+        @{
+            int counter = 0;
+        }
+        <table>
+            <tr><th>Adresse</th><th>Note</th></tr>
+            @foreach (var item in Model)
+            {
+                <tr class="note" id="note_@counter">
+                    <td>@Html.DisplayFor(model => item.AdresseLine)</td>
+                    <td>@Html.DisplayFor(model => item.AvgNote)
+>>>>>>> 7c726db140ac9b40066324ec0e4b6e52b906c536
                         <script>
                             arrlong[@(counter)] = '@item.Longitude';
                             arrlatt[@(counter)] = '@item.Lattitude';                 
