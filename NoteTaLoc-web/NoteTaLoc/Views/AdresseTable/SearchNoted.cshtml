@@ -5,24 +5,6 @@
     Layout = null;
  }
 *@
-<style>.map_canvas
-{
-    width: 60%; 
-    height: 450px;
-    float: left;
-    margin-right: 5px;
-}
-.search_result
-{
-    width: auto; 
-    height: 450px;
-    float: right;
-}
-.note
-{
- border: 1px solid gray;
-}
-</style>
 <script type="text/javascript" src="../../Scripts/jquery-1.8.2.min.js"></script>
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 
@@ -80,6 +62,32 @@
         }
        carte.fitBounds(bounds);
        carte.panToBounds(bounds);
+
+        // idle is better than bounds_changed
+       google.maps.event.addListener(carte, 'idle', function() {
+           bounds = carte.getBounds();
+           northeast = bounds.getNorthEast();
+           southwest = bounds.getSouthWest();
+
+           var boundsJSON = JSON.stringify({ northeastLat: northeast.lat(), northeastLng: northeast.lng(), southwestLat: southwest.lat(), southwestLng: southwest.lng() });
+
+           $.ajax({
+               type: 'POST',
+               url: '/AdresseTable/searchMarkers', // the method we are calling
+               contentType: 'application/json; charset=utf-8',
+               data: boundsJSON,
+               dataType: 'json',
+               success: function (result)
+               {
+                   alert('mettre à jour les marqueurs');
+               },
+               error: function (result)
+               {
+                   alert('La communication avec le serveur a échoué.');
+               }
+           });
+
+       });
     }
 
     var fctSetMarqueur = function (plngLat, plngLgt) {
@@ -106,7 +114,6 @@
 </script>
 
 <style>
-
 .map_canvas
 {
     width: 60%;
@@ -163,10 +170,9 @@
                 {
                     <div class="note" id="note_@counter">
                         Adresse : @Html.DisplayFor(model => item.AdresseLine)<br />
-                        Note : @Html.DisplayFor(model => item.AvgNote)&nbsp;             
-                        @Html.HiddenFor(model => item.Longitude)<br />
-                        @Html.HiddenFor(model => item.Lattitude)<br />
-
+                        Note : @Html.DisplayFor(model => item.AvgNote)&nbsp;
+                        @Html.HiddenFor(model => item.Longitude)
+                        @Html.HiddenFor(model => item.Lattitude)
                         <script>
                             arrlong[@(counter)] = '@item.Longitude';
                             arrlatt[@(counter)] = '@item.Lattitude';                 

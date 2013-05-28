@@ -1,12 +1,13 @@
-﻿using System;
+﻿using NoteTaLoc.Models;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
-using NoteTaLoc.Models;
-using System.Text;
 
 namespace NoteTaLoc.Controllers
 {
@@ -145,6 +146,7 @@ namespace NoteTaLoc.Controllers
                                                               a.Rue.ToUpper().Contains(term) ||
                                                               a.GeoCodeResponse.ToUpper().Contains(term) 
                                                               )
+                                orderby a.Pays, a.Province, a.Ville, a.Rue, a.AptNo
                                 select a).ToList();
             }
             return searchResult;
@@ -174,5 +176,28 @@ namespace NoteTaLoc.Controllers
 
             return terms;
         }
+
+        public List<AdresseTable> searchMarkers(string northeastLat, string northeastLng, string southwestLat, string southwestLng)
+        {
+            List<AdresseTable> result = new List<AdresseTable>();
+
+            var neLat = Decimal.Parse(northeastLat);
+            var neLng = Decimal.Parse(northeastLng);
+            var swLat = Decimal.Parse(southwestLat);
+            var swLng = Decimal.Parse(southwestLng);
+
+            decimal maxLat = Math.Max(neLat, swLat);
+            decimal minLat = Math.Min(neLat, swLat);
+            decimal maxLng = Math.Max(neLng, swLng);
+            decimal minLng = Math.Min(neLng, swLng);
+
+            result = (from a in db.AdresseTables
+                      where (a.Lattitude < maxLat && a.Lattitude > minLat) && (a.Longitude < maxLng && a.Longitude > minLng)
+                      orderby a.Pays, a.Province, a.Ville, a.Rue, a.AptNo
+                      select a).ToList();
+
+            return result;
+        }
     }
+
 }
