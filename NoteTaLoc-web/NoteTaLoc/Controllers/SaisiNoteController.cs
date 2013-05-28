@@ -20,22 +20,21 @@ namespace NoteTaLoc.Controllers
     {
         public MailSender()
         {
+            // no internal value to set.
         }
+
         public virtual void SendMail(string mailTo, string mailFrom, string obj, string msg)
         {
             var config = WebConfigurationManager.OpenWebConfiguration("~");
             string serverMail = config.AppSettings.Settings["ServerMail"].Value;
 
-            MailAddress to = new MailAddress(mailTo);
-            MailAddress fromMail = new MailAddress(mailFrom);
             MailMessage mailMessage = new MailMessage();
-            mailMessage.From = fromMail;
-            mailMessage.To.Add(to);
+            mailMessage.From = new MailAddress(mailFrom);
+            mailMessage.To.Add(new MailAddress(mailTo));
             mailMessage.Subject = obj;
             mailMessage.Body = msg;
 
             SmtpClient client = new SmtpClient();
-            //client.Host = "mail.cia.ca";
             client.Host = serverMail;
             client.Send(mailMessage);
         }
@@ -47,15 +46,15 @@ namespace NoteTaLoc.Controllers
         {
             using (var ctx = new notetalocEntities())
             {
-                note.NoteId = GetNoteId(DateTime.Now);
+                note.NoteId = GetNoteId();
                 ctx.NoteTables.Add(note);
                 ctx.SaveChanges();
             }
         }
 
-        private int GetNoteId(DateTime dt)
+        private int GetNoteId()
         {
-
+            DateTime dt = DateTime.Now;
             return (dt.Year * 10000 + dt.Month * 100 + dt.Day + dt.Hour * 24 + dt.Minute * 60 + dt.Second * 60);
         }
 
@@ -66,16 +65,16 @@ namespace NoteTaLoc.Controllers
                 var add = ctx.AdresseTables.Where(a => a.GeoCodeResponse == address.GeoCodeResponse).FirstOrDefault();
                 if (add == null)
                 {
-                    address.AdresseId = GetAddresseId(DateTime.Now);
+                    address.AdresseId = GetAddresseId();
                     ctx.AdresseTables.Add(address);
                     ctx.SaveChanges();
                 }
             }
         }
 
-        private int GetAddresseId(DateTime dt)
+        private int GetAddresseId()
         {
-
+            DateTime dt = DateTime.Now;
             return (dt.Year * 10000 + dt.Month * 100 + dt.Day + dt.Hour * 24 + dt.Minute * 60 + dt.Second * 60);
         }
 
@@ -108,23 +107,21 @@ namespace NoteTaLoc.Controllers
         public void SaveNoteSaisi(NoteTable note)
         {
             var config = WebConfigurationManager.OpenWebConfiguration("~");
-            string receiverMail = config.AppSettings.Settings["ReceiverMail"].Value;
-            string senderMail = config.AppSettings.Settings["SenderMail"].Value;
-            var mailTo = receiverMail;
-            var mailFrom = senderMail;
+            var receiverMail = config.AppSettings.Settings["ReceiverMail"].Value;
+            var senderMail = config.AppSettings.Settings["SenderMail"].Value;
+            
             var msg = "Cher Administrateur, \nUn appartement [avec une note] dont la note est égale à zéro vient d'être ajouté.\nLes informations de l’appartement sont disponibles ici : [lien vers une page d’administration de l’appartement].\n\nBonne journée.\n";
             var obj = "NoteTaLoc - Notification : note à 0";
             _SaisiNoteContext.SaveNote(note);
             if (note.Note == 0)
             {
-                _MailSender.SendMail(mailTo, mailFrom, obj, msg);
+                _MailSender.SendMail(receiverMail, senderMail, obj, msg);
             }
             else
             {
                 _SaisiNoteContext.UpdateNoteStatus(note);
             }
         }
-
 
         public virtual int GetAddressId(AdresseTable address)
         {
@@ -201,14 +198,11 @@ namespace NoteTaLoc.Controllers
 
         public ActionResult Index()
         {
-            //SaisiNoteForm form = new SaisiNoteForm();
-
             var userVariable = HttpContext.Session["UserSessionObject"];
 
             if (userVariable == null)
             {
                 return RedirectToAction("LogIn", "Account", String.Format("{0}/{1}", "Index", "SaisiNote"));
-                //RedirectToAction( "Index",  "SaisiNote", null);    
             }
 
             return View();
@@ -219,8 +213,6 @@ namespace NoteTaLoc.Controllers
 
         public ActionResult NoterAppartement(string address, string country, string zip, string provincia, string citta, string appart, string lng, string lat, string nota)
         {
-            //SaisiNoteForm form = new SaisiNoteForm();
-
             var data = new
             {
                 indirizzo = address,
@@ -324,13 +316,13 @@ namespace NoteTaLoc.Controllers
                         noteToSave.UserId = 1;
                         noteToSave.StatutNote = 0;
                         saisiNoteWriter.SaveNoteSaisi(noteToSave);
-                        ViewBag.Message = "Enregistrement reussie!";
+                        ViewBag.Message = "Enregistrement réussie !";
                         ViewBag.NumTimes = 1;
                         ViewData["color"] = "green";
                     }
                     else
                     {
-                        ViewBag.Message = "vous devez inserez une adresse valide!";
+                        ViewBag.Message = "vous devez insérez une adresse valide !";
                         ViewBag.NumTimes = 1;
                         ViewData["color"] = "red";
                     }
@@ -338,7 +330,7 @@ namespace NoteTaLoc.Controllers
                 }
                 catch (Exception ex)
                 {
-                    ViewBag.Message = "La note n'a pas été enregistrée. Réessayer plus tard!";
+                    ViewBag.Message = "La note n'a pu être enregistrée. Veuillez réessayer plus tard !";
                     ViewBag.NumTimes = 1;
                     ViewData["color"] = "red";
                 }

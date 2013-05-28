@@ -33,6 +33,9 @@
     var arrlatt  = [];
     var bounds;
 
+    // TODO : je pense qu'il faut modifier ces fonctions pour faire des appels Ajax.
+    // XXX idée : utiliser les valeurs (max et min) des lattitudes et des longitudes pour faire des recherches dans la base
+    // XXX penser : mettre la liste de résultat en conséquence
     $(document).ready(function () {
         initialiser();
 
@@ -41,15 +44,14 @@
             carte.panTo(point); //'=== deplacement smooth
         });
 
-//Pour la gestion d'interface du tableau et du comportement du cursor
-             $('.note')
-            .click(function () {
-                //$(this).parent().find('note_selected').each(function (index, element) {
-                //    $(element).removeClass('note_selected'); //Retire la selection précédente
-                $(".note_selected").removeClass('note_selected');
-                //});
-                $(this).addClass('note_selected'); //Ajoute la nouvel sélection
-            })
+        // Pour la gestion d'interface du tableau et du comportement du cursor
+        $('.note').click(function () {
+            //$(this).parent().find('note_selected').each(function (index, element) {
+            //    $(element).removeClass('note_selected'); //Retire la selection précédente
+            $(".note_selected").removeClass('note_selected');
+            //});
+            $(this).addClass('note_selected'); //Ajoute la nouvel sélection
+        })
             .hover(
             //=== Lors du passage de la souris sur la ligne on applique la classe RowSelection
             //=== Lorsque la souris est a l'exterieur de la ligne la classe RowSelection est retiré
@@ -72,7 +74,6 @@
         //var point = fctPoint('45.30', '-73.35');
         //carte.panTo(point); //'=== deplacement smooth
         //bounds.extend(point);
-
 
         for (i = 0; i < arrlong.length; i++) {
             fctSetMarqueur(arrlatt[i], arrlong[i]);
@@ -102,8 +103,6 @@
 
         return point;
     }
-
-
 </script>
 
 <style>
@@ -137,8 +136,6 @@
 {
     background-color: #9ecf35;
 }
-
-
 </style>
 
 @using (Html.BeginForm("SearchNoted", "AdresseTable"))
@@ -163,7 +160,7 @@
                     int counter = 0;
                 }
                 @foreach (var item in Model)
-                {        
+                {
                     <div class="note" id="note_@counter">
                         Adresse : @Html.DisplayFor(model => item.AdresseLine)<br />
                         Note : @Html.DisplayFor(model => item.AvgNote)&nbsp;             
@@ -182,4 +179,3 @@
         </div>
     </div>
 }
-

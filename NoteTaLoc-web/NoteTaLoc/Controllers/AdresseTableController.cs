@@ -134,33 +134,45 @@ namespace NoteTaLoc.Controllers
             List<AdresseTable> searchResult = new List<AdresseTable>();
             if (!String.IsNullOrEmpty(SearchPhrase))
             {
-                StringBuilder stringBuilder = new StringBuilder();
-                foreach (char c in SearchPhrase.Trim().ToLower().ToCharArray())
-                {
-                    string normalizedChar = c.ToString()
-                        .Normalize(NormalizationForm.FormD).Substring(0, 1);
-                    stringBuilder.Append(normalizedChar);
-                }
-                SearchPhrase = stringBuilder.ToString();
-
-                string[] parts = SearchPhrase.Split(new char[] { ' ' });
-                List<string> searchTerms = new List<string>();
-                foreach (string part in parts)
-                {
-                    searchTerms.Add(part.Trim());
-                }
+                SearchPhrase = normalizeString(SearchPhrase);
+                List<string> searchTerms = splitTerms(SearchPhrase);
 
                 searchResult = (from a in db.AdresseTables
-                                where searchTerms.All(term => a.Ville.ToUpper().Contains(term.ToUpper()) ||
-                                                              a.CodePostal.ToUpper().Contains(term.ToUpper()) ||
-                                                              a.Pays.ToUpper().Contains(term.ToUpper()) ||
-                                                              a.Province.ToUpper().Contains(term.ToUpper()) ||
-                                                              a.Rue.ToUpper().Contains(term.ToUpper()) ||
-                                                              a.GeoCodeResponse.ToUpper().Contains(term.ToUpper()) 
+                                where searchTerms.All(term => a.Ville.ToUpper().Contains(term) ||
+                                                              a.CodePostal.ToUpper().Contains(term) ||
+                                                              a.Pays.ToUpper().Contains(term) ||
+                                                              a.Province.ToUpper().Contains(term) ||
+                                                              a.Rue.ToUpper().Contains(term) ||
+                                                              a.GeoCodeResponse.ToUpper().Contains(term) 
                                                               )
                                 select a).ToList();
             }
             return searchResult;
+        }
+
+        private String normalizeString(string text)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            foreach (char c in text.Trim().ToUpper().ToCharArray())
+            {
+                string normalizedChar = c.ToString()
+                    .Normalize(NormalizationForm.FormD);
+                stringBuilder.Append(normalizedChar);
+            }
+
+            return stringBuilder.ToString();
+        }
+
+        private List<string> splitTerms(string text)
+        {
+            List<string> terms = new List<string>();
+            string[] parts = text.Split(new char[] { ' ' });
+            foreach (string part in parts)
+            {
+                terms.Add(part.Trim());
+            }
+
+            return terms;
         }
     }
 }
