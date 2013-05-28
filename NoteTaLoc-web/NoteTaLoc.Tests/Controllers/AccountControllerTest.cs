@@ -2,6 +2,7 @@
 using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NoteTaLoc.Controllers;
 
 namespace NoteTaLoc.Tests.Controllers
 {
@@ -11,11 +12,25 @@ namespace NoteTaLoc.Tests.Controllers
     [TestClass]
     public class AccountControllerTest
     {
+        public AccountController accountController = null;
+        
         public AccountControllerTest()
         {
             //
             // TODO: ajoutez ici la logique du constructeur
             //
+        }
+
+        [TestInitialize]
+        public void Initialize()
+        {
+            accountController = new AccountController();
+        }
+
+        [TestCleanup]
+        public void cleanUp()
+        {
+
         }
 
         private TestContext testContextInstance;
@@ -59,8 +74,10 @@ namespace NoteTaLoc.Tests.Controllers
         #endregion
 
         [TestMethod]
-        public void TestMethod1()
+        public void TestDoesUserNameExist()
         {
+            bool actual = this.accountController.DoesUserNameExist("something");
+            Assert.IsFalse(actual);
             //
             // TODO: ajoutez ici la logique du test
             //

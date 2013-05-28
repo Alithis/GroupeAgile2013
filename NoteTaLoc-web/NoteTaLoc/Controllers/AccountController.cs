@@ -149,6 +149,17 @@ namespace NoteTaLoc.Controllers
 
         public Boolean ValidateUser_Password(string username, string pw)
         {
+            string sqlcmd = "SELECT * FROM dbo.usertable WHERE pseudo = '" + username + "' and motdepasse = '" + pw + "'";
+
+            var result = db.UserTables.SqlQuery(sqlcmd);
+            if (result.Count() > 0)
+                return true;
+            else
+                return false;
+        }
+
+        public Boolean ValidateActivatedAccount(string username, string pw)
+        {
             string sqlcmd = "SELECT * FROM dbo.usertable WHERE pseudo = '" + username + "' and motdepasse = '" + pw + "' and InscriptionConfirm is not null";
 
             var result = db.UserTables.SqlQuery(sqlcmd);
@@ -250,13 +261,21 @@ namespace NoteTaLoc.Controllers
             {
                 if (!DoesUserNameExist(model.UserName))
                 {
-                    ModelState.AddModelError("", "The user name provided does not exist.");
+                    ModelState.AddModelError("", "L'utilisateur n'éxiste pas.");
                     bValid = false;
                 }
                 if (!ValidateUser_Password(model.UserName, model.Password))
                 {
-                    ModelState.AddModelError("", "The password provided is incorrect.");
+                    ModelState.AddModelError("", "Le mot de passe est incorrect.");
                     bValid = false;
+                }
+                else
+                {
+                    if (!ValidateActivatedAccount(model.UserName, model.Password))
+                    {
+                        ModelState.AddModelError("", "Le compte n'est pas encore activé. Veuillez cliquer sur le lien envoyé à votre courriel.");
+                        bValid = false;
+                    }
                 }
             }
 

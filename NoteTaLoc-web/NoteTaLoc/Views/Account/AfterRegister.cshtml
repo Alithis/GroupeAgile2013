@@ -1,13 +1,18 @@
+@using MyResources = NoteTaLoc.Views.Account.AfterRegisterResource;
+@{
+    ViewBag.Registrationcomplete = MyResources.Registrationcomplete;
+    ViewBag.PleaseFollowInstructions = MyResources.PleaseFollowInstructions;
+    ViewBag.emailHasBeenSent = MyResources.emailHasBeenSent;
+}
 <div id="body">
     <section class="featured">
         <div class="content-wrapper">
             <hgroup class="title">
-                <h1>Registration Complete!</h1>
-                <h2>Please follow the instructions below in order to activate your account.</h2>
+                <h1>@ViewBag.Registrationcomplete</h1>
+                <h2>@ViewBag.PleaseFollowInstructions</h2>
             </hgroup>
             <p>
-                An email has been sent to you regarding your registration.  This email will contain a link
-                that you will need to click on in order to activate your login.
+                @ViewBag.emailHasBeenSent
             </p>
         </div>
     </section>
