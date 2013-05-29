@@ -75,7 +75,6 @@
         var latitude = $('#lat').val();
         var type = $('#type').val();
         var note = $("input[name=group1]:radio:checked").val();
-
         if (add == '' || add == null) {
             AddResult("Choisir l'adresse de l'appartement à noter!", "resultInvalid");
             return;
@@ -88,19 +87,22 @@
             AddResult("Sélectionner une note!", "resultInvalid");
             return;
         }
-
         var jsonText = JSON.stringify({ address: add, country: pays, zip: code, provincia: province, citta: Ville, appart: appartement, lng: longitude, lat: latitude, nota: note });
-
         $.ajax({
             type: "POST",
-            url: "SaisiNote/NoterAppartement", // the method we are calling
+            url: "/SaisiNote/NoterAppartement", // the method we are calling
             contentType: "application/json; charset=utf-8",
             data: jsonText,
             dataType: "json",
             success: function (result) {
-                if (result.returnValue == 'true') {
+
+                if (result.returnValue == "Add") {
                     AddResult("Enregistrement reussie!", "resultValid");
                 }
+                else if (result.returnValue == "Update") {
+                    AddResult("Modification reussie!", "resultValid");
+                }
+
                 else {
                     AddResult("La note n'a pas été enregistrée. Réessayer plus tard!", "resultInvalid");
                 }
@@ -141,7 +143,7 @@
                             <div id="Results"></div>
                         </div>
                     </div>
-                    <div class="row-fluid">
+                    <div class="row-fluid margin-bottom">
                         <div class="span4">
                             No appartement :
                         </div>    
@@ -149,7 +151,7 @@
                             <input id="NoAppartement"/>    
                         </div>
                     </div>
-                    <div class="row-fluid">
+                    <div class="row-fluid margin-bottom">
                         <div class="span4">
                             Ville :
                         </div>    

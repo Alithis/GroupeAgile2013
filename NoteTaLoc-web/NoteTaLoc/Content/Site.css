@@ -20,8 +20,9 @@
     overflow: auto;
 }
 
-input, textarea, .uneditable-input {
-    width: 90%;
+input, textarea, .uneditable-input, input[type="text"], input[type="search"] {
+    width: 95%;
+    margin-bottom: 10px;
 }
 
 .centered_div {
@@ -124,6 +125,11 @@ input, textarea, .uneditable-input {
 .red {
     color: #cf0e0e;
 }
+
+.border-left {
+   border-left: 1px solid black;
+}
+
 
 # page notation
 
