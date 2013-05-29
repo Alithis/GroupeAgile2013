@@ -41,12 +41,10 @@
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Recaptcha">
-      <HintPath>..\..\..\..\..\Users\Eric Foka\Desktop\Recaptcha.dll</HintPath>
-      <HintPath>..\..\Recaptcha.dll</HintPath>
+      <HintPath>..\CommonReferences\Recaptcha.dll</HintPath>
     </Reference>
-    <Reference Include="Rhino.Mocks, Version=3.6.0.0, Culture=neutral, PublicKeyToken=0b3305902db7183f, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Rhino.Mocks.dll</HintPath>
+    <Reference Include="Rhino.Mocks">
+      <HintPath>..\CommonReferences\Rhino.Mocks.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -350,9 +348,7 @@
       <DependentUpon>notetaloc.edmx</DependentUpon>
       <LastGenOutput>notetaloc.cs</LastGenOutput>
     </Content>
-    <None Include="Properties\PublishProfiles\notetaloc - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\notetaloc - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\notetaloc - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\notetaloc - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
@@ -405,8 +401,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\SaisiNote\old.cshtml" />
     <Content Include="Views\SaisiNote\Index.cshtml" />
-    <Content Include="Views\Search\Index.cshtml" />
-    <Content Include="Views\Search\ShowGeoLocation.cshtml" />
     <Content Include="Views\AdresseTable\Index.cshtml" />
     <Content Include="Views\AdresseTable\Details.cshtml" />
     <Content Include="Views\AdresseTable\Create.cshtml" />

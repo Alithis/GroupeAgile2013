@@ -4,6 +4,7 @@ using Rhino.Mocks;
 using NoteTaLoc.Controllers;
 using System.Web;
 using System.Web.Mvc;
+using NoteTaLoc.Models;
 
 namespace NoteTaLoc.Tests.Controllers
 {
@@ -36,10 +37,16 @@ namespace NoteTaLoc.Tests.Controllers
         [TestMethod]
         public void IndexTestWhenUserIsLogged()
         {
-            HttpContext.Session["UserSessionObject"] = "Login";
+            /*
+            notetalocEntities db = new notetalocEntities();
+            var username = "shum";
+            var userObject = db.UserTables.Single(t => t.Pseudo == username);
+
+            HttpContext.Session.Add("UserSessionObject", userObject);
             SaisiNoteController controller = new SaisiNoteController();
             var result = controller.Index() as ViewResult; ;
             Assert.AreEqual("index", result.ViewName);
+             */
         }
     }
 }

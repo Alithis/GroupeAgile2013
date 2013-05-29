@@ -66,7 +66,8 @@ namespace NoteTaLoc.Tests.Controllers
             context.Expect(m => m.UpdateNoteStatus(note));
 
             var saisiNoteWriter = new NoteTaLoc.Controllers.SaisiNoteWriter(mailWriter, context);
-            saisiNoteWriter.SaveNoteSaisi(note);
+            var message = "Add";
+            saisiNoteWriter.SaveNoteSaisi(note, out message);
 
             mailWriter.VerifyAllExpectations();
             context.VerifyAllExpectations();
@@ -111,7 +112,8 @@ namespace NoteTaLoc.Tests.Controllers
             context.Expect(m => m.UpdateNoteStatus(note)).IgnoreArguments().Repeat.Never();
 
             var saisiNoteWriter = new NoteTaLoc.Controllers.SaisiNoteWriter(mailWriter, context);
-            saisiNoteWriter.SaveNoteSaisi(note);
+            var message = "Add";
+            saisiNoteWriter.SaveNoteSaisi(note, out message);
 
             mailWriter.VerifyAllExpectations();
             context.VerifyAllExpectations();
