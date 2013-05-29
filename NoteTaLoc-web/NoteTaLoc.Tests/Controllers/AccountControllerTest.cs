@@ -78,9 +78,19 @@ namespace NoteTaLoc.Tests.Controllers
         {
             bool actual = this.accountController.DoesUserNameExist("something");
             Assert.IsFalse(actual);
-            //
-            // TODO: ajoutez ici la logique du test
-            //
+
+            actual = this.accountController.DoesUserNameExist("shum");
+            Assert.IsTrue(actual);
+        }
+
+        [TestMethod]
+        public void TestValidateUser_Password()
+        {
+            bool actual = this.accountController.ValidateUser_Password("shum", "321654");
+            Assert.IsFalse(actual);
+
+            actual = this.accountController.ValidateUser_Password("shum", "123456");
+            Assert.IsTrue(actual);
         }
     }
 }
