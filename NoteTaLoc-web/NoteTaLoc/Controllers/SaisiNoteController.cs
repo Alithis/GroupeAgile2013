@@ -13,6 +13,7 @@ using System.Web.UI.WebControls;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.XPath;
+using TweetSharp;
 
 //{
 //              }
@@ -47,25 +48,41 @@ namespace NoteTaLoc.Controllers
     {
         public virtual void SaveNote(NoteTable note, out string resultMessage)
         {
-             using (var ctx = new notetalocEntities())
+            AdresseTable adresse = note.AdresseTable;
+            note.AdresseTable = null;
+
+            using (var ctx = new notetalocEntities())
             {
-             var noteToAdd = ctx.NoteTables.Where(n => n.AdresseId == note.AdresseId && n.UserId == note.UserId).FirstOrDefault();
-                 
-             if (noteToAdd == null)
-             {
-                 note.NoteId = GetNoteId(DateTime.Now);
-                 ctx.NoteTables.Add(note);
-                 ctx.SaveChanges();
-                 resultMessage = "Add";
-             }
-             else
-             {
-                 note.NoteId = noteToAdd.NoteId;
-                 noteToAdd.Note = note.Note;
-                 ctx.SaveChanges();
-                 resultMessage = "Update";
-             }
+                var noteToAdd = ctx.NoteTables.Where(n => n.AdresseId == note.AdresseId && n.UserId == note.UserId).FirstOrDefault();
+
+
+                if (noteToAdd == null)
+                {
+                    note.NoteId = GetNoteId(DateTime.Now);
+                    ctx.NoteTables.Add(note);
+                    ctx.SaveChanges();
+                    resultMessage = "Add";
+                }
+                else
+                {
+                    note.NoteId = noteToAdd.NoteId;
+                    noteToAdd.Note = note.Note;
+                    ctx.SaveChanges();
+                    resultMessage = "Update";
+                }
             }
+            var config = WebConfigurationManager.OpenWebConfiguration("~");
+            TwitterService tweetterService = new TwitterService(config.AppSettings.Settings["ConsumerKey"].Value,config.AppSettings.Settings["ConsumerSecret"].Value);
+            tweetterService.AuthenticateWith(config.AppSettings.Settings["AccessToken"].Value, config.AppSettings.Settings["AccessTokenSecret"].Value);
+
+            SendTweetOptions tweettOption = new SendTweetOptions();
+
+            tweettOption.Status = config.AppSettings.Settings["NotificationNouvelleNote"].Value + note.Note + " " + adresse.AdresseLine;
+
+            TwitterStatus status=  tweetterService.SendTweet(tweettOption);
+
+            var responseText = tweetterService.Response.Response;
+
         }
 
         private int GetNoteId(DateTime dt)
@@ -274,7 +291,7 @@ namespace NoteTaLoc.Controllers
                 var noteToSave = new NoteTable();
                 noteToSave.Note = int.Parse(nota);
                 noteToSave.AdresseId = id;
-
+                noteToSave.AdresseTable = addressToSave;
                 UserTable userVariable = (UserTable)HttpContext.Session["UserSessionObject"];
 
                 noteToSave.UserId = userVariable.UserId;
