@@ -37,9 +37,7 @@
         });
 
         $("#addresspicker_map").focus(function () {
-            $(this).css({
-                'background': '#e8edf1'
-            });
+            $(this).css({ 'background': '#e8edf1' });
         });
 
         $("#addresspicker_map").blur(function () {
@@ -95,8 +93,10 @@
             dataType: 'json',
             success: function (result)
             {
-                if (result.returnValue == true) {
+                if (result.returnValue == "Add") {
                     AddResult("Enregistrement reussie!", "resultValid");
+                } else if (result.returnValue == "Update") {
+                    AddResult("Modification reussie!", "resultValid");
                 } else {
                     AddResult("L'enregistrement de la note a échoué. Veuillez réessayer plus tard !", "resultInvalid");
                 }
@@ -138,7 +138,7 @@
                             <div id="Results"></div>
                         </div>
                     </div>
-                    <div class="row-fluid">
+                    <div class="row-fluid margin-bottom">
                         <div class="span4">
                             No appartement :
                         </div>    
@@ -146,7 +146,7 @@
                             <input id="NoAppartement"/>    
                         </div>
                     </div>
-                    <div class="row-fluid">
+                    <div class="row-fluid margin-bottom">
                         <div class="span4">
                             Ville :
                         </div>    

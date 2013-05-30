@@ -1,5 +1,4 @@
-﻿using NoteTaLoc.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -8,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using NoteTaLoc.Models;
 
 namespace NoteTaLoc.Controllers
 {
@@ -137,6 +137,7 @@ namespace NoteTaLoc.Controllers
             if (!String.IsNullOrEmpty(SearchPhrase))
             {
                 SearchPhrase = normalizeString(SearchPhrase);
+                SearchPhrase = SearchPhrase.ToString().Replace(",", "");
                 List<string> searchTerms = splitTerms(SearchPhrase);
 
                 searchResult = (from a in db.AdresseTables
@@ -147,9 +148,14 @@ namespace NoteTaLoc.Controllers
                                                               a.Rue.ToUpper().Contains(term) ||
                                                               a.GeoCodeResponse.ToUpper().Contains(term) 
                                                               )
-                                orderby a.Pays, a.Province, a.Ville, a.Rue, a.AptNo
                                 select a).ToList();
             }
+            
+            searchResult.Sort(delegate(AdresseTable add1, AdresseTable add2)
+            {
+                return add1.AvgNote.CompareTo(add2.AvgNote) * -1;
+            });
+
             return searchResult;
         }
 

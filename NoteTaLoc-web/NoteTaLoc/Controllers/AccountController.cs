@@ -88,7 +88,7 @@ namespace NoteTaLoc.Controllers
                             usertable.ValidationToken = GetMd5Hash(md5Hash, keyRegistration);
 
                             // Send email to user to confirm account registration.
-                            if (SendAccountConfimration(model, usertable.ValidationToken))
+                            if (SendAccountConfirmation(model, usertable.ValidationToken))
                             {
                                 db.UserTables.Add(usertable);
                                 db.SaveChanges();
@@ -96,17 +96,17 @@ namespace NoteTaLoc.Controllers
                                 return RedirectToAction("AfterRegister", "Account");
                             }
                             else
-                                ModelState.AddModelError("", "An error has occurred attempting to send an email.");
+                                ModelState.AddModelError("", "Une erreur s'est produite en envoyant le courrier électronique");
                         }
                         else
                         {
-                            ModelState.AddModelError("", "Username already exist.  Please select another username.");
+                            ModelState.AddModelError("", "Cet utilisateur existe déjà, veuillez choisir un autre pseudo.");
                         }
                     }
                 }
                 catch (Exception e)
                 {
-                    ModelState.AddModelError("", "Registration Error");
+                    ModelState.AddModelError("", "Erreur lors de l'enregistrement");
                 }
             }
 
@@ -194,7 +194,7 @@ namespace NoteTaLoc.Controllers
             return nValue;
         }
 
-       public Boolean SendAccountConfimration(RegisterModel model, String tokenBody)
+       public Boolean SendAccountConfirmation(RegisterModel model, String tokenBody)
         {
             Boolean bRetCode = true;
             //Send confirmation email.
@@ -205,9 +205,9 @@ namespace NoteTaLoc.Controllers
                 String validationLink = prefix + tokenBody;
 
                 message.To.Add(model.EmailAddress); //recipient 
-                message.Subject = "RateYourRent - confirmation email";
+                message.Subject = "RateYourRent - courier de confirmation";
                 message.From = new System.Net.Mail.MailAddress("no.reply@alithis.com"); //from email 
-                message.Body = "Please click on the link to confirm your registration: "+validationLink;
+                message.Body = "Cliquez sur ce lien pour valider votre inscription: "+validationLink;
                 
                 System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient("mail.cia.ca");
                 smtp.Send(message); 
@@ -250,12 +250,12 @@ namespace NoteTaLoc.Controllers
             {
                 if (!DoesUserNameExist(model.UserName))
                 {
-                    ModelState.AddModelError("", "The user name provided does not exist.");
+                    ModelState.AddModelError("", "Cet utilisateur n'existe pas.");
                     bValid = false;
                 }
                 if (!ValidateUser_Password(model.UserName, model.Password))
                 {
-                    ModelState.AddModelError("", "The password provided is incorrect.");
+                    ModelState.AddModelError("", "Le mot de passe est incorrect");
                     bValid = false;
                 }
             }
