@@ -77,7 +77,7 @@ namespace NoteTaLoc.Controllers
 
             SendTweetOptions tweettOption = new SendTweetOptions();
 
-            tweettOption.Status = config.AppSettings.Settings["NotificationNouvelleNote"].Value + note.Note + " " + adresse.AdresseLine;
+            tweettOption.Status = config.AppSettings.Settings["NotificationNouvelleNote"].Value + note.Note + "* addresse:  " + adresse.AdresseLine;
 
             TwitterStatus status=  tweetterService.SendTweet(tweettOption);
 
