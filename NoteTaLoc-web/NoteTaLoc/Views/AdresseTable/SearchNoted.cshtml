@@ -13,6 +13,8 @@
     var carte;
     var arrlong  = [];
     var arrlatt  = [];
+    var arrAlllong  = [];
+    var arrAlllatt  = [];
     var bounds;
 
     // TODO : je pense qu'il faut modifier ces fonctions pour faire des appels Ajax.
@@ -63,6 +65,15 @@
        carte.fitBounds(bounds);
        carte.panToBounds(bounds);
 
+        //On marque tous les points disponible de la BD
+       for (i = 0; i < arrAlllong.length; i++) {
+           //fctSetMarqueur(arrAlllatt[i], arrAlllong[i]);
+           var point = new fctPoint(arrAlllatt[i],arrAlllong[i]);
+           var marqueur = new google.maps.Marker({
+               position: point,
+               map: carte});
+       }
+
         // idle is better than bounds_changed
        google.maps.event.addListener(carte, 'idle', function() {
            bounds = carte.getBounds();
@@ -83,7 +94,7 @@
                },
                error: function (result)
                {
-                   alert('La communication avec le serveur a échoué.');
+                   //alert('La communication avec le serveur a échoué.');
                }
            });
 
@@ -144,6 +155,18 @@
     background-color: #9ecf35;
 }
 </style>
+
+@{
+    int counterAll = 0;
+}
+@foreach (var item in ViewBag.AllAdresses)
+{   
+    <script>
+        arrAlllong[@(counterAll)] = '@item.Longitude';
+        arrAlllatt[@(counterAll)] = '@item.Lattitude';                 
+    </script>
+    counterAll++;
+}
 
 @using (Html.BeginForm("SearchNoted", "AdresseTable"))
 {    

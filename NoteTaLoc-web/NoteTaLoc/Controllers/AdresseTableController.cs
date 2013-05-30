@@ -122,6 +122,7 @@ namespace NoteTaLoc.Controllers
 
         public ActionResult SearchNoted(string searchString)
         {
+            ViewBag.AllAdresses = db.AdresseTables.ToList(); 
             return View("SearchNoted", SearchAdresses(searchString));
         }
 
