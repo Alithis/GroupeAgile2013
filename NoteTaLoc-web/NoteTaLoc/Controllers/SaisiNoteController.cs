@@ -14,8 +14,6 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Xml.XPath;
 
-//{
-//              }
 namespace NoteTaLoc.Controllers
 {
     public class MailSender
@@ -45,13 +43,26 @@ namespace NoteTaLoc.Controllers
 
     public class SaisiNoteContext
     {
-        public virtual void SaveNote(NoteTable note)
+        public virtual void SaveNote(NoteTable note, out string resultMessage)
         {
-            using (var ctx = new notetalocEntities())
+             using (var ctx = new notetalocEntities())
             {
-                note.NoteId = GetNoteId(DateTime.Now);
-                ctx.NoteTables.Add(note);
-                ctx.SaveChanges();
+             var noteToAdd = ctx.NoteTables.Where(n => n.AdresseId == note.AdresseId && n.UserId == note.UserId).FirstOrDefault();
+                 
+             if (noteToAdd == null)
+             {
+                 note.NoteId = GetNoteId(DateTime.Now);
+                 ctx.NoteTables.Add(note);
+                 ctx.SaveChanges();
+                 resultMessage = "Add";
+             }
+             else
+             {
+                 note.NoteId = noteToAdd.NoteId;
+                 noteToAdd.Note = note.Note;
+                 ctx.SaveChanges();
+                 resultMessage = "Update";
+             }
             }
         }
 
@@ -97,26 +108,30 @@ namespace NoteTaLoc.Controllers
     {
         private MailSender _MailSender;
         private SaisiNoteContext _SaisiNoteContext;
+
         public SaisiNoteWriter(MailSender mailSender, SaisiNoteContext context)
         {
             _MailSender = mailSender;
             _SaisiNoteContext = context;
         }
+
         public void SaveAddresNoteSaisi(AdresseTable address)
         {
             _SaisiNoteContext.SaveAddress(address);
         }
 
-        public void SaveNoteSaisi(NoteTable note)
+        public void SaveNoteSaisi(NoteTable note, out string resultMessage)
         {
             var config = WebConfigurationManager.OpenWebConfiguration("~");
             string receiverMail = config.AppSettings.Settings["ReceiverMail"].Value;
             string senderMail = config.AppSettings.Settings["SenderMail"].Value;
             var mailTo = receiverMail;
             var mailFrom = senderMail;
-            var msg = "Verifier la note de cet appartement!";
-            var obj = "NoteTaLoc";
-            _SaisiNoteContext.SaveNote(note);
+
+            var msg = "Cher Administrateur, \nUn appartement [avec une note] dont la note est égale à zéro vient d'être ajouté.\nLes informations de l’appartement sont disponibles ici : [lien vers une page d’administration de l’appartement].\n\nBonne journée.\n";
+            var obj = "NoteTaLoc - Notification : note à 0";
+
+            _SaisiNoteContext.SaveNote(note, out resultMessage);
             if (note.Note == 0)
             {
                 _MailSender.SendMail(mailTo, mailFrom, obj, msg);
@@ -204,16 +219,20 @@ namespace NoteTaLoc.Controllers
         public ActionResult Index()
         {
             //SaisiNoteForm form = new SaisiNoteForm();
+
             var userVariable = HttpContext.Session["UserSessionObject"];
 
             if (userVariable == null)
             {
                 return RedirectToAction("LogIn", "Account", String.Format("{0}/{1}", "Index", "SaisiNote"));
                 //RedirectToAction( "Index",  "SaisiNote", null);    
-
             }
+
             return View();
         }
+
+        //
+        // POST: /SaisiNote/NoterAppartement
 
         public ActionResult NoterAppartement(string address, string country, string zip, string provincia, string citta, string appart, string lng, string lat, string nota)
         {
@@ -231,13 +250,12 @@ namespace NoteTaLoc.Controllers
                 latitude = lat,
                 note = nota
             };
-            var result = new { returnValue = false };
+            string resultMessage = "";
+            var result = new { returnValue = "" };
             try
             {
                 var valLng = Double.Parse(lng, CultureInfo.InvariantCulture);
                 var valLat = Double.Parse(lat, CultureInfo.InvariantCulture);
-
-
 
                 var addressToSave = new AdresseTable();
                 addressToSave.RueNo = int.Parse(GetRueAndNumero(address)[0]);
@@ -257,17 +275,21 @@ namespace NoteTaLoc.Controllers
                 var noteToSave = new NoteTable();
                 noteToSave.Note = int.Parse(nota);
                 noteToSave.AdresseId = id;
-                noteToSave.UserId = 1;
+
+                UserTable userVariable = (UserTable)HttpContext.Session["UserSessionObject"];
+
+                noteToSave.UserId = userVariable.UserId;
                 noteToSave.StatutNote = 0;
-                saisiNoteWriter.SaveNoteSaisi(noteToSave);
-                result = new { returnValue = true };
+                saisiNoteWriter.SaveNoteSaisi(noteToSave, out resultMessage);
+                result = new { returnValue = resultMessage };
             }
             catch (Exception ex)
             {
-                result = new { returnValue = false };
+                result = new { returnValue = " Error" };
             }
 
-            return Json(result); ;
+            return Json(result);
+            //return RedirectToAction("SearchNoted", "AdresseTable", "searchPhrase=7060 Rue Hutchison, Montréal, QC H3N 1Y6, Canada");
         }
 
         private List<string> GetRueAndNumero(string address)
@@ -323,7 +345,7 @@ namespace NoteTaLoc.Controllers
                         noteToSave.AdresseId = id;
                         noteToSave.UserId = 1;
                         noteToSave.StatutNote = 0;
-                        saisiNoteWriter.SaveNoteSaisi(noteToSave);
+                        //saisiNoteWriter.SaveNoteSaisi(noteToSave);
                         ViewBag.Message = "Enregistrement reussie!";
                         ViewBag.NumTimes = 1;
                         ViewData["color"] = "green";

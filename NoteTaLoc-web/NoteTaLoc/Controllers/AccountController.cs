@@ -302,7 +302,7 @@ namespace NoteTaLoc.Controllers
 
             HttpContext.Session.Remove("UserSessionObject");
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("SearchNoted", "AdresseTable");
         }
 
         #region Helpers
@@ -314,7 +314,7 @@ namespace NoteTaLoc.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("SearchNoted", "AdresseTable");
             }
         }
         #endregion

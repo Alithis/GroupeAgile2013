@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using NoteTaLoc.Models;
+using System.Text;
 
 namespace NoteTaLoc.Controllers
 {
@@ -133,22 +134,40 @@ namespace NoteTaLoc.Controllers
             List<AdresseTable> searchResult = new List<AdresseTable>();
             if (!String.IsNullOrEmpty(SearchPhrase))
             {
+                StringBuilder stringBuilder = new StringBuilder();
+                foreach (char c in SearchPhrase.Trim().ToLower().ToCharArray())
+                {
+                    //string normalizedChar = c.ToString()
+                    //    .Normalize(NormalizationForm.FormD).Substring(0, 1);
+                    stringBuilder.Append(c.ToString());
+                    
+                }
+                SearchPhrase = stringBuilder.ToString().Replace(",","");
+
                 string[] parts = SearchPhrase.Split(new char[] { ' ' });
                 List<string> searchTerms = new List<string>();
                 foreach (string part in parts)
                 {
                     searchTerms.Add(part.Trim());
                 }
-
+                
                 searchResult = (from a in db.AdresseTables
                                 where searchTerms.All(term => a.Ville.ToUpper().Contains(term.ToUpper()) ||
                                                               a.CodePostal.ToUpper().Contains(term.ToUpper()) ||
                                                               a.Pays.ToUpper().Contains(term.ToUpper()) ||
                                                               a.Province.ToUpper().Contains(term.ToUpper()) ||
-                                                              a.Rue.ToUpper().Contains(term.ToUpper())
+                                                              a.Rue.ToUpper().Contains(term.ToUpper()) ||
+                                                              a.GeoCodeResponse.ToUpper().Contains(term.ToUpper())
                                                               )
+                                              
                                 select a).ToList();
             }
+
+            searchResult.Sort(delegate(AdresseTable add1, AdresseTable add2)
+            {
+                return add1.AvgNote.CompareTo(add2.AvgNote) * -1;
+            });
+
             return searchResult;
         }
     }

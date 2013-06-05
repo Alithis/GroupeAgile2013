@@ -1,83 +1,87 @@
 ﻿<!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
-    <!-- Le styles -->
-    <link href="~/Content/bootstrap/css/bootstrap.css" rel="stylesheet">
-    <style type="text/css">
-        body {
-            padding-top: 60px;
-            padding-bottom: 40px;
-        }
-    </style>
-    <link href="~/Content/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <head>
 
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="../assets/js/html5shiv.js"></script>
-    <![endif]-->
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        <title>RateYourRent.com</title>
+
+        <!-- Le styles -->
+        <link href="~/Content/bootstrap/css/bootstrap.css" rel="stylesheet">
+        <link href="~/Content/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+        <link href="~/Content/bootstrap/css/bootstrap.css" rel="stylesheet">
+        <link href="~/Content/site.css" rel="stylesheet">
+
         <script type="text/javascript"src="http://code.jquery.com/jquery-latest.min.js"></script>
         <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
         <script type="text/javascript" src="~/Content/bootstrap/js/bootstrap.min.js"></script>
 
-    @*  @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-    *@
-</head>
-<body>
-    <header>
-        <div class="navbar navbar-inverse">
-            <div style="margin-left:20px">
-                <span class="">
-                    <a class="brand" href="/"><img src="/Images/LOGO_loQUALsmall.png"/></a>
-                </span>
-            </div>
-            <div class="navbar-inner">
-                <div class="container">
 
-                    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-          
-                  <div class="navbar-form pull-right">
-                    <ul class="nav" style="height: 67px">
-                        <li style="background-color: #cf0e0e; height:inherit">@Html.ActionLink("NOTER", "Index", "SaisiNote", new { area = "" }, null)</li>
-                        <li style="background-color: #9ecf35; height:inherit">@Html.ActionLink("RECHERCHER", "SearchNoted", "AdresseTable", new { area = "" }, null)</li>
-                        @Html.Partial("_LoginPartial")
-                    </ul>
-                  </div>
-          
-                    <!--/.nav-collapse -->
+    </head>
+
+    <body>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span12"></div>
+            </div>
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="navbar">
+                        <div class="navbar-inner">
+                            <div class="container">
+
+                                <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+                                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </a>
+
+                                <!-- Be sure to leave the brand out there if you want it shown -->
+                                <a class="brand" href="/"><img src="/Images/LOGO_loQUALsmall.png"/></a>
+
+                                <!-- Everything you want hidden at 940px or less, place within here -->
+                                <div class="nav-collapse collapse">                                    
+                                    <!-- .nav, .navbar-search, .navbar-form, etc -->
+                                    <ul class="nav pull-right ul_menu_bar">
+                                        @if (HttpContext.Current.Session["UserSessionObject"] != null)
+                                        {
+                                            NoteTaLoc.Models.UserTable usertable = (NoteTaLoc.Models.UserTable)HttpContext.Current.Session["UserSessionObject"];
+                                            <li class="btn-white">HELLO, @usertable.Nom @usertable.Prenom !</li>
+                                        }
+                                        <li class="btn-note">@Html.ActionLink("NOTER", "Index", "SaisiNote", new { area = "" }, null)</li>
+                                        <li class="btn-recherche">@Html.ActionLink("RECHERCHER", "SearchNoted", "AdresseTable", new { area = "" }, null)</li>
+                                        @Html.Partial("_LoginPartial")
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+            @RenderBody()
+
+            @*   @Scripts.Render("~/bundles/jquery")  *@
+            @RenderSection("scripts", required: false)
         </div>
+        <!-- UserVoice JavaScript SDK (only needed once on a page) -->
+        <script>(function(){var uv=document.createElement('script');uv.type='text/javascript';uv.async=true;uv.src='//widget.uservoice.com/PzdETXO7oF2HpTCQSNOjQ.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(uv,s)})()</script>
 
-        <!--
-        <div class="content-wrapper">
-            <div class="float-right">
-                <section id="login">
-                    @Html.Partial("_LoginPartial")
-                </section>
-            </div>
-        </div>
-        -->
-
-    </header>
-
-    <div class="container">
-        @RenderBody()
-
-        @*   @Scripts.Render("~/bundles/jquery")  *@
-        @RenderSection("scripts", required: false)
-    </div>
-
-    <footer>
-        <div class="text-center" style="color: #fff;">&copy; Alithis 2013</div>
-    </footer>
-
-</body>
+        <!-- A tab to launch the Classic Widget -->
+        <script>
+        UserVoice = window.UserVoice || [];
+        UserVoice.push(['showTab', 'classic_widget', {
+          mode: 'full',
+          primary_color: '#a6ce39',
+          link_color: '#00afef',
+          default_mode: 'feedback',
+          forum_id: 209132,
+          tab_label: 'Commentaires et support',
+          tab_color: '#a6ce39',
+          tab_position: 'middle-right',
+          tab_inverted: false
+        }]);
+        </script>
+    </body>
 </html>

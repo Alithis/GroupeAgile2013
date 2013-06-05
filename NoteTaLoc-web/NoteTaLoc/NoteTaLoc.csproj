@@ -334,6 +334,14 @@
     <Content Include="Images\background\background_8.JPG" />
     <Content Include="Images\background\background_9.jpg" />
     <Content Include="Images\LOGO_loQUALsmall.png" />
+    <Content Include="Images\search-icon.png" />
+    <Content Include="lib\jquery-1.4.4.min.js" />
+    <None Include="lib\jquery-1.8.2.intellisense.js" />
+    <Content Include="lib\jquery-1.8.2.js" />
+    <Content Include="lib\jquery-1.8.2.min.js" />
+    <Content Include="lib\jquery-ui-1.8.7.min.js" />
+    <Content Include="lib\jquery-ui-1.9.2.js" />
+    <Content Include="lib\jquery-ui-1.9.2.min.js" />
     <Content Include="Models\notetaloc.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>notetaloc.edmx</DependentUpon>
@@ -370,6 +378,10 @@
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="src\demo.css" />
+    <Content Include="src\jquery.ui.addresspicker.js" />
+    <Content Include="src\new  2.txt" />
+    <Content Include="src\new  3.txt" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
