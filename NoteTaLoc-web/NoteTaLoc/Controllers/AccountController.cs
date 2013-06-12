@@ -67,6 +67,9 @@ namespace NoteTaLoc.Controllers
                     usertable.Pseudo = model.UserName;
                     usertable.Courriel = model.EmailAddress;
                     usertable.MotDePasse = model.Password;
+                    usertable.InscriptionConfirm = isLocalHost(); // on confirme automatiquement l'inscription en localhost car on presume que l'on est en dev !
+
+
                     if (model.TermAndConditions)
                         usertable.SiteCondAccept = true;
                     else
@@ -135,6 +138,17 @@ namespace NoteTaLoc.Controllers
             return sBuilder.ToString();
         }
 
+        // retourne true si le serveur est lancé sur le localhost, false sinon
+
+        public Boolean isLocalHost()
+        {
+            var appUrl = HttpRuntime.AppDomainAppVirtualPath;
+            var request = HttpContext.Request;
+            var host = request.Url.Host;
+
+            return host.Equals("localhost");
+        }
+
         public Boolean DoesUserNameExist(string username)
         {
             string sqlcmd = "SELECT * FROM dbo.usertable WHERE pseudo = '" + username + "'";
@@ -197,6 +211,11 @@ namespace NoteTaLoc.Controllers
        public Boolean SendAccountConfimration(RegisterModel model, String tokenBody)
         {
             Boolean bRetCode = true;
+
+            // pas de confirmation si on est en dev !
+            if (isLocalHost())
+                return true;
+
             //Send confirmation email.
             try
             {
