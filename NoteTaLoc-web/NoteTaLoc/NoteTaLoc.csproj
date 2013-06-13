@@ -225,6 +225,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Views\Account\LoginResource.en-CA.Designer.cs">
+      <DependentUpon>LoginResource.en-CA.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Views\Account\LoginResource.Designer.cs">
       <DependentUpon>LoginResource.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -450,6 +455,7 @@
     <Content Include="Views\Account\Activation.cshtml" />
     <Content Include="Views\Account\ActivationAlreadyDone.cshtml" />
     <Content Include="Views\Account\ActivationSuccessful.cshtml" />
+    <Content Include="Views\Shared\CultureChooserUserControl.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -468,9 +474,15 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AfterRegisterResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Account\LoginResource.en-CA.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>LoginResource.en-CA.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>ViewRes</CustomToolNamespace>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Account\LoginResource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>LoginResource.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>ViewRes</CustomToolNamespace>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Account\RegisterAccountResource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

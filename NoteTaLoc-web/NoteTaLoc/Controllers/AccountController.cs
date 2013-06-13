@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using System.Globalization;
 using NoteTaLoc.Models;
 using Recaptcha;
 using System.Security.Cryptography;
@@ -232,6 +232,12 @@ namespace NoteTaLoc.Controllers
 
         //
         // GET: /Account/AfterRegister
+
+        public ActionResult ChangeCulture(string lang, string returnUrl)
+        {
+            Session["Culture"] = new CultureInfo(lang);
+            return Redirect(returnUrl);
+        }
         
         [AllowAnonymous]
         public ActionResult AfterRegister()

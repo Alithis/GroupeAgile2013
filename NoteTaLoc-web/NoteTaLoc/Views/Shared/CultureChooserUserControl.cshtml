@@ -1,0 +1,8 @@
+﻿@{
+    
+}
+
+<%= Html.ActionLink("English", "ChangeCulture", "Account",  
+     new { lang = "en-CA", returnUrl = this.Request.RawUrl }, null)%>
+<%= Html.ActionLink("Français", "ChangeCulture", "Account",  
+     new { lang = "fr-CA", returnUrl = this.Request.RawUrl }, null)%>

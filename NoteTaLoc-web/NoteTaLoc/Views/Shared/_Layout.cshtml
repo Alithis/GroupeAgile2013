@@ -50,6 +50,9 @@
                                             NoteTaLoc.Models.UserTable usertable = (NoteTaLoc.Models.UserTable)HttpContext.Current.Session["UserSessionObject"];
                                             <li class="btn-white">HELLO, @usertable.Nom @usertable.Prenom !</li>
                                         }
+                                        <@Html.ActionLink("English", "ChangeCulture", "Account",  
+                                            new { lang = "en-CA", returnUrl = this.Request.RawUrl }, null)%>
+                                        <@Html.ActionLink("Français", "ChangeCulture", "Account",  new { lang = "fr-CA", returnUrl = this.Request.RawUrl }, null)%>
                                         <li class="btn-note">@Html.ActionLink("NOTER", "Index", "SaisiNote", new { area = "" }, null)</li>
                                         <li class="btn-recherche">@Html.ActionLink("RECHERCHER", "SearchNoted", "AdresseTable", new { area = "" }, null)</li>
                                         @Html.Partial("_LoginPartial")
