@@ -67,13 +67,21 @@ namespace NoteTaLoc.Controllers
                     usertable.Pseudo = model.UserName;
                     usertable.Courriel = model.EmailAddress;
                     usertable.MotDePasse = model.Password;
-                    usertable.InscriptionConfirm = isLocalHost(); // on confirme automatiquement l'inscription en localhost car on presume que l'on est en dev !
+                    usertable.InscriptionConfirm = false;
 
+                    #if DEBUG
+                    usertable.InscriptionConfirm = true; // on confirme automatiquement l'inscription en mode debug !
+                    #endif
 
                     if (model.TermAndConditions)
                         usertable.SiteCondAccept = true;
                     else
                         usertable.SiteCondAccept = false;
+
+                    #if DEBUG
+                    captchaValid = true; // on ne regarde pas le captcha en mode debug !
+                    usertable.SiteCondAccept = true; // on ne regarde pas l'acceptation des conditions en mode debug !
+                    #endif
 
                     if (!captchaValid)
                     {
@@ -138,16 +146,6 @@ namespace NoteTaLoc.Controllers
             return sBuilder.ToString();
         }
 
-        // retourne true si le serveur est lancé sur le localhost, false sinon
-
-        public Boolean isLocalHost()
-        {
-            var appUrl = HttpRuntime.AppDomainAppVirtualPath;
-            var request = HttpContext.Request;
-            var host = request.Url.Host;
-
-            return host.Equals("localhost");
-        }
 
         public Boolean DoesUserNameExist(string username)
         {
@@ -212,9 +210,9 @@ namespace NoteTaLoc.Controllers
         {
             Boolean bRetCode = true;
 
-            // pas de confirmation si on est en dev !
-            if (isLocalHost())
-                return true;
+            #if DEBUG
+            return true; // pas de confirmation si on est en dev !
+            #endif
 
             //Send confirmation email.
             try
