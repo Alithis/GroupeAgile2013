@@ -218,6 +218,11 @@
       <DependentUpon>notetaloc.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\Account\AfterRegisterResource.Designer.cs">
+      <DependentUpon>AfterRegisterResource.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Views\Account\LoginResource.Designer.cs">
       <DependentUpon>LoginResource.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -349,6 +354,13 @@
       <LastGenOutput>notetaloc.cs</LastGenOutput>
     </Content>
     <None Include="Properties\PublishProfiles\notetaloc - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\notetaloc - FTP %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\notetaloc - FTP %283%29.pubxml" />
+    <None Include="Properties\PublishProfiles\notetaloc - FTP %284%29.pubxml" />
+    <None Include="Properties\PublishProfiles\notetaloc - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\notetaloc - Web Deploy %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\notetaloc - Web Deploy %283%29.pubxml" />
+    <None Include="Properties\PublishProfiles\notetaloc - Web Deploy %284%29.pubxml" />
     <None Include="Properties\PublishProfiles\notetaloc - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
@@ -449,6 +461,10 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Views\Account\AfterRegisterResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AfterRegisterResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Account\LoginResource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>LoginResource.Designer.cs</LastGenOutput>

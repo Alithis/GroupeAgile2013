@@ -1,3 +1,21 @@
+<<<<<<< HEAD
+@using MyResources = NoteTaLoc.Views.Account.AfterRegisterResource;
+@{
+    ViewBag.Registrationcomplete = MyResources.Registrationcomplete;
+    ViewBag.PleaseFollowInstructions = MyResources.PleaseFollowInstructions;
+    ViewBag.emailHasBeenSent = MyResources.emailHasBeenSent;
+}
+<div id="body">
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Registrationcomplete</h1>
+                <h2>@ViewBag.PleaseFollowInstructions</h2>
+            </hgroup>
+            <p>
+                @ViewBag.emailHasBeenSent
+            </p>
+=======
 <section class="featured">
     <div class="row-fluid">
         <div class="span6 offset3 background_div">
@@ -14,6 +32,7 @@
                     </div>
                 </div>
             </div>
+>>>>>>> b14d6cd3e2391ea0c097ff87f8652a0a591e2dad
         </div>
     </div>
 </section>
