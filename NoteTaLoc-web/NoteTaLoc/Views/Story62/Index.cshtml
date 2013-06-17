@@ -9,14 +9,18 @@
             $(document).ready(function () {
                 var theme = "bootstrap";
                 var data = [
-                    { "id": "1", "text": "Isolation", "parentid": "-1"},
-                    { "id": "3", "text": "Environnement", "parentid": "-1"},
+                    { "id": "1", "text": "Isolation", "parentid": "-1" },
+                    { "id": "3", "text": "Environnement", "parentid": "-1" },
                     { "id": "5", "text": "Phonique [3]", "parentid": "1" },
                     { "id": "8", "text": "Thermique [4]", "parentid": "1" },
                     { "id": "13", "text": "Electrique [2]", "parentid": "1" },
                     { "id": "21", "text": "Voisinage [4]", "parentid": "3" },
                     { "id": "34", "text": "Commodités [3]", "parentid": "3" }
-                ]
+                ];
+                          
+                for (i = 0, max = data.length; i < max; i++)
+                    data[i].text = data[i].text + " - checked";
+
                 // prepare the data
                 var source =
                 {
