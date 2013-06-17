@@ -3,4 +3,60 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@ViewBag.idNote</h2>
+<!--Story62/Index?idNote=xxxx-->
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var theme = "bootstrap";
+                var data = [
+                    { "id": "1", "text": "Isolation", "parentid": "-1"},
+                    { "id": "3", "text": "Environnement", "parentid": "-1"},
+                    { "id": "5", "text": "Phonique [3]", "parentid": "1" },
+                    { "id": "8", "text": "Thermique [4]", "parentid": "1" },
+                    { "id": "13", "text": "Electrique [2]", "parentid": "1" },
+                    { "id": "21", "text": "Voisinage [4]", "parentid": "3" },
+                    { "id": "34", "text": "Commodités [3]", "parentid": "3" }
+                ]
+                // prepare the data
+                var source =
+                {
+                    datatype: "json",
+                    datafields: [
+                        { name: 'id' },
+                        { name: 'parentid' },
+                        { name: 'text' }
+                    ],
+                    id: 'id',
+                    localdata: data
+                };
+                // create data adapter.
+                var dataAdapter = new $.jqx.dataAdapter(source);
+                // perform Data Binding.
+                dataAdapter.dataBind();
+                // get the tree items. The first parameter is the item's id. The second parameter is the parent item's id. The 'items' parameter represents 
+                // the sub items collection name. Each jqxTree item has a 'label' property, but in the JSON data, we have a 'text' field. The last parameter 
+                // specifies the mapping between the 'text' and 'label' fields.  
+                var records = dataAdapter.getRecordsHierarchy('id', 'parentid', 'items', [{ name: 'text', map: 'label'}]);
+                $('#jqxWidget').jqxTree({ source: records, width: '300px', theme: theme });
+            });
+        </script>
+
+<section class="content-wrapper main-content clear-fix">
+    <div class="row-fluid">
+        <div class="span6 offset3 background_div">
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="content-wrapper">
+                        <hgroup class="title">
+                            <h3>@ViewBag.idNote</h3>
+                        </hgroup>
+                        <div id='jqxWidget'>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+ </section>
+
+ 
