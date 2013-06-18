@@ -1,0 +1,50 @@
+﻿@{
+    ViewBag.Title = "Accordeon";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!--Story62/Accordeon-->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var theme = "bootstrap";
+            // Create jqxNavigationBar.
+            
+            var users = [
+                { "name": "Arnaud", "date": "22/12/2012", "note": "4/5" },
+                { "name": "Duc", "date": "12/05/2011", "note": "3/5" },
+                { "name": "Christophe", "date": "05/12/2010", "note": "2/5" },
+            ];
+
+            var header = "<div style='margin-top: 2px;'><div style='float: left;'><img alt='Note' src='http://www.jqwidgets.com/jquery-widgets-demo/images/notesIcon.png' /></div><div style='margin-left: 4px; float: left;'>$user$</div></div>";
+            var content = "<div><ul><li>Isolation</li><ul><li>Accoustique [3/5]</li><li>Thermique[4/5]</li></ul><li>Environnement</li><li>Equipement</li></ul></div>";
+
+            var code = "";
+            for (i = 0, max = users.length; i < max; i++)
+                code += header.replace("$user$", users[i].name + " - " + users[i].date + " [" + users[i].note + "]") + content;
+
+            $("#jqxNavigationBar").html(code);
+            $("#jqxNavigationBar").jqxNavigationBar({ width: 400, height: 430, expandMode: 'multiple', theme: theme });
+        });
+    </script>
+
+
+<section class="content-wrapper main-content clear-fix">
+    <div class="row-fluid">
+        <div class="span6 offset3 background_div">
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="content-wrapper">
+                        <hgroup class="title">
+                            <h3>@ViewBag.idNote</h3>
+                        </hgroup>
+                            <div id='jqxNavigationBar'>
+                                     </div>
+                     </div>
+                </div>
+            </div>
+          </div>
+        </div>
+ </section>
+
+ 

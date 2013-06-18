@@ -13,9 +13,14 @@ namespace NoteTaLoc.Controllers
 
         public ActionResult Index(string idNote)
         {
-            ViewBag.idNote = "Story 62 : " + idNote;
+            ViewBag.idNote = "Story 62 (jqxTree) : " + idNote;
             return View();
         }
 
+        public ActionResult Accordeon()
+        {
+            ViewBag.idNote = "Story 62 (Accordeon)";
+            return View();
+        }
     }
 }

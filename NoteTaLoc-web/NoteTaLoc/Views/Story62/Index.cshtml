@@ -9,17 +9,43 @@
             $(document).ready(function () {
                 var theme = "bootstrap";
                 var data = [
-                    { "id": "1", "text": "Isolation", "parentid": "-1" },
-                    { "id": "3", "text": "Environnement", "parentid": "-1" },
-                    { "id": "5", "text": "Phonique [3]", "parentid": "1" },
-                    { "id": "8", "text": "Thermique [4]", "parentid": "1" },
-                    { "id": "13", "text": "Electrique [2]", "parentid": "1" },
-                    { "id": "21", "text": "Voisinage [4]", "parentid": "3" },
-                    { "id": "34", "text": "Commodités [3]", "parentid": "3" }
+
+                    { "id": "1", "text": "Arnaud    - 22/12/2012", "parentid": "-1", "value": "-1" },
+                    { "id": "2", "text": "Solenne   - 01/03/2011", "parentid": "-1", "value": "-1" },
+                    { "id": "3", "text": "Laurence  - 21/07/2010", "parentid": "-1", "value": "-1" },
+                    { "id": "4", "text": "Sébastien - 12/05/2008", "parentid": "-1", "value": "-1" },
+
+                    { "id": "10", "text": "Isolation", "parentid": "1", "value": "-1" },
+                    { "id": "100", "text": "Phonique", "parentid": "10", "value": "3" },
+                    { "id": "101", "text": "Thermique", "parentid": "10", "value": "4" },
+                    { "id": "102", "text": "Electrique", "parentid": "10", "value": "2" },
+
+                    { "id": "11", "text": "Environnement", "parentid": "1", "value": "-1" },
+                    { "id": "110", "text": "Voisinage", "parentid": "11", "value": "4" },
+                    { "id": "120", "text": "Commodités", "parentid": "11", "value": "3" },
+
+                    { "id": "20", "text": "Isolation", "parentid": "2", "value": "-1" },
+                    { "id": "200", "text": "Phonique", "parentid": "20", "value": "3" },
+                    { "id": "201", "text": "Thermique", "parentid": "20", "value": "2" },
+                    { "id": "202", "text": "Electrique", "parentid": "20", "value": "4" },
+
+                    { "id": "21", "text": "Environnement", "parentid": "2", "value": "-1" },
+                    { "id": "210", "text": "Voisinage", "parentid": "21", "value": "4" },
+                    { "id": "220", "text": "Commodités", "parentid": "21", "value": "4" },
+
+                    { "id": "30", "text": "Isolation", "parentid": "3", "value": "-1" },
+                    { "id": "300", "text": "Phonique", "parentid": "30", "value": "3" },
+                    { "id": "301", "text": "Thermique", "parentid": "30", "value": "4" },
+                    { "id": "302", "text": "Electrique", "parentid": "30", "value": "2" },
+
+                    { "id": "31", "text": "Environnement", "parentid": "3", "value": "-1" },
+                    { "id": "310", "text": "Voisinage", "parentid": "31", "value": "4" },
+                    { "id": "320", "text": "Commodités", "parentid": "31", "value": "3" }
+
                 ];
                           
-                for (i = 0, max = data.length; i < max; i++)
-                    data[i].text = data[i].text + " - checked";
+                /*for (i = 0, max = data.length; i < max; i++)
+                    data[i].text = data[i].text + " - checked";*/
 
                 // prepare the data
                 var source =
@@ -28,7 +54,8 @@
                     datafields: [
                         { name: 'id' },
                         { name: 'parentid' },
-                        { name: 'text' }
+                        { name: 'text' },
+                        { name: 'value' }
                     ],
                     id: 'id',
                     localdata: data
@@ -40,8 +67,16 @@
                 // get the tree items. The first parameter is the item's id. The second parameter is the parent item's id. The 'items' parameter represents 
                 // the sub items collection name. Each jqxTree item has a 'label' property, but in the JSON data, we have a 'text' field. The last parameter 
                 // specifies the mapping between the 'text' and 'label' fields.  
-                var records = dataAdapter.getRecordsHierarchy('id', 'parentid', 'items', [{ name: 'text', map: 'label'}]);
-                $('#jqxWidget').jqxTree({ source: records, width: '300px', theme: theme });
+                var records = dataAdapter.getRecordsHierarchy('id', 'parentid', 'items', [{ name: 'text', map: 'label' }]);
+                $('#jqxWidget').jqxTree({ toggleMode: 'click' });
+                $('#jqxWidget').jqxTree({ source: records, width: '250px', theme: theme });
+                $('#Events').jqxPanel({ theme: theme, height: '250px', width: '200px' });
+                $('#Events').css('border', 'none');
+                $('#jqxWidget').on('expand', function (event) {
+                    var args = event.args;
+                    var item = $('#jqxWidget').jqxTree('getItem', args.element);
+                    //$('#Events').jqxPanel('prepend', '<div style="margin-top: 5px;">Expanded: ' + item.label + ' note = ' + item.value + '</div>');
+                });
             });
         </script>
 
@@ -54,9 +89,11 @@
                         <hgroup class="title">
                             <h3>@ViewBag.idNote</h3>
                         </hgroup>
-                        <div id='jqxWidget'>
-                        </div>
-                    </div>
+                            <div id='jqxWidget'>
+                                     </div>
+                            <span>Events:</span>
+                            <div id='Events'></div>
+                     </div>
                 </div>
             </div>
           </div>
