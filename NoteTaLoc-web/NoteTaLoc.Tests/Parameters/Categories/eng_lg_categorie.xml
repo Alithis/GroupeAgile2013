@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Categories xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <categoriesList>
+    <Category>
+      <libelle>libelle test 10 eng</libelle>
+      <categoryId>10</categoryId>
+      <active>true</active>
+      <criteriasList>
+        <Criteria>
+          <criteriaId>10</criteriaId>
+          <libelle>criteria libelle 1</libelle>
+          <active>true</active>
+          <weight>1</weight>
+        </Criteria>
+        <Criteria>
+          <criteriaId>20</criteriaId>
+          <libelle>criteria libelle 2</libelle>
+          <active>true</active>
+          <weight>1</weight>
+        </Criteria>
+      </criteriasList>
+    </Category>
+    <Category>
+      <libelle>libelle test 20 eng</libelle>
+      <categoryId>20</categoryId>
+      <active>true</active>
+      <criteriasList>
+        <Criteria>
+          <criteriaId>30</criteriaId>
+          <libelle>criteria libelle 3</libelle>
+          <active>true</active>
+          <weight>1</weight>
+        </Criteria>
+        <Criteria>
+          <criteriaId>40</criteriaId>
+          <libelle>criteria libelle 4</libelle>
+          <active>true</active>
+          <weight>1</weight>
+        </Criteria>
+      </criteriasList>
+    </Category>
+  </categoriesList>
+  <language>eng</language>
+</Categories>
