@@ -5,23 +5,46 @@
 
 
 <!--Story62/Accordeon-->
+<script id="users-template" type="text/x-handlebars-template">
+{{#each users}}
+    <div style='margin-top: 2px;'>
+      <div style='float: left;'>
+         <img alt='Note' src='http://www.jqwidgets.com/jquery-widgets-demo/images/notesIcon.png' />
+      </div>
+      <div style='margin-left: 4px; float: left;'>
+         {{name}} - {{name}} - [{{note}}]
+      </div>
+    </div>
+    <div>
+        <ul>
+            <li>Isolation</li>
+                <ul>
+                   <li>Accoustique [3/5]</li>
+                   <li>Thermique[4/5]</li>
+                </ul>
+             <li>Environnement</li>
+             <li>Equipement</li>
+         </ul>
+     </div>
+{{/each}}
+</script>
+
     <script type="text/javascript">
         $(document).ready(function () {
             var theme = "bootstrap";
-            // Create jqxNavigationBar.
-            
-            var users = [
-                { "name": "Arnaud", "date": "22/12/2012", "note": "4/5" },
-                { "name": "Duc", "date": "12/05/2011", "note": "3/5" },
-                { "name": "Christophe", "date": "05/12/2010", "note": "2/5" },
-            ];
 
-            var header = "<div style='margin-top: 2px;'><div style='float: left;'><img alt='Note' src='http://www.jqwidgets.com/jquery-widgets-demo/images/notesIcon.png' /></div><div style='margin-left: 4px; float: left;'>$user$</div></div>";
-            var content = "<div><ul><li>Isolation</li><ul><li>Accoustique [3/5]</li><li>Thermique[4/5]</li></ul><li>Environnement</li><li>Equipement</li></ul></div>";
+            var source = $("#users-template").html();
+            var template = Handlebars.compile(source);
 
-            var code = "";
-            for (i = 0, max = users.length; i < max; i++)
-                code += header.replace("$user$", users[i].name + " - " + users[i].date + " [" + users[i].note + "]") + content;
+            var context = {
+                users: [
+                  { "name": "Arnaud", "date": "22/12/2012", "note": "4/5" },
+                  { "name": "Duc", "date": "12/05/2011", "note": "3/5" },
+                  { "name": "Christophe", "date": "05/12/2010", "note": "2/5" }
+                ]
+            };
+
+            var code = template(context);
 
             $("#jqxNavigationBar").html(code);
             $("#jqxNavigationBar").jqxNavigationBar({ width: 400, height: 430, expandMode: 'multiple', theme: theme });
@@ -39,7 +62,7 @@
                             <h3>@ViewBag.idNote</h3>
                         </hgroup>
                             <div id='jqxNavigationBar'>
-                                     </div>
+                            </div>
                      </div>
                 </div>
             </div>
