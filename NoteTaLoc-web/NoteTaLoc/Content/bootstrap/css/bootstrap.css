@@ -4726,9 +4726,10 @@ a.thumbnail:focus {
 .modal {
   position: fixed;
   top: 10%;
-  left: 50%;
+  left: 25%;
   z-index: 1050;
-  width: 560px;
+  width: 75%;
+  height:80%;
   margin-left: -280px;
   background-color: #ffffff;
   border: 1px solid #999;
@@ -4771,7 +4772,7 @@ a.thumbnail:focus {
 .modal-body {
   position: relative;
   overflow-y: auto;
-  max-height: 400px;
+  max-height: 100%;
   padding: 15px;
 }
 .modal-form {
@@ -5063,6 +5064,10 @@ a.thumbnail:focus {
 .carousel-inner > .item > a > img {
   display: block;
   line-height: 1;
+  max-width:420px;
+  max-height:360px;
+  min-height:240px;
+  min-width:180px;
 }
 .carousel-inner > .active,
 .carousel-inner > .next,
