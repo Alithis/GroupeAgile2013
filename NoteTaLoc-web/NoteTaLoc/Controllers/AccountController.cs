@@ -8,6 +8,9 @@ using NoteTaLoc.Models;
 using Recaptcha;
 using System.Security.Cryptography;
 using System.Text;
+using NoteTaLoc.Utilitary;
+using System.Configuration;
+using System.Web.Configuration;
 
 
 namespace NoteTaLoc.Controllers
@@ -16,6 +19,9 @@ namespace NoteTaLoc.Controllers
     {
 
         private notetalocEntities db = new notetalocEntities();
+        private TwitterError twitterError = new TwitterError(null);
+        private MailControler mailControler = new MailControler();
+        private readonly Configuration config = WebConfigurationManager.OpenWebConfiguration("~");
 
         //
         // GET: /Account/Register
@@ -107,6 +113,7 @@ namespace NoteTaLoc.Controllers
                 catch (Exception e)
                 {
                     ModelState.AddModelError("", "Erreur lors de l'enregistrement");
+                twitterError.publishError("accountController.register " + e.Message);    
                 }
             }
 
@@ -200,21 +207,18 @@ namespace NoteTaLoc.Controllers
             //Send confirmation email.
             try
             {
-                System.Net.Mail.MailMessage message = new System.Net.Mail.MailMessage();
                 String prefix = "http://notetaloc.azurewebsites.net/Account/Activation?activationKey=";
                 String validationLink = prefix + tokenBody;
 
-                message.To.Add(model.EmailAddress); //recipient 
-                message.Subject = "RateYourRent - courier de confirmation";
-                message.From = new System.Net.Mail.MailAddress("no.reply@alithis.com"); //from email 
-                message.Body = "Cliquez sur ce lien pour valider votre inscription: "+validationLink;
-                
-                System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient("mail.cia.ca");
-                smtp.Send(message); 
+                mailControler.sendEmail(config.AppSettings.Settings["adminMail"].Value, model.EmailAddress,
+                                        config.AppSettings.Settings["EmailConfirmationtext"].Value + validationLink,
+                                        config.AppSettings.Settings["EmailConfirmationsubject"].Value);
             }
-            catch
+            catch (Exception e)
             {
                 bRetCode = false;
+                twitterError.publishError("accountController.SendAccountConfimration " +
+                                          twitterError.publishError(e.Message));
             }
             return bRetCode;
         }
