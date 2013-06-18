@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NoteTaLoc.Views.Account {
+namespace ViewRes {
     using System;
     
     
@@ -57,6 +57,33 @@ namespace NoteTaLoc.Views.Account {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Merci de nous faire confiance !.
+        /// </summary>
+        internal static string headerTitle {
+            get {
+                return ResourceManager.GetString("headerTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Activation Réussie.
+        /// </summary>
+        internal static string Title {
+            get {
+                return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Vous pouvez vous connecter a RateYourRent.com a l&apos;aide de votre login/mot de passe..
+        /// </summary>
+        internal static string youCanLogIn {
+            get {
+                return ResourceManager.GetString("youCanLogIn", resourceCulture);
             }
         }
     }

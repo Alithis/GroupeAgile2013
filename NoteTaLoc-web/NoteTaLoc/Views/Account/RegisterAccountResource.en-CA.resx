@@ -118,48 +118,48 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="agreeTermsAndConditions" xml:space="preserve">
-    <value>Vous acceptez les termes et conditions?</value>
+    <value>You agree to the terms and conditions?</value>
   </data>
   <data name="confirmPassword" xml:space="preserve">
     <value>Confirmation</value>
   </data>
   <data name="creation" xml:space="preserve">
-    <value>Créer un nouveau compte</value>
+    <value>Create new account</value>
   </data>
   <data name="email" xml:space="preserve">
-    <value>Courriel</value>
+    <value>Email</value>
   </data>
   <data name="firstName" xml:space="preserve">
-    <value>Prénom</value>
+    <value>First Name</value>
   </data>
   <data name="lastName" xml:space="preserve">
-    <value>Nom</value>
+    <value>Last Name</value>
   </data>
   <data name="No" xml:space="preserve">
-    <value>Non</value>
+    <value>No</value>
   </data>
   <data name="password" xml:space="preserve">
-    <value>Mot de passe</value>
+    <value>Password</value>
   </data>
   <data name="Register" xml:space="preserve">
-    <value>S'inscrire</value>
+    <value>Register</value>
   </data>
   <data name="requiredFields" xml:space="preserve">
-    <value>Tous les champs sont obligatoires</value>
+    <value>All fields are mandatory</value>
   </data>
   <data name="termsOfService" xml:space="preserve">
-    <value>Conditions de service</value>
+    <value>Terms of Service</value>
   </data>
   <data name="termsOfServiceDetails" xml:space="preserve">
     <value>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</value>
   </data>
   <data name="titre" xml:space="preserve">
-    <value>Inscription</value>
+    <value>Registration</value>
   </data>
   <data name="username" xml:space="preserve">
-    <value>Utilisateur</value>
+    <value>Username</value>
   </data>
   <data name="Yes" xml:space="preserve">
-    <value>Oui</value>
+    <value>Yes</value>
   </data>
 </root>

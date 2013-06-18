@@ -117,28 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="loginForm" xml:space="preserve">
-    <value>Formulaire de connexion</value>
-  </data>
-  <data name="creation" xml:space="preserve">
-    <value>connectez vous pour noter des appartements</value>
-  </data>
-  <data name="password" xml:space="preserve">
-    <value>Mot de passe</value>
-  </data>
   <data name="titre" xml:space="preserve">
-    <value>LOGIN</value>
-  </data>
-  <data name="username" xml:space="preserve">
-    <value>Utilisateur</value>
-  </data>
-  <data name="doNotHaveAccount" xml:space="preserve">
-    <value>si vous n'avez pas de compte</value>
-  </data>
-  <data name="logIn" xml:space="preserve">
-    <value>Se connecter</value>
-  </data>
-  <data name="register" xml:space="preserve">
-    <value>S'inscrire</value>
+    <value>Activation</value>
   </data>
 </root>

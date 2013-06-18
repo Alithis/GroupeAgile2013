@@ -1,21 +1,9 @@
-<<<<<<< HEAD
-@using MyResources = NoteTaLoc.Views.Account.AfterRegisterResource;
+@using MyResources = ViewRes.AfterRegisterResource;
 @{
     ViewBag.Registrationcomplete = MyResources.Registrationcomplete;
     ViewBag.PleaseFollowInstructions = MyResources.PleaseFollowInstructions;
     ViewBag.emailHasBeenSent = MyResources.emailHasBeenSent;
 }
-<div id="body">
-    <section class="featured">
-        <div class="content-wrapper">
-            <hgroup class="title">
-                <h1>@ViewBag.Registrationcomplete</h1>
-                <h2>@ViewBag.PleaseFollowInstructions</h2>
-            </hgroup>
-            <p>
-                @ViewBag.emailHasBeenSent
-            </p>
-=======
 <section class="featured">
     <div class="row-fluid">
         <div class="span6 offset3 background_div">
@@ -23,16 +11,15 @@
                 <div class="span12">
                     <div class="content-wrapper text_justified">
                         <hgroup class="title">
-                            <h2>Enregistrement Termine !</h2>
-                            <h4>Merci de votre confiance. Votre inscription est presque terminee, nous n'avons plus qu'a verifier votre email.</h4>
+                            <h2>@ViewBag.Registrationcomplete</h2>
+                            <h4>@ViewBag.PleaseFollowInstructions</h4>
                         </hgroup>
                         <p>
-                            Un email a ete envoye a l'adresse specifiee dans le formulaire d'inscription. Cliquez sur le lien present dans ce mail pour valider votre inscription.
+                            @ViewBag.emailHasBeenSent
                         </p>
                     </div>
                 </div>
             </div>
->>>>>>> b14d6cd3e2391ea0c097ff87f8652a0a591e2dad
         </div>
     </div>
 </section>

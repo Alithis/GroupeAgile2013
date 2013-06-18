@@ -1,5 +1,10 @@
-﻿@{
-    ViewBag.Title = "Activation Successful";
+﻿@using MyResources = ViewRes.ActivationSuccessfulResource;
+
+@{
+    ViewBag.Title = MyResources.Title;
+    ViewBag.headerTitle = MyResources.headerTitle;
+    ViewBag.youCanLogIn = MyResources.youCanLogIn;
+    
 }
 <section class="featured">
     <div class="row-fluid">
@@ -8,11 +13,11 @@
                 <div class="span12">
                     <div class="content-wrapper">
                         <hgroup class="title">
-                            <h2>Activation Reussie</h2>
-                            <h4>Merci de nous faire confiance !</h4>
+                            <h2>@ViewBag.Title</h2>
+                            <h4>@ViewBag.headerTitle</h4>
                         </hgroup>
                         <p>
-                            Vous pouvez vous connecter a RateYourRent.com a l'aide de votre login/mot de passe.
+                            @ViewBag.youCanLogIn
                         </p>
                     </div>
                 </div>

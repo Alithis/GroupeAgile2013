@@ -225,6 +225,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Views\Account\AfterRegisterResource.en-CA.Designer.cs">
+      <DependentUpon>AfterRegisterResource.en-CA.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Views\Account\LoginResource.en-CA.Designer.cs">
       <DependentUpon>LoginResource.en-CA.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -473,6 +478,10 @@
     <EmbeddedResource Include="Views\Account\AfterRegisterResource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AfterRegisterResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Account\AfterRegisterResource.en-CA.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AfterRegisterResource.en-CA.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Account\LoginResource.en-CA.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

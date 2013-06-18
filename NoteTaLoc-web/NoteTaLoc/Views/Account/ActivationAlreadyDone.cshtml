@@ -1,15 +1,18 @@
-﻿@{
-    ViewBag.Title = "Activation Already Done";
+﻿@using MyResources = ViewRes.ActivationAlreadyDoneResource;
+
+@{
+    ViewBag.Title = MyResources.titre;
+    ViewBag.confirmationMessage = MyResources.confirmationMessage;
 }
 
 <div id="body">
     <section class="featured">
         <div class="content-wrapper">
             <hgroup class="title">
-                <h1>Activation deja effectuee</h1>
+                <h1>@ViewBag.Title</h1>
             </hgroup>
             <p>
-                L'activation de ce compte a deja ete effectuee. Vous pouvez vous connecter a RateYourRent.com
+                @ViewBag.confirmationMessage
             </p>
         </div>
     </section>

@@ -61,74 +61,11 @@ namespace ViewRes {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à connectez vous pour noter des appartements.
-        /// </summary>
-        public static string creation {
-            get {
-                return ResourceManager.GetString("creation", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à si vous n&apos;avez pas de compte.
-        /// </summary>
-        public static string doNotHaveAccount {
-            get {
-                return ResourceManager.GetString("doNotHaveAccount", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Se connecter.
-        /// </summary>
-        public static string logIn {
-            get {
-                return ResourceManager.GetString("logIn", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Formulaire de connexion.
-        /// </summary>
-        public static string loginForm {
-            get {
-                return ResourceManager.GetString("loginForm", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Mot de passe.
-        /// </summary>
-        public static string password {
-            get {
-                return ResourceManager.GetString("password", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à S&apos;inscrire.
-        /// </summary>
-        public static string register {
-            get {
-                return ResourceManager.GetString("register", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à LOGIN.
+        ///   Recherche une chaîne localisée semblable à Activation.
         /// </summary>
         public static string titre {
             get {
                 return ResourceManager.GetString("titre", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Utilisateur.
-        /// </summary>
-        public static string username {
-            get {
-                return ResourceManager.GetString("username", resourceCulture);
             }
         }
     }

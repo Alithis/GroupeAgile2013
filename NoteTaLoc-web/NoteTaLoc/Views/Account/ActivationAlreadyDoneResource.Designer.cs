@@ -61,7 +61,16 @@ namespace ViewRes {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Activation.
+        ///   Recherche une chaîne localisée semblable à L&apos;activation de ce compte a deja ete effectuee. Vous pouvez vous connecter a RateYourRent.com.
+        /// </summary>
+        public static string confirmationMessage {
+            get {
+                return ResourceManager.GetString("confirmationMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Activation deja effectuee.
         /// </summary>
         public static string titre {
             get {

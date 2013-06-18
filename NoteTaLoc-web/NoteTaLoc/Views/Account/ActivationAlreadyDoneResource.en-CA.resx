@@ -118,9 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="confirmationMessage" xml:space="preserve">
-    <value>L'activation de ce compte a deja ete effectuee. Vous pouvez vous connecter a RateYourRent.com</value>
+    <value>Enabling this account has already been done. You can connect a RateYourRent.com</value>
   </data>
   <data name="titre" xml:space="preserve">
-    <value>Activation deja effectuee</value>
+    <value>Activation already done</value>
   </data>
 </root>

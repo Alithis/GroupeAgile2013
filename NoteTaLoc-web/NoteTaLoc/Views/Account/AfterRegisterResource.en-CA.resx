@@ -118,12 +118,12 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Registrationcomplete" xml:space="preserve">
-    <value>Enregistrement terminé!</value>
+    <value>Registration terminated!</value>
   </data>
   <data name="PleaseFollowInstructions" xml:space="preserve">
-    <value>Veuillez suivre les instructions suivantes pour activer votre compte.</value>
+    <value>Please follow the instructions to activate your account.</value>
   </data>
   <data name="emailHasBeenSent" xml:space="preserve">
-    <value>Un courriel concernant votre inscription vous a été envoyé. Ce courriel contient un lien sur lequel vous devez cliquer pour activer votre connexion.</value>
+    <value>An email on your registration has been sent. This email contains a link that you must click to activate your connection.</value>
   </data>
 </root>

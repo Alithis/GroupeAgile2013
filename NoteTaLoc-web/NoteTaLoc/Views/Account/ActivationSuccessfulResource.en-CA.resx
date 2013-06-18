@@ -118,12 +118,12 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="headerTitle" xml:space="preserve">
-    <value>Merci de nous faire confiance !</value>
+    <value>Thank you for your patience!</value>
   </data>
   <data name="Title" xml:space="preserve">
-    <value>Activation Réussie</value>
+    <value>Activation Successful</value>
   </data>
   <data name="youCanLogIn" xml:space="preserve">
-    <value>Vous pouvez vous connecter a RateYourRent.com a l'aide de votre login/mot de passe.</value>
+    <value>You can connect to a RateYourRent.com using your login / password.</value>
   </data>
 </root>
