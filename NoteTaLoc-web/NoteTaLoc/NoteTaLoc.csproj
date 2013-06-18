@@ -39,6 +39,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Common.Logging">
+      <HintPath>..\..\..\Spring.NET\bin\net\4.0\release\Common.Logging.dll</HintPath>
+    </Reference>
     <Reference Include="Hammock">
       <HintPath>..\packages\Hammock.1.3.1\lib\4.0\Hammock.dll</HintPath>
     </Reference>
@@ -53,6 +56,72 @@
     <Reference Include="Recaptcha">
       <HintPath>..\..\..\..\..\Users\Eric Foka\Desktop\Recaptcha.dll</HintPath>
       <HintPath>..\..\Recaptcha.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Aop">
+      <HintPath>..\..\..\Spring.NET\bin\net\4.0\release\Spring.Aop.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Core">
+      <HintPath>..\..\..\Spring.NET\bin\net\4.0\release\Spring.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Data">
+      <HintPath>..\..\..\Spring.NET\bin\net\4.0\release\Spring.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Data.NHibernate32">
+      <HintPath>..\..\..\Spring.NET\bin\net\4.0\release\Spring.Data.NHibernate32.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Data.NHibernate32.Integration.Tests">
+      <HintPath>..\..\..\Spring.NET\bin\net\4.0\release\Spring.Data.NHibernate32.Integration.Tests.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Data.NHibernate32.Tests">
+      <HintPath>..\..\..\Spring.NET\bin\net\4.0\release\Spring.Data.NHibernate32.Tests.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Data.NHibernate33">
+      <HintPath>..\..\..\Spring.NET\bin\net\4.0\release\Spring.Data.NHibernate33.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Data.NHibernate33.Integration.Tests">
+      <HintPath>..\..\..\Spring.NET\bin\net\4.0\release\Spring.Data.NHibernate33.Integration.Tests.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Data.NHibernate33.Tests">
+      <HintPath>..\..\..\Spring.NET\bin\net\4.0\release\Spring.Data.NHibernate33.Tests.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Messaging">
+      <HintPath>..\..\..\Spring.NET\bin\net\4.0\release\Spring.Messaging.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Messaging.Ems">
+      <HintPath>..\..\..\Spring.NET\bin\net\4.0\release\Spring.Messaging.Ems.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Messaging.Nms">
+      <HintPath>..\..\..\Spring.NET\bin\net\4.0\release\Spring.Messaging.Nms.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Scheduling.Quartz20">
+      <HintPath>..\..\..\Spring.NET\bin\net\4.0\release\Spring.Scheduling.Quartz20.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Services">
+      <HintPath>..\..\..\Spring.NET\bin\net\4.0\release\Spring.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Template.Velocity">
+      <HintPath>..\..\..\Spring.NET\bin\net\4.0\release\Spring.Template.Velocity.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Testing.Microsoft">
+      <HintPath>..\..\..\Spring.NET\bin\net\4.0\release\Spring.Testing.Microsoft.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Testing.NUnit">
+      <HintPath>..\..\..\Spring.NET\bin\net\4.0\release\Spring.Testing.NUnit.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Web">
+      <HintPath>..\..\..\Spring.NET\bin\net\4.0\release\Spring.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Web.Extensions">
+      <HintPath>..\..\..\Spring.NET\bin\net\4.0\release\Spring.Web.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Web.Mvc">
+      <HintPath>..\..\..\Spring.NET\bin\net\4.0\release\Spring.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Web.Mvc3">
+      <HintPath>..\..\..\Spring.NET\bin\net\4.0\release\Spring.Web.Mvc3.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Web.Mvc4">
+      <HintPath>..\..\..\Spring.NET\bin\net\4.0\release\Spring.Web.Mvc4.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -189,6 +258,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Utilitary\MailManager.cs" />
     <Compile Include="Models\SaisiNoteForm.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\AdresseTable.cs">
@@ -221,6 +291,7 @@
     <Compile Include="Models\SampleDroppableTable.cs">
       <DependentUpon>notetaloc.tt</DependentUpon>
     </Compile>
+    <Compile Include="Utilitary\TwitterControler.cs" />
     <Compile Include="Models\UserProfil.cs" />
     <Compile Include="Models\UserTable.cs">
       <DependentUpon>notetaloc.tt</DependentUpon>
@@ -348,11 +419,19 @@
       <DependentUpon>notetaloc.edmx</DependentUpon>
       <LastGenOutput>notetaloc.cs</LastGenOutput>
     </Content>
+    <Compile Include="Utilitary\CategoryStorage.cs" />
+    <Content Include="Parameters\Categories\Copy of Copy of categorie_fake_file_lg_.xml" />
     <None Include="Properties\PublishProfiles\notetaloc - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\notetaloc - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\notetaloc - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\notetaloc - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Parameters\Categories\categorie_fake_file.xml" />
+    <None Include="Parameters\Categories\Copy of categorie_fake_file.test" />
+    <Content Include="Parameters\Categories\categorie_lg_eng.xml" />
+    <Content Include="Parameters\Categories\fr_lg_categorie.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />

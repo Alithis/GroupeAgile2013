@@ -1,4 +1,4 @@
-﻿// Default code generation is disabled for model 'C:\Note Ta Location Amine\GroupeAgile2013\NoteTaLoc-web\NoteTaLoc\Models\notetaloc.edmx'. 
-// To enable default code generation, change the value of the 'Code Generation Strategy' designer
-// property to an alternate value. This property is available in the Properties Window when the model is
-// open in the designer.
+﻿// La génération de code par défaut est désactivée pour le modèle 'C:\AAA_WORK\RateYourRent\CODE\GroupeAgile2013_2\NoteTaLoc-web\NoteTaLoc\Models\notetaloc.edmx'. 
+// Pour l'activer, modifiez la valeur du concepteur 'Stratégie de génération de code'.
+// Cette propriété est disponible dans la fenêtre Propriétés, lorsque le modèle est ouvert
+// dans le concepteur.

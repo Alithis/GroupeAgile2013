@@ -6,6 +6,10 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using NoteTaLoc.Utilitary;
+using System.Configuration;
+using System.Web.Configuration;
+
 
 namespace NoteTaLoc
 {
@@ -14,6 +18,11 @@ namespace NoteTaLoc
 
     public class WebApiApplication : System.Web.HttpApplication
     {
+
+        public static readonly Configuration conf = WebConfigurationManager.OpenWebConfiguration("~");
+        public static readonly TwitterError twitterError = new TwitterError(conf);
+        public static readonly CategoryStorage categories = new CategoryStorage(twitterError,conf);
+
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -22,6 +31,7 @@ namespace NoteTaLoc
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
         }
     }
 }
