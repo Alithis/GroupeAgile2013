@@ -5,52 +5,176 @@
 
 
 <!--Story62/Accordeon-->
-<script id="users-template" type="text/x-handlebars-template">
-{{#each users}}
+
+<!--template pour contenu du jqxNavigationBar
+    le moteur de template est jandlebars.js
+    -->
+<script id="users-template" type="text/x-handlebars-template">  
+{{#each users}} 
     <div style='margin-top: 2px;'>
-      <div style='float: left;'>
-         <img alt='Note' src='http://www.jqwidgets.com/jquery-widgets-demo/images/notesIcon.png' />
-      </div>
-      <div style='margin-left: 4px; float: left;'>
-         {{name}} - {{date}} - [{{note}}]
-      </div>
+        <div style='float: left;'>
+            <img alt='Note' src='http://www.jqwidgets.com/jquery-widgets-demo/images/notesIcon.png' />
+        </div>
+        <div style='margin-left: 4px; float: left;'>
+            {{name}} - {{date}} - [{{note}}]
+        </div>
     </div>
+
     <div>
         <ul>
-            <li>Isolation</li>
+            <li>
+                Details:
+            </li>
+            {{#each categories}}
                 <ul>
-                   <li>Accoustique [3/5]</li>
-                   <li>Thermique[4/5]</li>
+                    <li>
+                        {{id}}
+                    </li>
+                    {{#each criteres}}
+                        <ul>
+                            <li>
+                                {{id}} [{{note}}]
+                            </li>
+                        </ul>
+                    {{/each}}
                 </ul>
-             <li>Environnement</li>
-             <li>Equipement</li>
-         </ul>
+            {{/each}}
+        </ul>
+        <ul>
+            <li>
+                Commentaires:
+            </li>
+            {{#each comments}}
+                <ul>
+                    <li>
+                        {{date}} - {{titre}} - {{text}}
+                    </li>
+                </ul>
+            {{/each}}
+        </ul>
      </div>
 {{/each}}
 </script>
 
-    <script type="text/javascript">
-        $(document).ready(function () {
-            var theme = "bootstrap";
-
-            var source = $("#users-template").html();
-            var template = Handlebars.compile(source);
-
-            var context = {
-                users: [
-                  { "name": "Arnaud", "date": "22/12/2012", "note": "4/5" },
-                  { "name": "Duc", "date": "12/05/2011", "note": "3/5" },
-                  { "name": "Christophe", "date": "05/12/2010", "note": "2/5" }
+<!--création du composant jqxNavigationBar
+    execution du moteur de template
+    -->
+<script type="text/javascript">
+    $(document).ready(function () {
+        var theme = "bootstrap"; //style pour le composant jqxNavigationBar
+        var source = $("#users-template").html();
+        var template = Handlebars.compile(source);
+        
+        var context = { //simulation du JSON fourni
+            users: [
+                { name: "Arnaud", date: "22/12/2012", note: 4,
+                  comments: [
+                    { titre: "titre 1", date: "22/12/2012", text: "bla bla bla" },
+                    { titre: "titre 2", date: "22/12/2012", text: "bla2 bla2 bla2" }
+                    ],
+                  categories: [
+                    { id: 100,
+                        criteres: [
+                            { id: 1, note: 4 },
+                            { id: 2, note: 3 },
+                            { id: 3, note: 5 }
+                            ]
+                    },
+                    { id: 200,
+                        criteres: [
+                            { id: 1, note: 4 },
+                            { id: 2, note: 3 },
+                            { id: 3, note: 5 }
+                            ]
+                     }
+                     ]
+                  },
+                  { name: "Duc", date: "12/05/2011", note: 3,
+                    comments: [
+                      { titre: "titre 1", date: "12/05/2011", text: "bla bla bla" },
+                      { titre: "titre 2", date: "12/05/2011", text: "bla2 bla2 bla2" }
+                      ],
+                    categories: [
+                      { id: 100,
+                            criteres: [
+                                { id: 1, note: 4 },
+                                { id: 2, note: 3 },
+                                { id: 3, note: 5 }
+                                ]
+                       },
+                       { id: 300,
+                             criteres: [
+                                 { id: 1, note: 4 },
+                                 { id: 2, note: 3 },
+                                 { id: 3, note: 5 }
+                                ]
+                            }
+                      ]
+                  },
+                  { name: "Christophe", date: "05/12/2010", note: 2,
+                    comments: [
+                        { titre: "titre 1", date: "05/12/2010", text: "bla bla bla" },
+                        { titre: "titre 2", date: "05/12/2010", text: "bla2 bla2 bla2" }
+                        ],
+                    categories: [
+                          { id: 200,
+                              criteres: [
+                                  { id: 1, note: 4 },
+                                  { id: 2, note: 3 },
+                                  { id: 3, note: 5 }
+                                  ]
+                          },
+                          { id: 300,
+                              criteres: [
+                                  { id: 1, note: 4 },
+                                  { id: 2, note: 3 },
+                                  { id: 5, note: 5 }
+                              ]
+                          }
+                    ]
+                  }
                 ]
             };
 
-            var code = template(context);
+        // les libellés correspondants
+        var libellesCategories = [
+           { ID: 100, LIB: "Isolation" },
+           { ID: 200, LIB: "Environnement" },
+           { ID: 300, LIB: "Equipement" }
+        ];
 
-            $("#jqxNavigationBar").html(code);
-            $("#jqxNavigationBar").jqxNavigationBar({ width: 400, height: 430, expandMode: 'multiple', theme: theme });
+        var libellesCriteres = [
+           { ID: 1, LIB: "Accoustique" },
+           { ID: 2, LIB: "Thermique" },
+           { ID: 3, LIB: "Electrique" },
+           { ID: 5, LIB: "Cuisine équipée" }
+        ];
+
+        var libelles = libellesCriteres.concat(libellesCategories); // on groupe le tout en un seul dictonnaire
+
+        $.each(context.users, function () { // on réalise le mapping en utilisant des fonctions jQuery standard
+            $.each(this.categories, function () {
+                var id = this.id;
+                var test = $.grep(libelles, function (e) { return e.ID == id; });
+                if (test[0] != null) {
+                    this.id = test[0].LIB;
+                }
+                $.each(this.criteres, function () {
+                    var id = this.id;
+                    var test = $.grep(libelles, function (e) { return e.ID == id; });
+                    if (test[0] != null) {
+                        this.id = test[0].LIB;
+                    }
+                });
+            });
         });
-    </script>
 
+        var code = template(context); // remplissage du template avec les données issues du contexte
+
+        $("#jqxNavigationBar").html(code);
+        $("#jqxNavigationBar").jqxNavigationBar({ width: 400, height: 430, expandMode: 'multiple', theme: theme });
+    });
+</script>
 
 <section class="content-wrapper main-content clear-fix">
     <div class="row-fluid">
@@ -61,13 +185,12 @@
                         <hgroup class="title">
                             <h3>@ViewBag.idNote</h3>
                         </hgroup>
-                            <div id='jqxNavigationBar'>
-                            </div>
+                            <div id='jqxNavigationBar'></div>
                      </div>
                 </div>
             </div>
-          </div>
         </div>
+    </div>
  </section>
 
  
