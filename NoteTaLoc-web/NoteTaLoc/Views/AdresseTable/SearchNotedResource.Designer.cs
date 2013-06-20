@@ -61,20 +61,47 @@ namespace ViewResAdresseTable {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Adresse.
         /// </summary>
-        public static string Header {
+        public static string Address {
             get {
-                return ResourceManager.GetString("Header", resourceCulture);
+                return ResourceManager.GetString("Address", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Index.
+        ///   Looks up a localized string similar to Saisissez votre recherche.
         /// </summary>
-        public static string Title {
+        public static string InsertSearch {
             get {
-                return ResourceManager.GetString("Title", resourceCulture);
+                return ResourceManager.GetString("InsertSearch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Note.
+        /// </summary>
+        public static string Note {
+            get {
+                return ResourceManager.GetString("Note", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Résultats.
+        /// </summary>
+        public static string Results {
+            get {
+                return ResourceManager.GetString("Results", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Soumettre la requête.
+        /// </summary>
+        public static string SubmitQuery {
+            get {
+                return ResourceManager.GetString("SubmitQuery", resourceCulture);
             }
         }
     }

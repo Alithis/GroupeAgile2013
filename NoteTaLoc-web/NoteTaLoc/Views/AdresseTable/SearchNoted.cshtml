@@ -1,10 +1,13 @@
-﻿@model IEnumerable<NoteTaLoc.Models.AdresseTable>
+﻿@using MyResource = ViewResAdresseTable.SearchNotedResource;
+@model IEnumerable<NoteTaLoc.Models.AdresseTable>
 
-@*
 @{
-    Layout = null;
- }
-*@
+    ViewBag.Results = MyResource.Results;
+    ViewBag.Address = MyResource.Address;
+    ViewBag.SubmitQuery = MyResource.SubmitQuery;
+    ViewBag.Note = MyResource.Note;
+}
+
 
 <script>
 
@@ -191,11 +194,11 @@
         <div class="span8 offset2">
             <div class="span10">
                 <form class="navbar-search pull-left">
-                    @Html.TextBox("searchString","Saisissez votre recherche")
+                    @Html.TextBox("searchString",MyResource.InsertSearch)
                 </form>
             </div>
             <div class="span2">
-                <input type="submit" id="btnSearch" class="btn btn-medium  btn-primary"/>            
+                <input type="submit" id="btnSearch" value='@ViewBag.SubmitQuery' class="btn btn-medium  btn-primary"/>
             </div>
         </div>
     </div>
@@ -204,17 +207,17 @@
             <div id="map_canvas" class="map_canvas span7"></div>
             <div id="seach_result"  class="seach_result span5 pre-scrollable" style="margin-left: 0%;">
                 <fieldset class="seach_result">
-                    <h4>&nbsp;&nbsp;Résultats&nbsp;&nbsp;</h4>
+                    <h4>&nbsp;&nbsp;@ViewBag.Results&nbsp;&nbsp;</h4>
                     @{
                         int counter = 0;
                     }
                     <div class="span11 black" id="note_@counter">
                         <div class="row-fluid">
                             <div class="span10">
-                                &nbsp;<b>Adresse</b>
+                                &nbsp;<b>@ViewBag.Address</b>
                             </div>
                             <div class="span2">
-                                &nbsp;<b>Note</b>
+                                &nbsp;<b>@ViewBag.Note</b>
                             </div>
                         </div>
                         @foreach (var item in Model)

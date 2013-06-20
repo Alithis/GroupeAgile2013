@@ -117,7 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Address" xml:space="preserve">
+    <value>Address</value>
+  </data>
   <data name="InsertSearch" xml:space="preserve">
-    <value>Saisissez votre recherche</value>
+    <value>Enter your search</value>
+  </data>
+  <data name="Note" xml:space="preserve">
+    <value>Mark</value>
+  </data>
+  <data name="Results" xml:space="preserve">
+    <value>Results</value>
+  </data>
+  <data name="SubmitQuery" xml:space="preserve">
+    <value>Submit Query</value>
   </data>
 </root>
