@@ -1,11 +1,18 @@
-﻿<!DOCTYPE html>
+﻿@using MyResources = ViewResShared.LayoutResource;
+
+@{
+    ViewBag.Title = MyResources.Title;
+    ViewBag.Greeting = MyResources.Greeting;
+}
+
+<!DOCTYPE html>
 <html>
     <head>
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-        <title>RateYourRent.com</title>
+        <title>@ViewBag.Title</title>
 
         <!-- Le styles -->
         <link href="~/Content/bootstrap/css/bootstrap.css" rel="stylesheet">
@@ -48,13 +55,13 @@
                                         @if (HttpContext.Current.Session["UserSessionObject"] != null)
                                         {
                                             NoteTaLoc.Models.UserTable usertable = (NoteTaLoc.Models.UserTable)HttpContext.Current.Session["UserSessionObject"];
-                                            <li class="btn-white">HELLO, @usertable.Nom @usertable.Prenom !</li>
+                                            <li class="btn-white">@ViewBag.Greeting, @usertable.Nom @usertable.Prenom !</li>
                                         }
-                                        <@Html.ActionLink("English", "ChangeCulture", "Account",  
+                                        <@Html.ActionLink(MyResources.English, "ChangeCulture", "Account",  
                                             new { lang = "en-CA", returnUrl = this.Request.RawUrl }, null)%>
-                                        <@Html.ActionLink("Français", "ChangeCulture", "Account",  new { lang = "fr-CA", returnUrl = this.Request.RawUrl }, null)%>
-                                        <li class="btn-note">@Html.ActionLink("NOTER", "Index", "SaisiNote", new { area = "" }, null)</li>
-                                        <li class="btn-recherche">@Html.ActionLink("RECHERCHER", "SearchNoted", "AdresseTable", new { area = "" }, null)</li>
+                                        <@Html.ActionLink(MyResources.French, "ChangeCulture", "Account",  new { lang = "fr-CA", returnUrl = this.Request.RawUrl }, null)%>
+                                        <li class="btn-note">@Html.ActionLink(MyResources.Mark, "Index", "SaisiNote", new { area = "" }, null)</li>
+                                        <li class="btn-recherche">@Html.ActionLink(MyResources.Search, "SearchNoted", "AdresseTable", new { area = "" }, null)</li>
                                         @Html.Partial("_LoginPartial")
                                     </ul>
                                 </div>

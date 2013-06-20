@@ -1,3 +1,9 @@
+@using MyResources = ViewResShared.LoginPartialResource;
+
+@{
+    ViewBag.LOGOFF = MyResources.LOGOFF;
+}
+
 @if (HttpContext.Current.Session["UserSessionObject"] != null)
 {
     NoteTaLoc.Models.UserTable usertable = (NoteTaLoc.Models.UserTable)HttpContext.Current.Session["UserSessionObject"];
@@ -6,12 +12,12 @@
     {
 
         @Html.AntiForgeryToken()
-        <a href="javascript:document.getElementById('logoutForm').submit()">LOG OFF</a>
+        <a href="javascript:document.getElementById('logoutForm').submit()">@ViewBag.LOGOFF</a>
     }
     </li>
 }
 else
 {     
-    <li class="btn-inscrire">@Html.ActionLink("S'INSCRIRE", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-    <li class="btn-login">@Html.ActionLink("LOGIN", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    <li class="btn-inscrire">@Html.ActionLink(MyResources.Register, "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+    <li class="btn-login">@Html.ActionLink(MyResources.Login, "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
 }

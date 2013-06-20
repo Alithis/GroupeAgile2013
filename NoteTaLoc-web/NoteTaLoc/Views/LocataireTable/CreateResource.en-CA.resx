@@ -121,9 +121,9 @@
     <value>LocataireTable</value>
   </data>
   <data name="LocataireID" xml:space="preserve">
-    <value>Identifiant locataire</value>
+    <value>Tenant ID</value>
   </data>
   <data name="Title" xml:space="preserve">
-    <value>Créer</value>
+    <value>Create</value>
   </data>
 </root>

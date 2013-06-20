@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NoteTaLoc.Views.Home {
+namespace ViewResHome {
     using System;
     
     
@@ -22,7 +22,7 @@ namespace NoteTaLoc.Views.Home {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class IndexResource {
+    public class IndexResource {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace NoteTaLoc.Views.Home {
         ///   Retourne l'instance ResourceManager mise en cache utilisée par cette classe.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("NoteTaLoc.Views.Home.IndexResource", typeof(IndexResource).Assembly);
@@ -51,12 +51,39 @@ namespace NoteTaLoc.Views.Home {
         ///   les recherches de ressources à l'aide de cette classe de ressource fortement typée.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Puissance par Bootstrap - En savoir plus.
+        /// </summary>
+        public static string poweredBy {
+            get {
+                return ResourceManager.GetString("poweredBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à RateYourRent.
+        /// </summary>
+        public static string titleHeader {
+            get {
+                return ResourceManager.GetString("titleHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Bienvenue sur le site RateYourRent. À l&apos;heure actuelle toutes les fonctionnalités sont gratuites jusqu&apos;à ce que nous morceau tous ensemble et il fonctionne très bien..
+        /// </summary>
+        public static string welcomeMessage {
+            get {
+                return ResourceManager.GetString("welcomeMessage", resourceCulture);
             }
         }
     }

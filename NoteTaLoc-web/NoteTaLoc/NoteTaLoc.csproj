@@ -220,6 +220,11 @@
       <DependentUpon>notetaloc.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\Account\ActivationSuccessfulResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ActivationSuccessfulResource.resx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Account\AfterRegisterResource.Designer.cs">
       <DependentUpon>AfterRegisterResource.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -227,6 +232,36 @@
     </Compile>
     <Compile Include="Views\Account\AfterRegisterResource.en-CA.Designer.cs">
       <DependentUpon>AfterRegisterResource.en-CA.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Views\Account\ActivationResource.Designer.cs">
+      <DependentUpon>ActivationResource.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Views\Account\ActivationResource.en-CA.Designer.cs">
+      <DependentUpon>ActivationResource.en-CA.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Views\Account\ActivationAlreadyDoneResource.Designer.cs">
+      <DependentUpon>ActivationAlreadyDoneResource.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Views\Account\ActivationAlreadyDoneResource.en-CA.Designer.cs">
+      <DependentUpon>ActivationAlreadyDoneResource.en-CA.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Views\Account\ActivationSuccessfulResource.en-CA.Designer.cs">
+      <DependentUpon>ActivationSuccessfulResource.en-CA.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Views\Account\RegisterAccountResource.en-CA.Designer.cs">
+      <DependentUpon>RegisterAccountResource.en-CA.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -244,6 +279,86 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RegisterAccountResource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Activation\IndexResource.en-CA.Designer.cs">
+      <DependentUpon>IndexResource.en-CA.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Views\Activation\IndexResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IndexResource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AdresseTable\CreateResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreateResource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Home\IndexResource.en-CA.Designer.cs">
+      <DependentUpon>IndexResource.en-CA.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Views\Home\IndexResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IndexResource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LocataireTable\CreateResource.en-CA.Designer.cs">
+      <DependentUpon>CreateResource.en-CA.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Views\LocataireTable\CreateResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreateResource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SaisiNote\IndexResource.en-CA.Designer.cs">
+      <DependentUpon>IndexResource.en-CA.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Views\SaisiNote\IndexResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IndexResource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Shared\ErrorResource.en-CA.Designer.cs">
+      <DependentUpon>ErrorResource.en-CA.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Views\Shared\ErrorResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ErrorResource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Shared\LoginPartialResource.en-CA.Designer.cs">
+      <DependentUpon>LoginPartialResource.en-CA.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Views\Shared\LayoutResource.en-CA.Designer.cs">
+      <DependentUpon>LayoutResource.en-CA.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Views\Shared\LayoutResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LayoutResource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Shared\LoginPartialResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LoginPartialResource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserTable\CreateResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreateResource.resx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -460,7 +575,6 @@
     <Content Include="Views\Account\Activation.cshtml" />
     <Content Include="Views\Account\ActivationAlreadyDone.cshtml" />
     <Content Include="Views\Account\ActivationSuccessful.cshtml" />
-    <Content Include="Views\Shared\CultureChooserUserControl.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -475,13 +589,50 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Views\Account\ActivationSuccessfulResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ActivationSuccessfulResource.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>ViewRes</CustomToolNamespace>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Account\AfterRegisterResource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AfterRegisterResource.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>ViewRes</CustomToolNamespace>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Account\AfterRegisterResource.en-CA.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AfterRegisterResource.en-CA.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>ViewRes</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Account\ActivationResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ActivationResource.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>ViewRes</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Account\ActivationResource.en-CA.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ActivationResource.en-CA.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>ViewRes</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Account\ActivationAlreadyDoneResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ActivationAlreadyDoneResource.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>ViewRes</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Account\ActivationAlreadyDoneResource.en-CA.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ActivationAlreadyDoneResource.en-CA.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>ViewRes</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Account\ActivationSuccessfulResource.en-CA.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ActivationSuccessfulResource.en-CA.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>ViewRes</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Account\RegisterAccountResource.en-CA.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RegisterAccountResource.en-CA.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>ViewRes</CustomToolNamespace>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Account\LoginResource.en-CA.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -496,6 +647,86 @@
     <EmbeddedResource Include="Views\Account\RegisterAccountResource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>RegisterAccountResource.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>ViewRes</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Activation\IndexResource.en-CA.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>IndexResource.en-CA.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>ViewRes</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Activation\IndexResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>IndexResource.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>ViewRes</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AdresseTable\CreateResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CreateResource.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>ViewResAdresseTable</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Home\IndexResource.en-CA.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>IndexResource.en-CA.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>ViewResHome</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Home\IndexResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>IndexResource.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>ViewResHome</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\LocataireTable\CreateResource.en-CA.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CreateResource.en-CA.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>ViewResLocataireTable</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\LocataireTable\CreateResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CreateResource.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>ViewResLocataireTable</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\SaisiNote\IndexResource.en-CA.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>IndexResource.en-CA.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>ViewResSaisiNote</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\SaisiNote\IndexResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>IndexResource.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>ViewResSaisiNote</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Shared\ErrorResource.en-CA.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ErrorResource.en-CA.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>ViewResShared</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Shared\ErrorResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ErrorResource.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>ViewResShared</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Shared\LoginPartialResource.en-CA.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>LoginPartialResource.en-CA.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>ViewResShared</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Shared\LayoutResource.en-CA.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>LayoutResource.en-CA.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>ViewResShared</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Shared\LayoutResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>LayoutResource.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>ViewResShared</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Shared\LoginPartialResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>LoginPartialResource.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>ViewResShared</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserTable\CreateResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CreateResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -1,5 +1,7 @@
-﻿@{
-    ViewBag.Title = "index";
+﻿@using MyResources = ViewRes.IndexResource;
+
+@{
+    ViewBag.Title = MyResources.Title;
 }
 
-<h2>index</h2>
+<h2>@ViewBag.Title</h2>

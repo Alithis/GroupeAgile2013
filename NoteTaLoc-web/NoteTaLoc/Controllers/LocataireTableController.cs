@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using NoteTaLoc.Models;
+using System.Globalization;
 
 namespace NoteTaLoc.Controllers
 {
@@ -20,6 +21,12 @@ namespace NoteTaLoc.Controllers
         {
             var locatairetables = db.LocataireTables.Include(l => l.AdresseTable).Include(l => l.UserTable);
             return View(locatairetables.ToList());
+        }
+
+        public ActionResult ChangeCulture(string lang, string returnUrl)
+        {
+            Session["Culture"] = new CultureInfo(lang);
+            return Redirect(returnUrl);
         }
 
         //

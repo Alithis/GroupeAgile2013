@@ -118,12 +118,12 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="poweredBy" xml:space="preserve">
-    <value>Puissance par Bootstrap - En savoir plus</value>
+    <value>Power by Bootstrap - Learn more</value>
   </data>
   <data name="titleHeader" xml:space="preserve">
     <value>RateYourRent</value>
   </data>
   <data name="welcomeMessage" xml:space="preserve">
-    <value>Bienvenue sur le site RateYourRent. À l'heure actuelle toutes les fonctionnalités sont gratuites jusqu'à ce que nous morceau tous ensemble et il fonctionne très bien.</value>
+    <value>Welcome to the RateYourRent website.  Right now all features are free until we piece them all together and it works fine.</value>
   </data>
 </root>
