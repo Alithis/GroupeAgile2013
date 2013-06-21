@@ -11,6 +11,10 @@ namespace NoteTaLoc
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
+            bundles.Add(new StyleBundle("~/bootstrap").Include("~/Content/bootstrap/css/bootstrap.css",
+                "~/Content/bootstrap/css/bootstrap-responsive.css"));
+
+
             bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
                         "~/Scripts/jquery-ui-{version}.js"));
 

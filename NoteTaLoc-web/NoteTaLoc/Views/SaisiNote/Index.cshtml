@@ -18,6 +18,14 @@
 </style>
 
 <script>
+
+    
+    $(document).ready(function () {
+        document.getElementById("addresspicker_map").onclick = function () {
+            document.getElementById("addresspicker_map").value = "";
+        }
+    });
+
     $(function () {
         var addresspicker = $("#addresspicker").addresspicker();
         var addresspickerMap = $("#addresspicker_map").addresspicker({
@@ -113,12 +121,22 @@
         });
     }
 </script>
-
+<div class="row-fluid">
+    <div class="span8 offset2">
+        <form class="navbar-search pull-left">
+            @Html.TextBox("addresspicker_map", "Utilisez la recherche pour pre-remplir l'adresse ... ", new { id = "addresspicker_map" })
+        </form>
+    </div>
+</div>
 <div class="row-fluid">
     <div class="span8 offset2 background_div">
         <div class="row-fluid">
             <div class="span12">
-                <div class="span6">
+                <div class="span12">
+                    <div id="map" style="width: 100%; height: 250px"></div>
+                    <div id="location" class=""></div>  
+                </div>
+                <div class="span12">
                     <div class="row-fluid">
                         <div class="span12">
                             <div class="content-wrapper">
@@ -126,16 +144,6 @@
                                     <h3>NOTEZ VOTRE APPARTEMENT</h3>
                                 </hgroup>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row-fluid">
-                        <div class="span5">
-                            Rechercher une adresse : 
-                        </div>
-                        <div class="span7">
-                            <form class="navbar-search pull-left">
-                                <input id="addresspicker_map" type="text" class="search-query" placeholder="Search">
-                            </form>
                         </div>
                     </div>
                     <div class="row-fluid">
@@ -217,10 +225,6 @@
                             <button onclick="javascript:Validateaddress()" class='input btn btn-large btn-block btn-primary'>Noter</button>
                         </div>                        
                     </div>
-                </div>
-                <div class="span6">
-                    <div id="map" style="width: 100%; height: 400px"></div>
-                    <div id="location" class=""></div>  
                 </div>
             </div>
         </div>

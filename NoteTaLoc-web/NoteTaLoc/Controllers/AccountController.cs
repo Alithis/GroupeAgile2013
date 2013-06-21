@@ -19,10 +19,11 @@ namespace NoteTaLoc.Controllers
     {
 
         private notetalocEntities db = new notetalocEntities();
-        private TwitterError twitterError = new TwitterError(null);
         private MailControler mailControler = new MailControler();
-        private readonly Configuration config = WebConfigurationManager.OpenWebConfiguration("~");
+        private static Configuration config = WebConfigurationManager.OpenWebConfiguration("~");
+        private TwitterError twitterError = new TwitterError(config);
 
+        
         //
         // GET: /Account/Register
 
@@ -287,7 +288,7 @@ namespace NoteTaLoc.Controllers
 
             HttpContext.Session.Remove("UserSessionObject");
 
-            return RedirectToAction("SearchNoted", "AdresseTable");
+            return RedirectToAction("Index", "Search");
         }
 
         #region Helpers
@@ -299,7 +300,7 @@ namespace NoteTaLoc.Controllers
             }
             else
             {
-                return RedirectToAction("SearchNoted", "AdresseTable");
+                return RedirectToAction("Index", "Search");
             }
         }
         #endregion

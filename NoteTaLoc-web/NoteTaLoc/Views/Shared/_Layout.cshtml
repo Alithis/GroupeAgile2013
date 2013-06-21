@@ -8,13 +8,13 @@
         <title>RateYourRent.com</title>
 
         <!-- Le styles -->
-        <link href="~/Content/bootstrap/css/bootstrap.css" rel="stylesheet">
-        <link href="~/Content/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
-        <link href="~/Content/bootstrap/css/bootstrap.css" rel="stylesheet">
-        <link href="~/Content/site.css" rel="stylesheet">
-
-        <script type="text/javascript"src="http://code.jquery.com/jquery-latest.min.js"></script>
-        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+        
+        @Scripts.Render("~/bundles/jquery")
+        @Styles.Render("~/Content/css")
+        @Styles.Render("~/bootstrap")
+        @RenderSection("styles", required: false)
+        @RenderSection("scripts", required: false)
+        @*<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>*@
         <script type="text/javascript" src="~/Content/bootstrap/js/bootstrap.min.js"></script>
 
     </head>
@@ -50,7 +50,7 @@
                                             <li class="btn-white">HELLO, @usertable.Nom @usertable.Prenom !</li>
                                         }
                                         <li class="btn-note">@Html.ActionLink("NOTER", "Index", "SaisiNote", new { area = "" }, null)</li>
-                                        <li class="btn-recherche">@Html.ActionLink("RECHERCHER", "SearchNoted", "AdresseTable", new { area = "" }, null)</li>
+                                        <li class="btn-recherche">@Html.ActionLink("RECHERCHER", "Index", "Search", new { area = "" }, null)</li>
                                         @Html.Partial("_LoginPartial")
                                     </ul>
                                 </div>
@@ -60,9 +60,6 @@
                 </div>
             </div>
             @RenderBody()
-
-            @*   @Scripts.Render("~/bundles/jquery")  *@
-            @RenderSection("scripts", required: false)
         </div>
     </body>
 </html>

@@ -253,11 +253,14 @@
     <Compile Include="Controllers\LocataireTableController.cs" />
     <Compile Include="Controllers\NoteTableController.cs" />
     <Compile Include="Controllers\ProprietaireTableController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\UserTableController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\ExceptionEx.cs" />
+    <Compile Include="Models\SearchMarker.cs" />
     <Compile Include="Utilitary\MailManager.cs" />
     <Compile Include="Models\SaisiNoteForm.cs" />
     <Compile Include="Models\AccountModels.cs" />
@@ -318,6 +321,24 @@
     <Content Include="Content\bootstrap\img\glyphicons-halflings.png" />
     <Content Include="Content\bootstrap\js\bootstrap.js" />
     <Content Include="Content\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\Images\Icon_00.png" />
+    <Content Include="Content\Images\Icon_00_Gray.png" />
+    <Content Include="Content\Images\Icon_10.png" />
+    <Content Include="Content\Images\Icon_10_Gray.png" />
+    <Content Include="Content\Images\Icon_20.png" />
+    <Content Include="Content\Images\Icon_20_Gray.png" />
+    <Content Include="Content\Images\Icon_30.png" />
+    <Content Include="Content\Images\Icon_30_Gray.png" />
+    <Content Include="Content\Images\Icon_40.png" />
+    <Content Include="Content\Images\Icon_40_Gray.png" />
+    <Content Include="Content\Images\Icon_50.png" />
+    <Content Include="Content\Images\Icon_50_Gray.png" />
+    <Content Include="Content\Images\Icon_shadow.png" />
+    <Content Include="Content\Images\InfoWindowClose.png" />
+    <Content Include="Content\Images\InfoWindowTail.png" />
+    <Content Include="Content\Images\Loading.gif" />
+    <Content Include="Content\Images\RatingBar.png" />
+    <Content Include="Content\Search.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -420,15 +441,15 @@
       <LastGenOutput>notetaloc.cs</LastGenOutput>
     </Content>
     <Compile Include="Utilitary\CategoryStorage.cs" />
-    <Content Include="Parameters\Categories\Copy of Copy of categorie_fake_file_lg_.xml" />
+    <Content Include="Content\Images\Rating.pdn" />
     <None Include="Properties\PublishProfiles\notetaloc - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\notetaloc - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\notetaloc - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\notetaloc - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
-    <Content Include="Parameters\Categories\categorie_fake_file.xml" />
-    <None Include="Parameters\Categories\Copy of categorie_fake_file.test" />
-    <Content Include="Parameters\Categories\categorie_lg_eng.xml" />
+    <Content Include="Parameters\Categories\eng_lg_categorie.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Parameters\Categories\fr_lg_categorie.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -471,18 +492,11 @@
     <Content Include="Images\orderedList8.png" />
     <Content Include="Images\orderedList9.png" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\SaisiNote\old.cshtml" />
     <Content Include="Views\SaisiNote\Index.cshtml" />
-    <Content Include="Views\AdresseTable\Index.cshtml" />
-    <Content Include="Views\AdresseTable\Details.cshtml" />
-    <Content Include="Views\AdresseTable\Create.cshtml" />
-    <Content Include="Views\AdresseTable\Edit.cshtml" />
-    <Content Include="Views\AdresseTable\Delete.cshtml" />
     <Content Include="Views\LocataireTable\Index.cshtml" />
     <Content Include="Views\LocataireTable\Details.cshtml" />
     <Content Include="Views\LocataireTable\Create.cshtml" />
@@ -507,11 +521,13 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Account\AfterRegister.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\AdresseTable\SearchNoted.cshtml" />
     <Content Include="Views\Activation\index.cshtml" />
     <Content Include="Views\Account\Activation.cshtml" />
     <Content Include="Views\Account\ActivationAlreadyDone.cshtml" />
     <Content Include="Views\Account\ActivationSuccessful.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
+    <Content Include="Views\Search\InfoWindow.cshtml" />
+    <Content Include="Views\Search\SearchNoted.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
