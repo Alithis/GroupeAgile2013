@@ -1,0 +1,78 @@
+﻿<div class="info" style="width: auto">
+    <table border="0" style="width: 100%; margin: 0px; padding: 0px; border-collapse: collapse;
+        height: 100%">
+        <tr style="height: 50px;">
+            <td>
+                <span class="info-adress">@Html.Raw(Model.Address.Substring(0, Model.Address.IndexOf(",")).Trim())
+                    <br />
+                    @Html.Raw(Model.Address.Substring(Model.Address.IndexOf(",") + 1).Trim())
+                </span>
+                <br />
+                <br />
+            </td>
+            <td>
+                <div style="width: 30px">
+                </div>
+            </td>
+            <td valign="top" style="width: 100px">
+                <div class="info-walkscrore">
+                    <h1>
+                        88
+                    </h1>
+                    <a href="http://www.walkscore.com/score/5033-rue-de-mentana-montr%C3%A9al?utm_medium=overlay_link&utm_campaign=widget4"
+                        target="_blank">Walk Score</a>
+                </div>
+            </td>
+        </tr>
+        <tr style="height: 36px">
+            <td colspan="3">
+                <div class='info-rating rating-@((Math.Round(Model.Score * 2) * 5).ToString("00"))'>
+                </div>
+                &nbsp;&nbsp;<span class="review">(@Model.NbReviews critique@(Model.NbReviews > 1 ? "s" : ""))</span>
+                <br />
+                <br />
+            </td>
+        </tr>
+        <tr id="info-details-row" style="height: 33px">
+            <td colspan="3" style="text-align: center">
+                <a href="#" id="info-details-btn" class="btn btn-info btn-small" style="margin-top: 5px;">
+                    <i class="icon-white icon-search"></i>Détails</a>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <div id="details">
+                    <table style="width: 100%" border="1" style="border-collapse:collapse">
+                    @foreach(var d in Model.Details)
+                        {
+                            @:<tr><td>
+                            @d.UserName
+                            @:</td>
+                            @:<td style="width:150px; text-align:center">
+                            @d.Date
+                            @:</td>
+                            @:<td style="width:50px; text-align:center">
+                            @d.Score.ToString("0.00")
+                            @:</td>
+                            @:</tr>                         
+                        }
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <script type="text/javascript">
+        $(function () {
+            $("#info-details-btn").click(function () {
+                var w = Math.max($(".info").width(), 400);
+                $("#info-details-row").css("opacity", 0);
+                LogAction("show marker details");
+
+                infoWindow.resizeContent(w, 400, function () {
+                    $("#info-details-row").hide();
+                    $("#details").fadeIn();
+                });
+            });
+        });
+    </script>
+</div>

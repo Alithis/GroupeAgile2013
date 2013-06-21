@@ -1,0 +1,1 @@
+2013-06-11 16:05:20 - initialize.ReferenceError : google is not defined

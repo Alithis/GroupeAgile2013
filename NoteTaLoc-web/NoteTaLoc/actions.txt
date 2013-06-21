@@ -1,0 +1,20 @@
+2013-06-11 15:08:04 (::1): search: Québec, QC, Canada
+2013-06-11 15:09:20 (::1): show marker,é id : 627
+2013-06-11 15:09:20 (::1): show marker,é id : 355
+2013-06-11 15:09:21 (::1): show marker,é id : 372
+2013-06-11 15:09:22 (::1): show marker,é id : 90
+2013-06-11 15:09:22 (::1): show marker,é id : 751
+2013-06-11 15:09:23 (::1): show marker,é id : 371
+2013-06-11 15:09:24 (::1): show marker details
+2013-06-11 15:09:25 (::1): show marker,é id : 711
+2013-06-11 15:09:26 (::1): show marker details
+2013-06-11 15:09:32 (::1): show marker,é id : 711
+2013-06-11 15:09:34 (::1): show marker details
+2013-06-11 17:23:49 (::1): show marker, id : 280
+2013-06-11 17:23:54 (::1): show marker, id : 280
+2013-06-11 17:23:57 (::1): show marker details
+2013-06-11 17:24:57 (::1): search: Le Plateau-Mont-Royal, Montreal, QC, Canada
+2013-06-11 17:25:06 (::1): search: Metcalfe Street, Montreal, QC, Canada
+2013-06-11 17:25:14 (::1): show marker, id : 143
+2013-06-11 17:37:18 (::1): search: Arizona
+2013-06-11 17:37:47 (::1): search: Montréal, QC, Canada

@@ -1,0 +1,2 @@
+﻿charger toutes données dès le chargement des markers
+réduire les noms des propriétés json

@@ -1,0 +1,240 @@
+﻿@section Scripts {
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
+    <script src="Scripts/markerclusterer_compiled.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        var map = null;
+        var markerClusterer = null;
+
+        $(function () {
+            try {
+                initMap();
+                initSearchBox();
+                loadMarkers();
+            }
+            catch (e) {
+                Log("initialize", e);
+                var msg = "Erreur d'initialisation de la carte";
+                $("#map_canvas").html("<center><span class='label label-important'><i class='icon-white icon-exclamation-sign'></i>&nbsp;" +
+                                      msg + "&nbsp;</span></center>")
+
+            }
+        });
+
+
+        function initMap() {
+            var mapOptions = {
+                zoom: 2,
+                center: new google.maps.LatLng(0, 0),
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                streetViewControl: true,
+                mapTypeControlOptions: {
+                    style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
+                },
+                zoomControl: true,
+                zoomControlOptions: {
+                    style: google.maps.ZoomControlStyle.LARGE
+                },
+                backgroundColor: "#E0E0E0"
+            };
+            map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+            var worldBounds = new google.maps.LatLngBounds(new google.maps.LatLng(-75, -180), new google.maps.LatLng(75, 180));
+            map.fitBounds(worldBounds);
+        }
+
+        function initSearchBox() {
+
+            var txtBeforeChange = null;
+            var input = $("#searchText").get(0);
+            var _addEventListener = (input.addEventListener) ? input.addEventListener : input.attachEvent;
+
+            var addEventListenerWrapper = function (type, listener) {
+                if (type == "keydown") {
+                    var orig_listener = listener;
+                    listener = function (event) {
+                        var suggestion_selected = $(".pac-item.pac-selected").length > 0;
+                        if (event.which == 13 && !suggestion_selected) {
+                            var simulated_downarrow = $.Event("keydown", { keyCode: 40, which: 40 })
+                            orig_listener.apply(input, [simulated_downarrow]);
+                        }
+                        if (event.which == 27) {
+                            $("#searchText").val(txtBeforeChange);
+                        }
+
+                        orig_listener.apply(input, [event]);
+                    };
+                }
+                _addEventListener.apply(input, [type, listener]);
+            }
+
+
+            if (input.addEventListener)
+                input.addEventListener = addEventListenerWrapper;
+            else if (input.attachEvent)
+                input.attachEvent = addEventListenerWrapper;
+
+            var autocomplete = new google.maps.places.Autocomplete(input, { types: ['geocode'] });
+            google.maps.event.addListener(autocomplete, "place_changed", function () {
+                $('#searchBtn').click();
+            });
+
+            $('#searchBtn').click(function () {
+                try {
+                    var place = autocomplete.getPlace();
+
+                    if (!place || !place.geometry) {
+                        $("#searchBox span").css("display", "inline-block")
+                    }
+                    else {
+                        $("#searchBox span").hide();
+                        txtBeforeChange = $("#searchText").val();
+                        if (place.geometry.viewport) {
+                            map.fitBounds(place.geometry.viewport);
+                        }
+                        else {
+                            map.setCenter(place.geometry.location);
+                            map.setZoom(17);  // Why 17? Because it looks good.
+                        }
+                    }
+                }
+                catch (e) {
+                }
+            });
+        }
+
+        function loadMarkers() {
+            $("<div/>").addClass("map-loading").insertAfter($("#map_canvas"));
+
+            $.ajax({
+                type: "GET",
+                url: '/Search/LoadMarkers',
+                dataType: "json",
+                cache: false,
+                success: function (data) {
+                    var markers = [];
+                    $.each(data, function (index, value) {
+                        markers.push(buildMarker(value));
+                    });
+                    if (markerClusterer) {
+                        markerClusterer.clearMarkers();
+                    }
+                    markerClusterer = new MarkerClusterer(map, markers, {
+                        maxZoom: 14,
+                        minimumClusterSize: 5
+                    });
+
+                    $("#searchText").removeAttr("disabled");
+                    $("#searchBtn").removeAttr("disabled");
+                },
+                error: function (xmlRequest) {
+                    var msg = "Erreur : " + (xmlRequest.responseJSON ? xmlRequest.responseJSON : xmlRequest.statusText);
+                    $("<div/>").addClass("map-error")
+                               .html("<center><span class='label label-important' style='margin-top:50px'><i class='icon-white icon-exclamation-sign'></i>&nbsp;" +
+                                      msg + "&nbsp;</span></center>")
+                               .insertAfter($("#map_canvas"));
+                },
+                complete: function () {
+                    $(".map-loading").remove();
+                }
+            });
+        }
+
+        function buildMarker(data) {
+            var rating = Math.round(data.Score) + "0";
+            var latLng = new google.maps.LatLng(data.Latitude, data.Longitude);
+
+            var icon = new google.maps.MarkerImage("/Content/Images/Icon_" + rating + ".png",
+                new google.maps.Size(32.0, 32.0),
+                new google.maps.Point(0, 0),
+                new google.maps.Point(16.0, 16.0));
+
+            var shadow = new google.maps.MarkerImage("Content/Images/Icon_shadow.png",
+                new google.maps.Size(49.0, 32.0),
+                new google.maps.Point(0, 0),
+                new google.maps.Point(16.0, 16.0));
+
+            var marker = new google.maps.Marker({
+                position: latLng,
+                draggable: false,
+                icon: icon,
+                shadow: shadow,
+                title: data.Address
+            });
+
+            google.maps.event.addListener(marker, 'click', function () {
+                clickMarker(marker, data);
+            });
+
+            return marker;
+        }
+
+        function clickMarker(marker, data) {
+            console.log(data);
+
+            if (marker.getIcon().url.indexOf("_Gray.png") == -1) {
+                var url = marker.getIcon().url.replace(".png", "_Gray.png");
+                var icon = new google.maps.MarkerImage(url,
+                    new google.maps.Size(32.0, 32.0),
+                    new google.maps.Point(0, 0),
+                    new google.maps.Point(16.0, 16.0));
+                marker.setIcon(icon);
+            }
+        }
+    </script>
+}
+@section Styles
+{
+    <link href="Content/Search.css" rel="stylesheet" />
+    <!--[if lt IE 9]>
+  <style type="text/css">
+        .map-loading
+        {
+            background: transparent;
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#80FFFFFF,endColorstr=#80FFFFFF);
+            zoom: 1;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            margin: 0px;
+            padding: 0px;
+            z-index: 1000;
+            top: 0px;
+            left: 0px;
+            background-image: url("Loading.gif");
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
+  </style>
+<![endif]-->
+}
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row-fluid">
+    <div class="span8 offset2">
+        <div class="span10">
+            <div id="searchBox" class="input-append">
+                <input id="searchText" type="text" disabled="disabled" value="" class="input-medium"
+                    placeholder="Rechercher un lieu" />
+                <button id="searchBtn" class="btn" type="button" disabled="disabled">
+                    <i class="icon-search"></i>
+                </button>
+                <br />
+                <span class="label label-important"><i class="icon-white icon-exclamation-sign"></i>
+                    &nbsp;Aucun résultat</span>
+            </div>
+        </div>
+        <div class="span2">
+        </div>
+    </div>
+</div>
+<div class="row-fluid">
+    <div class="span10 offset1">
+    </div>
+</div>
+<div class="row-fluid">
+    <div class="span10 offset1 background_div">
+        <div id="map_canvas" class="span12"></div>
+    </div>
+</div>
+
