@@ -1,11 +1,8 @@
 ﻿#map_canvas
 {
-    width: 70%;
-    height: 100%;
-    top: 20%;
-    left: 15%;
     line-height: normal;
-    position:absolute;
+    position:inherit;
+    height:450px;
 }
 .map-loading
 {
@@ -26,23 +23,24 @@
 .map-error
 {
     background-color: rgba(0, 0, 0, 0.5);
-    position: absolute;
-    width: 70%;
-    height: 75%;
-    top: 20%;
-    left: 15%;
-    margin: 0px;
-    padding: 0px;
+    line-height: normal;
+    position:inherit;
+    height:450px;
     z-index: 1000;
 }
 
 #searchBox
 {
-    width: 50%;
-    left: 25%;
-    top: 5%;
+    width: 100%;
+    padding-right:20%;
+    padding-left:50%;
     position: absolute;
     display: inline-block;
+}
+
+#searchText
+{
+    width: 100%;
 }
 
 #searchBox input
