@@ -4,6 +4,14 @@
 }
 
 <!-- Template adresse -->
+<script id="adresse-simple-template" type="text/x-handlebars-template">  
+<div class="span12">
+    <div class="span8" id="adresse"><h1>{{adresse}}</h1></div>
+    <div class="span4" id="noteTotale"><h2>{{moyenneAdresse}} / 5</h2></div>
+</div>
+</script>
+
+<!-- Template adresse -->
 <script id="adresse-template" type="text/x-handlebars-template">  
 <div class="span6">
     <div class="span8" id="adresse"><h1>{{adresse}}</h1></div>
@@ -11,16 +19,16 @@
 </div>
 <div class="span6">
     <div id="myCarousel" class="carousel slide">
-        <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="1"></li>
-            <li data-target="#myCarousel" data-slide-to="2"></li>
+        <ol class="carousel-indicators" id="img_indicators">
+    {{#each images}}
+            <li data-target="#myCarousel" data-slide-to="{{image}}"></li>
+    {{/each}}
         </ol>
         <!-- Carousel items -->
-        <div class="carousel-inner">
-            <div class="active item"><img src="/Images/Story3/sunlife_building_01.jpg"/></div>
-            <div class="item"><img src="/Images/Story3/sunlife_building_02.jpg" /></div>
-            <div class="item"><img src="/Images/Story3/sunlife_building_03.jpg" /></div>
+        <div class="carousel-inner" id="img_items">
+    {{#each images}}
+            <div class="item"><img src="{{uri}}"/></div>
+    {{/each}}
         </div>
         <!-- Carousel nav -->
         <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
@@ -71,6 +79,9 @@
         var source = $("#users-template").html();
         var template = Handlebars.compile(source);
 
+        var adresseSimple = $("#adresse-simple-template").html();
+        var adresseSimpleTpl = Handlebars.compile(adresseSimple);
+
         var adresse = $("#adresse-template").html();
         var adresseTpl = Handlebars.compile(adresse);
 
@@ -78,6 +89,20 @@
             adresseId: "20135411",
             adresse: "1155 Rue Metcalfe, Montréal, QC H3B 4J5, Canada",
             moyenneAdresse: 5,
+            images: [
+                {
+                    image: 0,
+                    uri: "/Images/Story3/sunlife_building_01.jpg"
+                },
+                {
+                    image: 1,
+                    uri: "/Images/Story3/sunlife_building_02.jpg"
+                },
+                {
+                    image: 2,
+                    uri: "/Images/Story3/sunlife_building_03.jpg"
+                }
+            ],
             users: [
                 {
                     name: "Arnaud", date: "22/12/2012", note: 4,
@@ -191,16 +216,18 @@
         });
 
         var code = template(context); // remplissage du template avec les données issues du contexte
-        var adresseCtx = adresseTpl(context);
+
+        var adresseCtx = (context.images) ? adresseTpl(context) : adresseSimpleTpl(context);
 
         $("#jqxNavigationBar").html(code);
         $("#jqxNavigationBar").jqxNavigationBar({width: '100%', expandMode: 'multiple', theme: theme });
 
         $("#adresseDetails").html(adresseCtx);
+
+        $("#img_indicators li:first").addClass("active");
+        $("#img_items div:first").addClass("active");
     });
 </script>
-
-
 
 <h2>Story3 : détails d'une adresse</h2>
 
@@ -214,8 +241,9 @@
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><img src="/Images/Story3/button_close.png" /> </button>
             <h3>&nbsp;</h3>
         </div>
-        <div class="row-fluid offset1 background_div" id='adresseDetails'></div>
+        <div class="row-fluid background_div">
+            <div id='adresseDetails'></div>
+        </div>
         <div class="row-fluid span12" id='jqxNavigationBar'></div>
     </div>
 </div>
-

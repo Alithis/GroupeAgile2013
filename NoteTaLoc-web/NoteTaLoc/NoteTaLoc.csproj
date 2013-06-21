@@ -176,6 +176,8 @@
     <Compile Include="Controllers\LocataireTableController.cs" />
     <Compile Include="Controllers\NoteTableController.cs" />
     <Compile Include="Controllers\ProprietaireTableController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Controllers\Story3Controller.cs" />
     <Compile Include="Controllers\UserTableController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -333,6 +335,11 @@
     <Content Include="Images\background\background_9.jpg" />
     <Content Include="Images\LOGO_loQUALsmall.png" />
     <Content Include="Images\search-icon.png" />
+    <Content Include="Images\Story3\button_close.png" />
+    <Content Include="Images\Story3\button_plus.gif" />
+    <Content Include="Images\Story3\sunlife_building_01.jpg" />
+    <Content Include="Images\Story3\sunlife_building_02.jpg" />
+    <Content Include="Images\Story3\sunlife_building_03.jpg" />
     <Content Include="lib\jquery-1.4.4.min.js" />
     <None Include="lib\jquery-1.8.2.intellisense.js" />
     <Content Include="lib\jquery-1.8.2.js" />
@@ -363,6 +370,9 @@
     <None Include="Properties\PublishProfiles\notetaloc - Web Deploy %284%29.pubxml" />
     <None Include="Properties\PublishProfiles\notetaloc - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Scripts\handlebars.js" />
+    <Content Include="Scripts\handlebars.min.js" />
+    <Content Include="Scripts\handlebars.runtime.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -447,6 +457,7 @@
     <Content Include="Views\Account\Activation.cshtml" />
     <Content Include="Views\Account\ActivationAlreadyDone.cshtml" />
     <Content Include="Views\Account\ActivationSuccessful.cshtml" />
+    <Content Include="Views\Story3\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

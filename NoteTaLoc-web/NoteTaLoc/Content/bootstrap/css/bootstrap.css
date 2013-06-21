@@ -5054,7 +5054,8 @@ a.thumbnail:focus {
 }
 .carousel-inner > .item {
   display: none;
-  position: relative;
+  vertical-align:central;
+  
   -webkit-transition: 0.6s ease-in-out left;
   -moz-transition: 0.6s ease-in-out left;
   -o-transition: 0.6s ease-in-out left;

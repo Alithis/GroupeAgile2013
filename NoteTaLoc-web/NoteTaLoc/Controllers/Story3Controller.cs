@@ -11,11 +11,9 @@ namespace NoteTaLoc.Controllers
         //
         // GET: /Story3/
 
-        public ActionResult Index(String idAdresse)
+        public ActionResult Index()
         {
-            ViewBag.idAdresse = "Story 3 : " + idAdresse;
             return View();
         }
-
     }
 }
