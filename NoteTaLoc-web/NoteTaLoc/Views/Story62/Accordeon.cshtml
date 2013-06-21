@@ -1,5 +1,7 @@
-﻿@{
-    ViewBag.Title = "Accordeon";
+﻿@using MyResources = Story62.Accordeon;
+
+@{
+    ViewBag.Title = MyResources.Title;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -183,7 +185,7 @@
                 <div class="span12">
                     <div class="content-wrapper">
                         <hgroup class="title">
-                            <h3>@ViewBag.idNote</h3>
+                            <h3>@ViewBag.Title</h3>
                         </hgroup>
                             <div id='jqxNavigationBar'></div>
                      </div>

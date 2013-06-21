@@ -83,6 +83,13 @@ input, textarea, .uneditable-input, input[type="text"], input[type="search"] {
     display: inline-block;
 }
 
+.btn-lang {
+    background-color: #777777;
+    color: #000000;
+    height: inherit;
+    display: inline-block;
+}
+
 .ul_menu_bar {
     height: inherit;
     height: 67px;
