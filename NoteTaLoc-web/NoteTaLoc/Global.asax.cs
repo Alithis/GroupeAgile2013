@@ -19,18 +19,19 @@ namespace NoteTaLoc
     public class WebApiApplication : System.Web.HttpApplication
     {
 
-        public static readonly Configuration conf = WebConfigurationManager.OpenWebConfiguration("~");
-        public static readonly TwitterError twitterError = new TwitterError(conf);
-        public static readonly CategoryStorage categories = new CategoryStorage(twitterError,conf);
-
         protected void Application_Start()
         {
+            
+            Configuration conf = WebConfigurationManager.OpenWebConfiguration("~");
+            TwitterError twitterError = new TwitterError(conf);
+            
             AreaRegistration.RegisterAllAreas();
-
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            Application["Categories"] = new CategoryStorage(twitterError, conf);
 
         }
     }

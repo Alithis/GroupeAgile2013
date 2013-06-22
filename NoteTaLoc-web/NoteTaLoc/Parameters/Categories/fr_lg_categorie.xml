@@ -18,6 +18,24 @@
           <active>true</active>
           <weight>1</weight>
         </Criteria>
+        <Criteria>
+          <criteriaId>30</criteriaId>
+          <libelle>criteria libelle 3</libelle>
+          <active>true</active>
+          <weight>1</weight>
+        </Criteria>
+        <Criteria>
+          <criteriaId>40</criteriaId>
+          <libelle>criteria libelle 4</libelle>
+          <active>true</active>
+          <weight>1</weight>
+        </Criteria>
+        <Criteria>
+          <criteriaId>50</criteriaId>
+          <libelle>criteria libelle 5</libelle>
+          <active>true</active>
+          <weight>1</weight>
+        </Criteria>
       </criteriasList>
     </Category>
     <Category>

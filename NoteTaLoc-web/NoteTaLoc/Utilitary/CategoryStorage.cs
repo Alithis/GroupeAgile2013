@@ -51,7 +51,7 @@ namespace NoteTaLoc.Utilitary
             try
             {
                 // test du folder
-                DirectoryInfo folder = new DirectoryInfo(folderLocation);
+                DirectoryInfo folder = new DirectoryInfo(System.Web.HttpContext.Current.Server.MapPath(folderLocation));
 
                 // parcours de tous les fichiers dans le repertoire pour recuperer les langues
                 foreach (FileInfo tmpFile in folder.EnumerateFiles())
@@ -111,7 +111,7 @@ namespace NoteTaLoc.Utilitary
                     }
                     catch (Exception EXP)
                     {
-                        //TODO TRAITER L'EXCEPTION ICI access aux fichiers
+                        errorString.Write(EXP.Message);
                         defaultParametering();
                     }
                 }
@@ -119,7 +119,7 @@ namespace NoteTaLoc.Utilitary
             }
             catch (Exception EXP)
             {
-                //TODO TRAITER L'EXCEPTION ICI access au repertoire
+                errorString.Write(EXP.Message);
                 defaultParametering();
             }
 

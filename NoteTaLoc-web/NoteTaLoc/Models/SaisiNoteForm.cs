@@ -25,8 +25,9 @@ namespace NoteTaLoc.Models
         [Required(ErrorMessage = "Le pays est obligatoire.")]
         public string Pays { get; set; }
 
-        [Required(ErrorMessage = "Le numéro est obligatoire.")]
         [Range(0, 5, ErrorMessage = "La note doit être comprise entre 0 et 5")]
         public int Note { get; set; }
+
+        public List<NoteTaLoc.Utilitary.Criteria> Criterias { get; set; }
     }
 }
