@@ -126,4 +126,7 @@
   <data name="Register" xml:space="preserve">
     <value>Register</value>
   </data>
+  <data name="LANGUAGE" xml:space="preserve">
+    <value>LANGUAGE</value>
+  </data>
 </root>

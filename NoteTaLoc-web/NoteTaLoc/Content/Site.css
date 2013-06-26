@@ -161,3 +161,8 @@ input, textarea, .uneditable-input, input[type="text"], input[type="search"] {
     vertical-align: middle;
     padding: 10px 15px;
 }
+
+.link-white
+{
+    color: #fff;
+}

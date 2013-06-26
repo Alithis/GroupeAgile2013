@@ -61,6 +61,15 @@ namespace ViewResShared {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à LANGUE.
+        /// </summary>
+        public static string LANGUAGE {
+            get {
+                return ResourceManager.GetString("LANGUAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Se connecter.
         /// </summary>
         public static string Login {

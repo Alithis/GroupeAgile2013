@@ -126,4 +126,7 @@
   <data name="Register" xml:space="preserve">
     <value>S'inscrire</value>
   </data>
+  <data name="LANGUAGE" xml:space="preserve">
+    <value>LANGUE</value>
+  </data>
 </root>
