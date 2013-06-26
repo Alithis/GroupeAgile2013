@@ -33,13 +33,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="Recaptcha">
-      <HintPath>..\CommonReferences\Recaptcha.dll</HintPath>
+    <Reference Include="Recaptcha, Version=1.0.5.0, Culture=neutral, PublicKeyToken=9afc4d65b28c38c2, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\NoteTaLoc\bin\Recaptcha.dll</HintPath>
     </Reference>
     <Reference Include="Rhino.Mocks">
       <HintPath>..\CommonReferences\Rhino.Mocks.dll</HintPath>
@@ -49,10 +47,8 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.ApplicationServices" />
-    <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
@@ -125,18 +121,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AccountControllerTest.cs" />
-    <Compile Include="Controllers\SaisiNoteControllerTest.cs" />
     <Compile Include="Controllers\GeocoderTest.cs" />
-    <Compile Include="Controllers\SaisiNoteWriterTest.cs" />
     <Compile Include="Controllers\AdresseTableControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\ValuesControllerTest.cs" />
+    <Compile Include="Utilitary\CategoryStorageTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
+    <Content Include="Parameters\Categories\categorie_fake_file.xml" />
+    <Content Include="Parameters\Categories\fr_lg_categorie.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Parameters\Categories\eng_lg_categorie.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Parameters\Categories\_lg_Copy of Copy of categorie_fake_file.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Parameters\Categories\Copy of categorie_fake_file.test" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NoteTaLoc\NoteTaLoc.csproj">

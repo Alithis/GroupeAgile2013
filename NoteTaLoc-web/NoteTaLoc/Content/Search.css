@@ -1,0 +1,58 @@
+﻿#map_canvas
+{
+    line-height: normal;
+    position:inherit;
+    height:450px;
+}
+.map-loading
+{
+    background-color: rgba(255, 255, 255, 0.5);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    z-index: 1000;
+    top: 0px;
+    left: 0px;
+    background-image: url("Images/Loading.gif");
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.map-error
+{
+    background-color: rgba(0, 0, 0, 0.5);
+    line-height: normal;
+    position:inherit;
+    height:450px;
+    z-index: 1000;
+}
+
+#searchBox
+{
+    padding-left: 25%;
+    padding-right: 25%;
+    position: inherit;
+    width: 100%;
+}
+
+#searchText
+{
+    width: 100%;
+}
+
+#searchBox input
+{
+    width: 100%;
+}
+
+#searchBox span
+{
+    margin-top: 5px;
+    margin-left: 5px;
+    padding-left: 2px;
+    padding-right: 10px;
+    display: none;
+    background-color: #D94a48;
+}
