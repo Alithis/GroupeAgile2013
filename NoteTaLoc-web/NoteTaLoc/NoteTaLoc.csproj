@@ -248,6 +248,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ActivationController.cs" />
     <Compile Include="Controllers\AdresseTableController.cs" />
+    <Compile Include="Controllers\CategoryStorageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SaisiNoteController.cs" />
     <Compile Include="Controllers\LocataireTableController.cs" />
@@ -430,6 +431,11 @@
     <Content Include="Images\background\background_8.JPG" />
     <Content Include="Images\background\background_9.jpg" />
     <Content Include="Images\LOGO_loQUALsmall.png" />
+    <Content Include="Images\Story3\button_close.png" />
+    <Content Include="Images\Story3\button_plus.gif" />
+    <Content Include="Images\Story3\sunlife_building_01.jpg" />
+    <Content Include="Images\Story3\sunlife_building_02.jpg" />
+    <Content Include="Images\Story3\sunlife_building_03.jpg" />
     <Content Include="Models\notetaloc.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>notetaloc.edmx</DependentUpon>
@@ -456,6 +462,9 @@
     <Content Include="Parameters\Categories\fr_lg_categorie.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Scripts\handlebars.js" />
+    <Content Include="Scripts\handlebars.min.js" />
+    <Content Include="Scripts\handlebars.runtime.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />

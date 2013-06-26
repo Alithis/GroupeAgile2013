@@ -15,7 +15,7 @@ using System.Data;
 using System.Data.Entity;
 using NoteTaLoc.Models;
 
-namespace RateYourRent.Controllers
+namespace NoteTaLoc.Controllers
 {
     public class SearchController : Controller
     {
@@ -32,18 +32,6 @@ namespace RateYourRent.Controllers
         {
             try
             {
-                //List<DetailsMarker> details = new List<DetailsMarker>();
-                //for (int i = 0; i < 5; i++)
-                //{
-                //    details.Add(new DetailsMarker()
-                //    {
-                //        Date = DateTime.Now.AddDays(-i),
-                //        Score = 4,
-                //        UserName = string.Format("user {0:00}", i + 1)
-                //    });
-                //}
-
-
                 List<SearchMarker> list = new List<SearchMarker>();
                 using (notetalocEntities db = new notetalocEntities())
                 {
