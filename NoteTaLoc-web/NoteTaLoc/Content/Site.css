@@ -1,7 +1,7 @@
 ﻿body {
-    padding-top: 40px;
+    
     margin: 0;
-    margin-top:5%;
+    margin-top:1%;
     background-image: url('/Images/background/background_8.jpg');
     background-size: cover;
     background-repeat: no-repeat;
@@ -21,7 +21,7 @@
 }
 
 input, textarea, .uneditable-input, input[type="text"], input[type="search"] {
-    width: 95%;
+    width: 98%;
     margin-bottom: 10px;
 }
 
@@ -160,4 +160,8 @@ input, textarea, .uneditable-input, input[type="text"], input[type="search"] {
     display: inline-block;
     vertical-align: middle;
     padding: 10px 15px;
+}
+
+.float-none {
+    float: none;
 }

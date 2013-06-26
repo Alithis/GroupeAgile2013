@@ -5,6 +5,24 @@
     Layout = null;
  }
 *@
+<style>.map_canvas
+{
+    width: 60%; 
+    height: 450px;
+    float: left;
+    margin-right: 5px;
+}
+.search_result
+{
+    width: auto; 
+    height: 450px;
+    float: right;
+}
+.note
+{
+ border: 1px solid gray;
+}
+</style>
 
 <script>
 
@@ -61,6 +79,8 @@
     var arrlatt  = [];
     var bounds;
 
+
+
     $(document).ready(function () {
         initialiser();
 
@@ -88,6 +108,7 @@
             function () { $(this).addClass("note_hover").css('cursor', 'pointer'); },
             function () { $(this).removeClass("note_hover"); }
         );
+
     });
 
     var initialiser = function () {
@@ -142,6 +163,7 @@
 </script>
 
 <style>
+
 .map_canvas
 {
     width: 60%;

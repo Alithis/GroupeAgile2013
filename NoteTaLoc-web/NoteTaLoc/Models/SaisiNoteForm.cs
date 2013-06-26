@@ -25,8 +25,24 @@ namespace NoteTaLoc.Models
         [Required(ErrorMessage = "Le pays est obligatoire.")]
         public string Pays { get; set; }
 
-        [Required(ErrorMessage = "Le numéro est obligatoire.")]
-        [Range(0, 5, ErrorMessage = "La note doit être comprise entre 0 et 5")]
         public int Note { get; set; }
+
+        public List<NoteTaLoc.Models.CriteriaTable> CriteriaTableList { get; set; }
+
+        public SaisiNoteForm() {
+
+            CriteriaTableList = new List<CriteriaTable>();
+            NoteTaLoc.Utilitary.CategoryStorage tmpCategories = (NoteTaLoc.Utilitary.CategoryStorage)HttpContext.Current.Application["Categories"];
+
+            foreach(NoteTaLoc.Utilitary.Criteria refCrit in tmpCategories.getCriteriaList("fr")){
+
+                CriteriaTable tmpCrit = new CriteriaTable();
+                tmpCrit.Criteria = refCrit.criteriaId;
+                tmpCrit.Category = refCrit.categoryId;
+                this.CriteriaTableList.Add(tmpCrit);
+
+            }
+
+        }
     }
 }

@@ -7,34 +7,39 @@
     <Schema Namespace="notetalocModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="notetalocModelStoreContainer">
           <EntitySet Name="AdresseTable" EntityType="notetalocModel.Store.AdresseTable" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CriteriaTable" EntityType="notetalocModel.Store.CriteriaTable" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="LocataireTable" EntityType="notetalocModel.Store.LocataireTable" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="NoteTable" EntityType="notetalocModel.Store.NoteTable" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ProprietaireTable" EntityType="notetalocModel.Store.ProprietaireTable" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SampleDroppableTable" EntityType="notetalocModel.Store.SampleDroppableTable" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="UserTable" EntityType="notetalocModel.Store.UserTable" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK__Locataire__Adres__32E0915F" Association="notetalocModel.Store.FK__Locataire__Adres__32E0915F">
+          <AssociationSet Name="FK__Locataire__Adres__1367E606" Association="notetalocModel.Store.FK__Locataire__Adres__1367E606">
             <End Role="AdresseTable" EntitySet="AdresseTable" />
             <End Role="LocataireTable" EntitySet="LocataireTable" />
           </AssociationSet>
-          <AssociationSet Name="FK__Locataire__UserI__31EC6D26" Association="notetalocModel.Store.FK__Locataire__UserI__31EC6D26">
+          <AssociationSet Name="FK__Locataire__UserI__1273C1CD" Association="notetalocModel.Store.FK__Locataire__UserI__1273C1CD">
             <End Role="UserTable" EntitySet="UserTable" />
             <End Role="LocataireTable" EntitySet="LocataireTable" />
           </AssociationSet>
-          <AssociationSet Name="FK__NoteTable__Adres__36B12243" Association="notetalocModel.Store.FK__NoteTable__Adres__36B12243">
+          <AssociationSet Name="FK__NoteTable__Adres__15502E78" Association="notetalocModel.Store.FK__NoteTable__Adres__15502E78">
             <End Role="AdresseTable" EntitySet="AdresseTable" />
             <End Role="NoteTable" EntitySet="NoteTable" />
           </AssociationSet>
-          <AssociationSet Name="FK__NoteTable__UserI__35BCFE0A" Association="notetalocModel.Store.FK__NoteTable__UserI__35BCFE0A">
+          <AssociationSet Name="FK__NoteTable__UserI__145C0A3F" Association="notetalocModel.Store.FK__NoteTable__UserI__145C0A3F">
             <End Role="UserTable" EntitySet="UserTable" />
             <End Role="NoteTable" EntitySet="NoteTable" />
           </AssociationSet>
-          <AssociationSet Name="FK__Proprieta__Adres__2F10007B" Association="notetalocModel.Store.FK__Proprieta__Adres__2F10007B">
+          <AssociationSet Name="FK__Proprieta__Adres__173876EA" Association="notetalocModel.Store.FK__Proprieta__Adres__173876EA">
             <End Role="AdresseTable" EntitySet="AdresseTable" />
             <End Role="ProprietaireTable" EntitySet="ProprietaireTable" />
           </AssociationSet>
-          <AssociationSet Name="FK__Proprieta__UserI__2E1BDC42" Association="notetalocModel.Store.FK__Proprieta__UserI__2E1BDC42">
+          <AssociationSet Name="FK__Proprieta__UserI__164452B1" Association="notetalocModel.Store.FK__Proprieta__UserI__164452B1">
             <End Role="UserTable" EntitySet="UserTable" />
             <End Role="ProprietaireTable" EntitySet="ProprietaireTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CriteriaTable_NoteTable" Association="notetalocModel.Store.FK_CriteriaTable_NoteTable">
+            <End Role="NoteTable" EntitySet="NoteTable" />
+            <End Role="CriteriaTable" EntitySet="CriteriaTable" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="AdresseTable">
@@ -52,6 +57,16 @@
           <Property Name="GeoCodeResponse" Type="varchar" MaxLength="255" />
           <Property Name="Longitude" Type="decimal" Precision="9" Scale="6" />
           <Property Name="Lattitude" Type="decimal" Precision="9" Scale="6" />
+        </EntityType>
+        <EntityType Name="CriteriaTable">
+          <Key>
+            <PropertyRef Name="CriteriaId" />
+          </Key>
+          <Property Name="CriteriaId" Type="int" Nullable="false" />
+          <Property Name="NoteId" Type="int" Nullable="false" />
+          <Property Name="Criteria" Type="int" Nullable="false" />
+          <Property Name="Category" Type="int" Nullable="false" />
+          <Property Name="Note" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="LocataireTable">
           <Key>
@@ -74,6 +89,7 @@
           <Property Name="StatutNote" Type="int" />
           <Property Name="Commentaire" Type="varchar" MaxLength="500" />
           <Property Name="StatutComment" Type="int" />
+          <Property Name="ChangeDate" Type="datetime" />
         </EntityType>
         <EntityType Name="ProprietaireTable">
           <Key>
@@ -112,7 +128,7 @@
           <Property Name="AllowPubContact" Type="bit" />
           <Property Name="ValidationToken" Type="varchar" MaxLength="500" />
         </EntityType>
-        <Association Name="FK__Locataire__Adres__32E0915F">
+        <Association Name="FK__Locataire__Adres__1367E606">
           <End Role="AdresseTable" Type="notetalocModel.Store.AdresseTable" Multiplicity="0..1" />
           <End Role="LocataireTable" Type="notetalocModel.Store.LocataireTable" Multiplicity="*" />
           <ReferentialConstraint>
@@ -124,7 +140,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Locataire__UserI__31EC6D26">
+        <Association Name="FK__Locataire__UserI__1273C1CD">
           <End Role="UserTable" Type="notetalocModel.Store.UserTable" Multiplicity="0..1" />
           <End Role="LocataireTable" Type="notetalocModel.Store.LocataireTable" Multiplicity="*" />
           <ReferentialConstraint>
@@ -136,7 +152,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__NoteTable__Adres__36B12243">
+        <Association Name="FK__NoteTable__Adres__15502E78">
           <End Role="AdresseTable" Type="notetalocModel.Store.AdresseTable" Multiplicity="0..1" />
           <End Role="NoteTable" Type="notetalocModel.Store.NoteTable" Multiplicity="*" />
           <ReferentialConstraint>
@@ -148,7 +164,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__NoteTable__UserI__35BCFE0A">
+        <Association Name="FK__NoteTable__UserI__145C0A3F">
           <End Role="UserTable" Type="notetalocModel.Store.UserTable" Multiplicity="0..1" />
           <End Role="NoteTable" Type="notetalocModel.Store.NoteTable" Multiplicity="*" />
           <ReferentialConstraint>
@@ -160,7 +176,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Proprieta__Adres__2F10007B">
+        <Association Name="FK__Proprieta__Adres__173876EA">
           <End Role="AdresseTable" Type="notetalocModel.Store.AdresseTable" Multiplicity="0..1" />
           <End Role="ProprietaireTable" Type="notetalocModel.Store.ProprietaireTable" Multiplicity="*" />
           <ReferentialConstraint>
@@ -172,7 +188,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Proprieta__UserI__2E1BDC42">
+        <Association Name="FK__Proprieta__UserI__164452B1">
           <End Role="UserTable" Type="notetalocModel.Store.UserTable" Multiplicity="0..1" />
           <End Role="ProprietaireTable" Type="notetalocModel.Store.ProprietaireTable" Multiplicity="*" />
           <ReferentialConstraint>
@@ -181,6 +197,18 @@
             </Principal>
             <Dependent Role="ProprietaireTable">
               <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CriteriaTable_NoteTable">
+          <End Role="NoteTable" Type="notetalocModel.Store.NoteTable" Multiplicity="1" />
+          <End Role="CriteriaTable" Type="notetalocModel.Store.CriteriaTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NoteTable">
+              <PropertyRef Name="NoteId" />
+            </Principal>
+            <Dependent Role="CriteriaTable">
+              <PropertyRef Name="NoteId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -218,6 +246,11 @@
           <AssociationSet Name="FK__Proprieta__UserI__2E1BDC42" Association="notetalocModel.FK__Proprieta__UserI__2E1BDC42">
             <End Role="UserTable" EntitySet="UserTables" />
             <End Role="ProprietaireTable" EntitySet="ProprietaireTables" />
+          </AssociationSet>
+          <EntitySet Name="CriteriaTables" EntityType="notetalocModel.CriteriaTable" />
+          <AssociationSet Name="FK_CriteriaTable_NoteTable" Association="notetalocModel.FK_CriteriaTable_NoteTable">
+            <End Role="NoteTable" EntitySet="NoteTables" />
+            <End Role="CriteriaTable" EntitySet="CriteriaTables" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="AdresseTable">
@@ -264,6 +297,8 @@
           <Property Name="StatutComment" Type="Int32" />
           <NavigationProperty Name="AdresseTable" Relationship="notetalocModel.FK__NoteTable__Adres__36B12243" FromRole="NoteTable" ToRole="AdresseTable" />
           <NavigationProperty Name="UserTable" Relationship="notetalocModel.FK__NoteTable__UserI__35BCFE0A" FromRole="NoteTable" ToRole="UserTable" />
+          <Property Type="DateTime" Name="ChangeDate" Precision="3" />
+          <NavigationProperty Name="CriteriaTables" Relationship="notetalocModel.FK_CriteriaTable_NoteTable" FromRole="NoteTable" ToRole="CriteriaTable" />
         </EntityType>
         <EntityType Name="ProprietaireTable">
           <Key>
@@ -379,6 +414,29 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="CriteriaTable">
+          <Key>
+            <PropertyRef Name="CriteriaId" />
+          </Key>
+          <Property Type="Int32" Name="CriteriaId" Nullable="false" />
+          <Property Type="Int32" Name="NoteId" Nullable="false" />
+          <Property Type="Int32" Name="Criteria" Nullable="false" />
+          <Property Type="Int32" Name="Category" Nullable="false" />
+          <Property Type="Int32" Name="Note" Nullable="false" />
+          <NavigationProperty Name="NoteTable" Relationship="notetalocModel.FK_CriteriaTable_NoteTable" FromRole="CriteriaTable" ToRole="NoteTable" />
+        </EntityType>
+        <Association Name="FK_CriteriaTable_NoteTable">
+          <End Type="notetalocModel.NoteTable" Role="NoteTable" Multiplicity="1" />
+          <End Type="notetalocModel.CriteriaTable" Role="CriteriaTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NoteTable">
+              <PropertyRef Name="NoteId" />
+            </Principal>
+            <Dependent Role="CriteriaTable">
+              <PropertyRef Name="NoteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -416,6 +474,7 @@
           <EntitySetMapping Name="NoteTables">
             <EntityTypeMapping TypeName="notetalocModel.NoteTable">
               <MappingFragment StoreEntitySet="NoteTable">
+                <ScalarProperty Name="ChangeDate" ColumnName="ChangeDate" />
                 <ScalarProperty Name="NoteId" ColumnName="NoteId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="AdresseId" ColumnName="AdresseId" />
@@ -466,6 +525,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="CriteriaTables">
+            <EntityTypeMapping TypeName="notetalocModel.CriteriaTable">
+              <MappingFragment StoreEntitySet="CriteriaTable">
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Criteria" ColumnName="Criteria" />
+                <ScalarProperty Name="NoteId" ColumnName="NoteId" />
+                <ScalarProperty Name="CriteriaId" ColumnName="CriteriaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -480,7 +550,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>

@@ -8,6 +8,9 @@ using NoteTaLoc.Models;
 using Recaptcha;
 using System.Security.Cryptography;
 using System.Text;
+using NoteTaLoc.Utilitary;
+using System.Configuration;
+using System.Web.Configuration;
 
 
 namespace NoteTaLoc.Controllers
@@ -16,7 +19,11 @@ namespace NoteTaLoc.Controllers
     {
 
         private notetalocEntities db = new notetalocEntities();
+        private MailControler mailControler = new MailControler();
+        private static Configuration config = WebConfigurationManager.OpenWebConfiguration("~");
+        private TwitterError twitterError = new TwitterError(config);
 
+        
         //
         // GET: /Account/Register
 
@@ -96,17 +103,18 @@ namespace NoteTaLoc.Controllers
                                 return RedirectToAction("AfterRegister", "Account");
                             }
                             else
-                                ModelState.AddModelError("", "An error has occurred attempting to send an email.");
+                                ModelState.AddModelError("", "Une erreur s'est produite en envoyant le courier electronique");
                         }
                         else
                         {
-                            ModelState.AddModelError("", "Username already exist.  Please select another username.");
+                            ModelState.AddModelError("", "Cet utilisateur existe deja, choisissez un autre pseudo.");
                         }
                     }
                 }
                 catch (Exception e)
                 {
-                    ModelState.AddModelError("", "Registration Error");
+                    ModelState.AddModelError("", "Erreur lors de l'enregistrement");
+                twitterError.publishError("accountController.register " + e.Message);    
                 }
             }
 
@@ -148,17 +156,6 @@ namespace NoteTaLoc.Controllers
         }
 
         public Boolean ValidateUser_Password(string username, string pw)
-        {
-            string sqlcmd = "SELECT * FROM dbo.usertable WHERE pseudo = '" + username + "' and motdepasse = '" + pw + "'";
-
-            var result = db.UserTables.SqlQuery(sqlcmd);
-            if (result.Count() > 0)
-                return true;
-            else
-                return false;
-        }
-
-        public Boolean ValidateActivatedAccount(string username, string pw)
         {
             string sqlcmd = "SELECT * FROM dbo.usertable WHERE pseudo = '" + username + "' and motdepasse = '" + pw + "' and InscriptionConfirm is not null";
 
@@ -211,21 +208,18 @@ namespace NoteTaLoc.Controllers
             //Send confirmation email.
             try
             {
-                System.Net.Mail.MailMessage message = new System.Net.Mail.MailMessage();
                 String prefix = "http://notetaloc.azurewebsites.net/Account/Activation?activationKey=";
                 String validationLink = prefix + tokenBody;
 
-                message.To.Add(model.EmailAddress); //recipient 
-                message.Subject = "RateYourRent - confirmation email";
-                message.From = new System.Net.Mail.MailAddress("no.reply@alithis.com"); //from email 
-                message.Body = "Please click on the link to confirm your registration: "+validationLink;
-                
-                System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient("mail.cia.ca");
-                smtp.Send(message); 
+                mailControler.sendEmail(config.AppSettings.Settings["adminMail"].Value, model.EmailAddress,
+                                        config.AppSettings.Settings["EmailConfirmationtext"].Value + validationLink,
+                                        config.AppSettings.Settings["EmailConfirmationsubject"].Value);
             }
-            catch
+            catch (Exception e)
             {
                 bRetCode = false;
+                twitterError.publishError("accountController.SendAccountConfimration " +
+                                          twitterError.publishError(e.Message));
             }
             return bRetCode;
         }
@@ -261,21 +255,13 @@ namespace NoteTaLoc.Controllers
             {
                 if (!DoesUserNameExist(model.UserName))
                 {
-                    ModelState.AddModelError("", "L'utilisateur n'éxiste pas.");
+                    ModelState.AddModelError("", "Cet utilisateur n'existe pas.");
                     bValid = false;
                 }
                 if (!ValidateUser_Password(model.UserName, model.Password))
                 {
-                    ModelState.AddModelError("", "Le mot de passe est incorrect.");
+                    ModelState.AddModelError("", "Le mot de passe est incorrect");
                     bValid = false;
-                }
-                else
-                {
-                    if (!ValidateActivatedAccount(model.UserName, model.Password))
-                    {
-                        ModelState.AddModelError("", "Le compte n'est pas encore activé. Veuillez cliquer sur le lien envoyé à votre courriel.");
-                        bValid = false;
-                    }
                 }
             }
 
@@ -302,7 +288,7 @@ namespace NoteTaLoc.Controllers
 
             HttpContext.Session.Remove("UserSessionObject");
 
-            return RedirectToAction("SearchNoted", "AdresseTable");
+            return RedirectToAction("Index", "Search");
         }
 
         #region Helpers
@@ -314,7 +300,7 @@ namespace NoteTaLoc.Controllers
             }
             else
             {
-                return RedirectToAction("SearchNoted", "AdresseTable");
+                return RedirectToAction("Index", "Search");
             }
         }
         #endregion

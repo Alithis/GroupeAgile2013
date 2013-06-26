@@ -13,7 +13,10 @@ using System.Web.UI.WebControls;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.XPath;
+using TweetSharp;
 
+//{
+//              }
 namespace NoteTaLoc.Controllers
 {
     public class MailSender
@@ -45,25 +48,49 @@ namespace NoteTaLoc.Controllers
     {
         public virtual void SaveNote(NoteTable note, out string resultMessage)
         {
-             using (var ctx = new notetalocEntities())
+            AdresseTable adresse = note.AdresseTable;
+            note.AdresseTable = null;
+
+            using (var ctx = new notetalocEntities())
             {
-             var noteToAdd = ctx.NoteTables.Where(n => n.AdresseId == note.AdresseId && n.UserId == note.UserId).FirstOrDefault();
-                 
-             if (noteToAdd == null)
-             {
-                 note.NoteId = GetNoteId(DateTime.Now);
-                 ctx.NoteTables.Add(note);
-                 ctx.SaveChanges();
-                 resultMessage = "Add";
-             }
-             else
-             {
-                 note.NoteId = noteToAdd.NoteId;
-                 noteToAdd.Note = note.Note;
-                 ctx.SaveChanges();
-                 resultMessage = "Update";
-             }
+                var noteToAdd = ctx.NoteTables.Where(n => n.AdresseId == note.AdresseId && n.UserId == note.UserId).FirstOrDefault();
+
+
+                if (noteToAdd == null)
+                {
+                    note.NoteId = GetNoteId(DateTime.Now);
+                    ctx.NoteTables.Add(note);
+                    foreach (CriteriaTable tmpCrit in note.CriteriaTables)
+                    {
+                        ctx.CriteriaTables.Add(tmpCrit);
+                    }
+                    ctx.SaveChanges();
+                    resultMessage = "Add";
+                }
+                else
+                {
+                    note.NoteId = noteToAdd.NoteId;
+                    noteToAdd.Note = note.Note;
+                    foreach (CriteriaTable tmpCrit in note.CriteriaTables)
+                    {
+                        ctx.CriteriaTables.Add(tmpCrit);
+                    }
+                    ctx.SaveChanges();
+                    resultMessage = "Update";
+                }
             }
+            var config = WebConfigurationManager.OpenWebConfiguration("~");
+            TwitterService tweetterService = new TwitterService(config.AppSettings.Settings["ConsumerKey"].Value,config.AppSettings.Settings["ConsumerSecret"].Value);
+            tweetterService.AuthenticateWith(config.AppSettings.Settings["AccessToken"].Value, config.AppSettings.Settings["AccessTokenSecret"].Value);
+
+            SendTweetOptions tweettOption = new SendTweetOptions();
+
+            tweettOption.Status = config.AppSettings.Settings["NotificationNouvelleNote"].Value + note.Note + "* addresse:  " + adresse.AdresseLine;
+
+            TwitterStatus status=  tweetterService.SendTweet(tweettOption);
+
+            var responseText = tweetterService.Response.Response;
+
         }
 
         private int GetNoteId(DateTime dt)
@@ -127,10 +154,8 @@ namespace NoteTaLoc.Controllers
             string senderMail = config.AppSettings.Settings["SenderMail"].Value;
             var mailTo = receiverMail;
             var mailFrom = senderMail;
-
-            var msg = "Cher Administrateur, \nUn appartement [avec une note] dont la note est égale à zéro vient d'être ajouté.\nLes informations de l’appartement sont disponibles ici : [lien vers une page d’administration de l’appartement].\n\nBonne journée.\n";
-            var obj = "NoteTaLoc - Notification : note à 0";
-
+            var msg = "Verifier la note de cet appartement!";
+            var obj = "NoteTaLoc";
             _SaisiNoteContext.SaveNote(note, out resultMessage);
             if (note.Note == 0)
             {
@@ -226,13 +251,12 @@ namespace NoteTaLoc.Controllers
             {
                 return RedirectToAction("LogIn", "Account", String.Format("{0}/{1}", "Index", "SaisiNote"));
                 //RedirectToAction( "Index",  "SaisiNote", null);    
+
+
             }
 
             return View();
         }
-
-        //
-        // POST: /SaisiNote/NoterAppartement
 
         public ActionResult NoterAppartement(string address, string country, string zip, string provincia, string citta, string appart, string lng, string lat, string nota)
         {
@@ -273,9 +297,9 @@ namespace NoteTaLoc.Controllers
                 saisiNoteWriter.SaveAddresNoteSaisi(addressToSave);
                 var id = saisiNoteWriter.GetAddressId(addressToSave);
                 var noteToSave = new NoteTable();
-                noteToSave.Note = int.Parse(nota);
+                noteToSave.Note = 5;
                 noteToSave.AdresseId = id;
-
+                noteToSave.AdresseTable = addressToSave;
                 UserTable userVariable = (UserTable)HttpContext.Session["UserSessionObject"];
 
                 noteToSave.UserId = userVariable.UserId;
@@ -315,25 +339,25 @@ namespace NoteTaLoc.Controllers
         [HttpPost]
         public ActionResult Index(SaisiNoteForm form)
         {
-            if (ModelState.IsValid)
-            {
-                var address = ConcatenationAddress(form);
+            //if (ModelState.IsValid)
+            //{
+                //var address = ConcatenationAddress(form);
                 try
                 {
-                    var geocoder = new Geocoder();
-                    var response = geocoder.Locate(address);
-                    if (response != null)
-                    {
-                        var longititude = response.Longitude;
-                        var lat = response.Latitude;
-                        var formatted_address = response.Formatted_address;
+                   // var geocoder = new Geocoder();
+                   // var response = geocoder.Locate(address);
+                   // if (response != null)
+                   // {
+                        var longititude = 10;
+                        var lat = 10;
+                        var formatted_address = "test adresse";
                         var addressToSave = new AdresseTable();
                         addressToSave.AptNo = form.Appartement;
                         addressToSave.CodePostal = form.CodePostal;
                         addressToSave.Ville = form.Localite;
                         addressToSave.Pays = form.Pays;
                         addressToSave.Province = form.Region;
-                        addressToSave.GeoCodeResponse = formatted_address;
+                        //addressToSave.GeoCodeResponse = formatted_address;
                         addressToSave.Lattitude = (decimal)lat;
                         addressToSave.Longitude = (decimal)longititude;
 
@@ -345,17 +369,17 @@ namespace NoteTaLoc.Controllers
                         noteToSave.AdresseId = id;
                         noteToSave.UserId = 1;
                         noteToSave.StatutNote = 0;
-                        //saisiNoteWriter.SaveNoteSaisi(noteToSave);
+                        //saisiNoteWriter.SaveNoteSaisi(noteToSave,out "TEST");
                         ViewBag.Message = "Enregistrement reussie!";
                         ViewBag.NumTimes = 1;
                         ViewData["color"] = "green";
-                    }
-                    else
-                    {
-                        ViewBag.Message = "vous devez inserez une adresse valide!";
-                        ViewBag.NumTimes = 1;
-                        ViewData["color"] = "red";
-                    }
+                   // }
+                   // else
+                   // {
+                   //     ViewBag.Message = "vous devez inserez une adresse valide!";
+                   //     ViewBag.NumTimes = 1;
+                   //     ViewData["color"] = "red";
+                   // }
 
                 }
                 catch (Exception ex)
@@ -364,7 +388,7 @@ namespace NoteTaLoc.Controllers
                     ViewBag.NumTimes = 1;
                     ViewData["color"] = "red";
                 }
-            }
+            //}
             return View(form);
         }
 

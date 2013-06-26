@@ -39,12 +39,89 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Recaptcha">
-      <HintPath>..\CommonReferences\Recaptcha.dll</HintPath>
+    <Reference Include="Common.Logging">
+      <HintPath>..\..\..\Spring.NET\bin\net\4.0\release\Common.Logging.dll</HintPath>
     </Reference>
-    <Reference Include="Rhino.Mocks">
-      <HintPath>..\CommonReferences\Rhino.Mocks.dll</HintPath>
+    <Reference Include="Hammock">
+      <HintPath>..\packages\Hammock.1.3.1\lib\4.0\Hammock.dll</HintPath>
+    </Reference>
+    <Reference Include="Hammock.ClientProfile">
+      <HintPath>..\packages\TweetSharp.2.3.0\lib\4.0\Hammock.ClientProfile.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\TweetSharp.2.3.0\lib\4.0\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Recaptcha">
+      <HintPath>..\..\..\..\..\Users\Eric Foka\Desktop\Recaptcha.dll</HintPath>
+      <HintPath>..\..\Recaptcha.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Aop">
+      <HintPath>..\..\..\Spring.NET\bin\net\4.0\release\Spring.Aop.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Core">
+      <HintPath>..\..\..\Spring.NET\bin\net\4.0\release\Spring.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Data">
+      <HintPath>..\..\..\Spring.NET\bin\net\4.0\release\Spring.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Data.NHibernate32">
+      <HintPath>..\..\..\Spring.NET\bin\net\4.0\release\Spring.Data.NHibernate32.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Data.NHibernate32.Integration.Tests">
+      <HintPath>..\..\..\Spring.NET\bin\net\4.0\release\Spring.Data.NHibernate32.Integration.Tests.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Data.NHibernate32.Tests">
+      <HintPath>..\..\..\Spring.NET\bin\net\4.0\release\Spring.Data.NHibernate32.Tests.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Data.NHibernate33">
+      <HintPath>..\..\..\Spring.NET\bin\net\4.0\release\Spring.Data.NHibernate33.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Data.NHibernate33.Integration.Tests">
+      <HintPath>..\..\..\Spring.NET\bin\net\4.0\release\Spring.Data.NHibernate33.Integration.Tests.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Data.NHibernate33.Tests">
+      <HintPath>..\..\..\Spring.NET\bin\net\4.0\release\Spring.Data.NHibernate33.Tests.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Messaging">
+      <HintPath>..\..\..\Spring.NET\bin\net\4.0\release\Spring.Messaging.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Messaging.Ems">
+      <HintPath>..\..\..\Spring.NET\bin\net\4.0\release\Spring.Messaging.Ems.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Messaging.Nms">
+      <HintPath>..\..\..\Spring.NET\bin\net\4.0\release\Spring.Messaging.Nms.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Scheduling.Quartz20">
+      <HintPath>..\..\..\Spring.NET\bin\net\4.0\release\Spring.Scheduling.Quartz20.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Services">
+      <HintPath>..\..\..\Spring.NET\bin\net\4.0\release\Spring.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Template.Velocity">
+      <HintPath>..\..\..\Spring.NET\bin\net\4.0\release\Spring.Template.Velocity.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Testing.Microsoft">
+      <HintPath>..\..\..\Spring.NET\bin\net\4.0\release\Spring.Testing.Microsoft.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Testing.NUnit">
+      <HintPath>..\..\..\Spring.NET\bin\net\4.0\release\Spring.Testing.NUnit.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Web">
+      <HintPath>..\..\..\Spring.NET\bin\net\4.0\release\Spring.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Web.Extensions">
+      <HintPath>..\..\..\Spring.NET\bin\net\4.0\release\Spring.Web.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Web.Mvc">
+      <HintPath>..\..\..\Spring.NET\bin\net\4.0\release\Spring.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Web.Mvc3">
+      <HintPath>..\..\..\Spring.NET\bin\net\4.0\release\Spring.Web.Mvc3.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Web.Mvc4">
+      <HintPath>..\..\..\Spring.NET\bin\net\4.0\release\Spring.Web.Mvc4.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -73,9 +150,6 @@
     <Reference Include="Microsoft.Web.Mvc.FixedDisplayModes, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.0\lib\net40\Microsoft.Web.Mvc.FixedDisplayModes.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http">
     </Reference>
@@ -140,6 +214,9 @@
       <Private>True</Private>
       <HintPath>..\packages\System.Spatial.5.2.0\lib\net40\System.Spatial.dll</HintPath>
     </Reference>
+    <Reference Include="TweetSharp">
+      <HintPath>..\packages\TweetSharp.2.3.0\lib\4.0\TweetSharp.dll</HintPath>
+    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.3.0\lib\WebGrease.dll</HintPath>
@@ -176,14 +253,17 @@
     <Compile Include="Controllers\LocataireTableController.cs" />
     <Compile Include="Controllers\NoteTableController.cs" />
     <Compile Include="Controllers\ProprietaireTableController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\UserTableController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\SaisiNoteForm.cs" />
-    <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Helper\ExceptionEx.cs" />
     <Compile Include="Models\AdresseTable.cs">
+      <DependentUpon>notetaloc.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CriteriaTable.cs">
       <DependentUpon>notetaloc.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LocataireTable.cs">
@@ -192,6 +272,19 @@
     <Compile Include="Models\NoteTable.cs">
       <DependentUpon>notetaloc.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ProprietaireTable.cs">
+      <DependentUpon>notetaloc.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SampleDroppableTable.cs">
+      <DependentUpon>notetaloc.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SearchMarker.cs" />
+    <Compile Include="Models\UserTable.cs">
+      <DependentUpon>notetaloc.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Utilitary\MailManager.cs" />
+    <Compile Include="Models\SaisiNoteForm.cs" />
+    <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\notetaloc.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -207,22 +300,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>notetaloc.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\ProprietaireTable.cs">
-      <DependentUpon>notetaloc.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\SampleDroppableTable.cs">
-      <DependentUpon>notetaloc.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Utilitary\TwitterControler.cs" />
     <Compile Include="Models\UserProfil.cs" />
-    <Compile Include="Models\UserTable.cs">
-      <DependentUpon>notetaloc.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\Account\AfterRegisterResource.Designer.cs">
-      <DependentUpon>AfterRegisterResource.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Views\Account\LoginResource.Designer.cs">
       <DependentUpon>LoginResource.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -244,6 +324,24 @@
     <Content Include="Content\bootstrap\img\glyphicons-halflings.png" />
     <Content Include="Content\bootstrap\js\bootstrap.js" />
     <Content Include="Content\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\Images\Icon_00.png" />
+    <Content Include="Content\Images\Icon_00_Gray.png" />
+    <Content Include="Content\Images\Icon_10.png" />
+    <Content Include="Content\Images\Icon_10_Gray.png" />
+    <Content Include="Content\Images\Icon_20.png" />
+    <Content Include="Content\Images\Icon_20_Gray.png" />
+    <Content Include="Content\Images\Icon_30.png" />
+    <Content Include="Content\Images\Icon_30_Gray.png" />
+    <Content Include="Content\Images\Icon_40.png" />
+    <Content Include="Content\Images\Icon_40_Gray.png" />
+    <Content Include="Content\Images\Icon_50.png" />
+    <Content Include="Content\Images\Icon_50_Gray.png" />
+    <Content Include="Content\Images\Icon_shadow.png" />
+    <Content Include="Content\Images\InfoWindowClose.png" />
+    <Content Include="Content\Images\InfoWindowTail.png" />
+    <Content Include="Content\Images\Loading.gif" />
+    <Content Include="Content\Images\RatingBar.png" />
+    <Content Include="Content\Search.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -332,14 +430,6 @@
     <Content Include="Images\background\background_8.JPG" />
     <Content Include="Images\background\background_9.jpg" />
     <Content Include="Images\LOGO_loQUALsmall.png" />
-    <Content Include="Images\search-icon.png" />
-    <Content Include="lib\jquery-1.4.4.min.js" />
-    <None Include="lib\jquery-1.8.2.intellisense.js" />
-    <Content Include="lib\jquery-1.8.2.js" />
-    <Content Include="lib\jquery-1.8.2.min.js" />
-    <Content Include="lib\jquery-ui-1.8.7.min.js" />
-    <Content Include="lib\jquery-ui-1.9.2.js" />
-    <Content Include="lib\jquery-ui-1.9.2.min.js" />
     <Content Include="Models\notetaloc.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>notetaloc.edmx</DependentUpon>
@@ -353,16 +443,19 @@
       <DependentUpon>notetaloc.edmx</DependentUpon>
       <LastGenOutput>notetaloc.cs</LastGenOutput>
     </Content>
-    <None Include="Properties\PublishProfiles\notetaloc - FTP.pubxml" />
+    <Compile Include="Utilitary\CategoryStorage.cs" />
+    <Content Include="Content\Images\Rating.pdn" />
     <None Include="Properties\PublishProfiles\notetaloc - FTP %282%29.pubxml" />
-    <None Include="Properties\PublishProfiles\notetaloc - FTP %283%29.pubxml" />
-    <None Include="Properties\PublishProfiles\notetaloc - FTP %284%29.pubxml" />
     <None Include="Properties\PublishProfiles\notetaloc - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\notetaloc - Web Deploy %282%29.pubxml" />
-    <None Include="Properties\PublishProfiles\notetaloc - Web Deploy %283%29.pubxml" />
-    <None Include="Properties\PublishProfiles\notetaloc - Web Deploy %284%29.pubxml" />
     <None Include="Properties\PublishProfiles\notetaloc - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Parameters\Categories\eng_lg_categorie.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Parameters\Categories\fr_lg_categorie.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -377,10 +470,6 @@
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="src\demo.css" />
-    <Content Include="src\jquery.ui.addresspicker.js" />
-    <Content Include="src\new  2.txt" />
-    <Content Include="src\new  3.txt" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -406,18 +495,11 @@
     <Content Include="Images\orderedList8.png" />
     <Content Include="Images\orderedList9.png" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\SaisiNote\old.cshtml" />
     <Content Include="Views\SaisiNote\Index.cshtml" />
-    <Content Include="Views\AdresseTable\Index.cshtml" />
-    <Content Include="Views\AdresseTable\Details.cshtml" />
-    <Content Include="Views\AdresseTable\Create.cshtml" />
-    <Content Include="Views\AdresseTable\Edit.cshtml" />
-    <Content Include="Views\AdresseTable\Delete.cshtml" />
     <Content Include="Views\LocataireTable\Index.cshtml" />
     <Content Include="Views\LocataireTable\Details.cshtml" />
     <Content Include="Views\LocataireTable\Create.cshtml" />
@@ -442,11 +524,13 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Account\AfterRegister.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\AdresseTable\SearchNoted.cshtml" />
     <Content Include="Views\Activation\index.cshtml" />
     <Content Include="Views\Account\Activation.cshtml" />
     <Content Include="Views\Account\ActivationAlreadyDone.cshtml" />
     <Content Include="Views\Account\ActivationSuccessful.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
+    <Content Include="Views\Search\InfoWindow.cshtml" />
+    <Content Include="Views\Search\SearchNoted.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -461,10 +545,6 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\Account\AfterRegisterResource.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>AfterRegisterResource.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="Views\Account\LoginResource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>LoginResource.Designer.cs</LastGenOutput>
