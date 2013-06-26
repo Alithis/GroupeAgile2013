@@ -93,6 +93,7 @@ namespace NoteTaLoc.Utilitary
                                     foreach (Criteria tmpCrit in tmpCat.criteriasList)
                                     {
                                         // on met chaque critere dans la liste avec l'id en cle pour faciliter la recherche par critere
+                                        tmpCrit.categoryId = tmpCat.categoryId;
                                         tmpCritList.GetOrAdd(tmpCrit.criteriaId.ToString(), tmpCrit);
                                     }
                                 }
@@ -267,6 +268,20 @@ namespace NoteTaLoc.Utilitary
         }
 
         // Summary:
+        //      Cette method renvoie la liste des criteres
+        // Parameters:
+        //      langue = langue en cours sur le site, a recuperer en session
+        public ICollection<Criteria> getCriteriaList(String language)
+        {
+            // recupere la liste de cat en fonction de la langue
+            ConcurrentDictionary<String, Criteria> tmpCrits = new ConcurrentDictionary<String, Criteria>();
+            tmpCrits = this.criteriaList.GetOrAdd(language, tmpCrits);
+
+            // code massivement pompe sur le msdn
+            return tmpCrits.Values;
+        }
+
+        // Summary:
         //      Cette methode retourne la liste de catgegorie en fonction d'une langue
         // Parameters:
         //      langue = langue en cours sur le site, a recuperer en session
@@ -323,6 +338,7 @@ namespace NoteTaLoc.Utilitary
         public String libelle;
         public Boolean active;
         public float weight;
+        public int categoryId;
     }
 
 }

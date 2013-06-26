@@ -17,6 +17,8 @@
         <AssociationConnector Association="notetalocModel.FK__Locataire__UserI__31EC6D26" ManuallyRouted="false" />
         <AssociationConnector Association="notetalocModel.FK__NoteTable__UserI__35BCFE0A" ManuallyRouted="false" />
         <AssociationConnector Association="notetalocModel.FK__Proprieta__UserI__2E1BDC42" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="notetalocModel.CriteriaTable" Width="1.5" PointX="5.125" PointY="12.25" />
+        <AssociationConnector Association="notetalocModel.FK_CriteriaTable_NoteTable" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

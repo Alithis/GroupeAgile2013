@@ -44,14 +44,14 @@
       <active>true</active>
       <criteriasList>
         <Criteria>
-          <criteriaId>30</criteriaId>
-          <libelle>criteria libelle 1</libelle>
+          <criteriaId>60</criteriaId>
+          <libelle>criteria libelle 6</libelle>
           <active>true</active>
           <weight>1</weight>
         </Criteria>
         <Criteria>
-          <criteriaId>40</criteriaId>
-          <libelle>criteria libelle 2</libelle>
+          <criteriaId>70</criteriaId>
+          <libelle>criteria libelle 7</libelle>
           <active>true</active>
           <weight>1</weight>
         </Criteria>

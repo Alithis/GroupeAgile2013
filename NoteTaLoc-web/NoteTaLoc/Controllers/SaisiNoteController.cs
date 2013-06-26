@@ -60,6 +60,10 @@ namespace NoteTaLoc.Controllers
                 {
                     note.NoteId = GetNoteId(DateTime.Now);
                     ctx.NoteTables.Add(note);
+                    foreach (CriteriaTable tmpCrit in note.CriteriaTables)
+                    {
+                        ctx.CriteriaTables.Add(tmpCrit);
+                    }
                     ctx.SaveChanges();
                     resultMessage = "Add";
                 }
@@ -67,6 +71,10 @@ namespace NoteTaLoc.Controllers
                 {
                     note.NoteId = noteToAdd.NoteId;
                     noteToAdd.Note = note.Note;
+                    foreach (CriteriaTable tmpCrit in note.CriteriaTables)
+                    {
+                        ctx.CriteriaTables.Add(tmpCrit);
+                    }
                     ctx.SaveChanges();
                     resultMessage = "Update";
                 }
@@ -289,7 +297,7 @@ namespace NoteTaLoc.Controllers
                 saisiNoteWriter.SaveAddresNoteSaisi(addressToSave);
                 var id = saisiNoteWriter.GetAddressId(addressToSave);
                 var noteToSave = new NoteTable();
-                noteToSave.Note = int.Parse(nota);
+                noteToSave.Note = 5;
                 noteToSave.AdresseId = id;
                 noteToSave.AdresseTable = addressToSave;
                 UserTable userVariable = (UserTable)HttpContext.Session["UserSessionObject"];
@@ -331,25 +339,25 @@ namespace NoteTaLoc.Controllers
         [HttpPost]
         public ActionResult Index(SaisiNoteForm form)
         {
-            if (ModelState.IsValid)
-            {
-                var address = ConcatenationAddress(form);
+            //if (ModelState.IsValid)
+            //{
+                //var address = ConcatenationAddress(form);
                 try
                 {
-                    var geocoder = new Geocoder();
-                    var response = geocoder.Locate(address);
-                    if (response != null)
-                    {
-                        var longititude = response.Longitude;
-                        var lat = response.Latitude;
-                        var formatted_address = response.Formatted_address;
+                   // var geocoder = new Geocoder();
+                   // var response = geocoder.Locate(address);
+                   // if (response != null)
+                   // {
+                        var longititude = 10;
+                        var lat = 10;
+                        var formatted_address = "test adresse";
                         var addressToSave = new AdresseTable();
                         addressToSave.AptNo = form.Appartement;
                         addressToSave.CodePostal = form.CodePostal;
                         addressToSave.Ville = form.Localite;
                         addressToSave.Pays = form.Pays;
                         addressToSave.Province = form.Region;
-                        addressToSave.GeoCodeResponse = formatted_address;
+                        //addressToSave.GeoCodeResponse = formatted_address;
                         addressToSave.Lattitude = (decimal)lat;
                         addressToSave.Longitude = (decimal)longititude;
 
@@ -361,17 +369,17 @@ namespace NoteTaLoc.Controllers
                         noteToSave.AdresseId = id;
                         noteToSave.UserId = 1;
                         noteToSave.StatutNote = 0;
-                        //saisiNoteWriter.SaveNoteSaisi(noteToSave);
+                        //saisiNoteWriter.SaveNoteSaisi(noteToSave,out "TEST");
                         ViewBag.Message = "Enregistrement reussie!";
                         ViewBag.NumTimes = 1;
                         ViewData["color"] = "green";
-                    }
-                    else
-                    {
-                        ViewBag.Message = "vous devez inserez une adresse valide!";
-                        ViewBag.NumTimes = 1;
-                        ViewData["color"] = "red";
-                    }
+                   // }
+                   // else
+                   // {
+                   //     ViewBag.Message = "vous devez inserez une adresse valide!";
+                   //     ViewBag.NumTimes = 1;
+                   //     ViewData["color"] = "red";
+                   // }
 
                 }
                 catch (Exception ex)
@@ -380,7 +388,7 @@ namespace NoteTaLoc.Controllers
                     ViewBag.NumTimes = 1;
                     ViewData["color"] = "red";
                 }
-            }
+            //}
             return View(form);
         }
 

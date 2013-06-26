@@ -260,11 +260,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\ExceptionEx.cs" />
-    <Compile Include="Models\SearchMarker.cs" />
-    <Compile Include="Utilitary\MailManager.cs" />
-    <Compile Include="Models\SaisiNoteForm.cs" />
-    <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\AdresseTable.cs">
+      <DependentUpon>notetaloc.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CriteriaTable.cs">
       <DependentUpon>notetaloc.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LocataireTable.cs">
@@ -273,6 +272,19 @@
     <Compile Include="Models\NoteTable.cs">
       <DependentUpon>notetaloc.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ProprietaireTable.cs">
+      <DependentUpon>notetaloc.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SampleDroppableTable.cs">
+      <DependentUpon>notetaloc.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SearchMarker.cs" />
+    <Compile Include="Models\UserTable.cs">
+      <DependentUpon>notetaloc.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Utilitary\MailManager.cs" />
+    <Compile Include="Models\SaisiNoteForm.cs" />
+    <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\notetaloc.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -288,17 +300,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>notetaloc.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\ProprietaireTable.cs">
-      <DependentUpon>notetaloc.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\SampleDroppableTable.cs">
-      <DependentUpon>notetaloc.tt</DependentUpon>
-    </Compile>
     <Compile Include="Utilitary\TwitterControler.cs" />
     <Compile Include="Models\UserProfil.cs" />
-    <Compile Include="Models\UserTable.cs">
-      <DependentUpon>notetaloc.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\Account\LoginResource.Designer.cs">
       <DependentUpon>LoginResource.resx</DependentUpon>
