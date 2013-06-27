@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ViewRes {
+namespace ViewResShared {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace ViewRes {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class LoginResource {
+    public class ErrorResource {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal LoginResource() {
+        internal ErrorResource() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace ViewRes {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("NoteTaLoc.Views.Account.LoginResource", typeof(LoginResource).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("NoteTaLoc.Views.Shared.ErrorResource", typeof(ErrorResource).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,74 +61,29 @@ namespace ViewRes {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à connectez vous pour noter des appartements.
+        ///   Recherche une chaîne localisée semblable à Erreur.
         /// </summary>
-        public static string creation {
+        public static string Error {
             get {
-                return ResourceManager.GetString("creation", resourceCulture);
+                return ResourceManager.GetString("Error", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à si vous n&apos;avez pas de compte.
+        ///   Recherche une chaîne localisée semblable à Une erreur s&apos;est produite lors du traitement de votre demande..
         /// </summary>
-        public static string doNotHaveAccount {
+        public static string headerTwoError {
             get {
-                return ResourceManager.GetString("doNotHaveAccount", resourceCulture);
+                return ResourceManager.GetString("headerTwoError", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Se connecter.
+        ///   Recherche une chaîne localisée semblable à Erreur.
         /// </summary>
-        public static string logIn {
+        public static string Title {
             get {
-                return ResourceManager.GetString("logIn", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Formulaire de connexion.
-        /// </summary>
-        public static string loginForm {
-            get {
-                return ResourceManager.GetString("loginForm", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Mot de passe.
-        /// </summary>
-        public static string password {
-            get {
-                return ResourceManager.GetString("password", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à S&apos;inscrire.
-        /// </summary>
-        public static string register {
-            get {
-                return ResourceManager.GetString("register", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à LOGIN.
-        /// </summary>
-        public static string titre {
-            get {
-                return ResourceManager.GetString("titre", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Utilisateur.
-        /// </summary>
-        public static string username {
-            get {
-                return ResourceManager.GetString("username", resourceCulture);
+                return ResourceManager.GetString("Title", resourceCulture);
             }
         }
     }

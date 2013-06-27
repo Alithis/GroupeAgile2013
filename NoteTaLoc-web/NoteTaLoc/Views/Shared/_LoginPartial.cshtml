@@ -1,3 +1,11 @@
+@using MyResources = ViewResShared.LoginPartialResource;
+@using MyResourcesLayout = ViewResShared.LayoutResource;
+
+@{
+    ViewBag.LOGOFF = MyResources.LOGOFF;
+    ViewBag.LANGUAGE = MyResources.LANGUAGE;
+}
+
 @if (HttpContext.Current.Session["UserSessionObject"] != null)
 {
     NoteTaLoc.Models.UserTable usertable = (NoteTaLoc.Models.UserTable)HttpContext.Current.Session["UserSessionObject"];
@@ -6,12 +14,36 @@
     {
 
         @Html.AntiForgeryToken()
-        <a href="javascript:document.getElementById('logoutForm').submit()">LOG OFF</a>
+        <a href="javascript:document.getElementById('logoutForm').submit()">@ViewBag.LOGOFF</a>
     }
     </li>
 }
 else
 {     
-    <li class="btn-inscrire">@Html.ActionLink("S'INSCRIRE", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-    <li class="btn-login">@Html.ActionLink("LOGIN", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    <li class="btn-inscrire">@Html.ActionLink(MyResources.Register, "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+    <li class="btn-login">@Html.ActionLink(MyResources.Login, "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
 }
+
+<li class="btn-white">
+<div>
+    <div id="language_drop_down" style="cursor: pointer;" onclick="openOrClose();">@ViewBag.LANGUAGE</div>
+    <div id="language_dropdown_list" style="display: none;">
+        
+     <div class="color: #fff;">
+        @Html.ActionLink(MyResourcesLayout.English, "ChangeCulture", "Account",  
+        new { lang = "en-CA", returnUrl = this.Request.RawUrl }, new {@class= "link-white"})
+         </div>
+    
+    <div class="color: #fff;">
+        @Html.ActionLink(MyResourcesLayout.French, "ChangeCulture", "Account",  new { lang = "fr-CA", returnUrl = this.Request.RawUrl }, new {@class= "link-white"})
+    </div>
+        </div>
+</div>
+</li>
+
+<script>
+    function openOrClose() {
+        $(this).toggleClass("language_drop_down", "language_drop_down");
+        $("#language_dropdown_list").slideToggle("fast");
+    }
+</script>

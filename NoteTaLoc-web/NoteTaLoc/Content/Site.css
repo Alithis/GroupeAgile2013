@@ -165,3 +165,8 @@ input, textarea, .uneditable-input, input[type="text"], input[type="search"] {
 .float-none {
     float: none;
 }
+
+.link-white
+{
+    color: #fff;
+}

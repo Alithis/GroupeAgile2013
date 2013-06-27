@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NoteTaLoc.Views.Account {
+namespace ViewRes {
     using System;
     
     

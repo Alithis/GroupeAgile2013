@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ViewRes {
+namespace ViewResShared {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace ViewRes {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class LoginResource {
+    public class LayoutResource {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal LoginResource() {
+        internal LayoutResource() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace ViewRes {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("NoteTaLoc.Views.Account.LoginResource", typeof(LoginResource).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("NoteTaLoc.Views.Shared.LayoutResource", typeof(LayoutResource).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,74 +61,56 @@ namespace ViewRes {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à connectez vous pour noter des appartements.
+        ///   Recherche une chaîne localisée semblable à English.
         /// </summary>
-        public static string creation {
+        public static string English {
             get {
-                return ResourceManager.GetString("creation", resourceCulture);
+                return ResourceManager.GetString("English", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à si vous n&apos;avez pas de compte.
+        ///   Recherche une chaîne localisée semblable à Français.
         /// </summary>
-        public static string doNotHaveAccount {
+        public static string French {
             get {
-                return ResourceManager.GetString("doNotHaveAccount", resourceCulture);
+                return ResourceManager.GetString("French", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Se connecter.
+        ///   Recherche une chaîne localisée semblable à Bonjour.
         /// </summary>
-        public static string logIn {
+        public static string Greeting {
             get {
-                return ResourceManager.GetString("logIn", resourceCulture);
+                return ResourceManager.GetString("Greeting", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Formulaire de connexion.
+        ///   Recherche une chaîne localisée semblable à Noter.
         /// </summary>
-        public static string loginForm {
+        public static string Mark {
             get {
-                return ResourceManager.GetString("loginForm", resourceCulture);
+                return ResourceManager.GetString("Mark", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Mot de passe.
+        ///   Recherche une chaîne localisée semblable à Rechercher.
         /// </summary>
-        public static string password {
+        public static string Search {
             get {
-                return ResourceManager.GetString("password", resourceCulture);
+                return ResourceManager.GetString("Search", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à S&apos;inscrire.
+        ///   Recherche une chaîne localisée semblable à RateYourRent.com.
         /// </summary>
-        public static string register {
+        public static string Title {
             get {
-                return ResourceManager.GetString("register", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à LOGIN.
-        /// </summary>
-        public static string titre {
-            get {
-                return ResourceManager.GetString("titre", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Utilisateur.
-        /// </summary>
-        public static string username {
-            get {
-                return ResourceManager.GetString("username", resourceCulture);
+                return ResourceManager.GetString("Title", resourceCulture);
             }
         }
     }

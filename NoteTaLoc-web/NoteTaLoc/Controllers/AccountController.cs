@@ -11,6 +11,7 @@ using System.Text;
 using NoteTaLoc.Utilitary;
 using System.Configuration;
 using System.Web.Configuration;
+using System.Globalization;
 
 
 namespace NoteTaLoc.Controllers
@@ -305,5 +306,10 @@ namespace NoteTaLoc.Controllers
         }
         #endregion
 
+        public ActionResult ChangeCulture(string lang, string returnUrl)
+        {
+            Session["Culture"] = new CultureInfo(lang);
+            return Redirect(returnUrl);
+        }
     }
 }
